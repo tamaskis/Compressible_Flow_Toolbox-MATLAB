@@ -1,51 +1,52 @@
-% area_mach_number_inverse  Finds the local Mach number from
-% either the sonic-to-local or local-to-sonic area ratio.
+%==========================================================================
 %
-%   [M_subsonic,M_supersonic] = area_mach_number_inverse(Astar_A,gamma)
-%   returns the subsonic and supersonic solutions "M_subsonic" and 
-%   "M_supersonic", respectively, for the local Mach number corresponding 
-%   to the quasi-1D flow of a gas with specific heat ratio "gamma" and 
-%   sonic-to-local area ratio A*/A.
+% area_mach_number_inverse  Mach number from area ratio (solving area-Mach
+% number relation for M).
 %
-%   [M_subsonic,M_supersonic] = area_mach_number_inverse(Astar_A,gamma,...
-%   'reciprocal') returns the subsonic and supersonic solutions 
-%   "M_subsonic" and "M_supersonic", respectively, for the local Mach 
-%   number corresponding to the quasi-1D flow of a gas with specific heat 
-%   ratio "gamma" and sonic-to-local area ratio A*/A.
-%
-%   [M_subsonic,M_supersonic] = area_mach_number_inverse(A_Astar,gamma,...
-%   'classic') returns the subsonic and supersonic solutions "M_subsonic"
-%   and "M_supersonic", respectively, for the local Mach number
-%   corresponding to the quasi-1D flow of a gas with specific heat ratio 
-%   "gamma" and local-to-sonic area ratio A/A*.
-%
-%   NOTE: The input "Astar_A" or "A_Astar" can be an array. The function 
-%         will then return arrays of the same size.
+%   [M_sub,M_sup] = area_mach_number_inverse(Astar_A,gamma)
+%   [M_sub,M_sup] = area_mach_number_inverse(Astar_A,gamma,'reciprocal')
+%   [M_sub,M_sup] = area_mach_number_inverse(A_Astar,gamma,'classic')
 %
 % See also flowisentropic
 %
-% GitHub: https://github.com/tamaskis/compressible_flow_relations-MATLAB
+% Copyright © 2021 Tamas Kis
+% Last Update: 2021-06-13
 %
-% See "Compressible Flow Relations - MATLAB implementation" for additional
-% documentation. Examples can be found in EXAMPLES_AREA_MACH_NUMBER.m. Both
-% of these files are included with the download of the "Compressible Flow
-% Relations" toolbox.
+%--------------------------------------------------------------------------
 %
-% Copyright (c) 2021 Tamas Kis
-
-
-
-%% FUNCTION
-
-% INPUT: area_ratio - either A*/A or A/A* (specified by "type")
-%        gamma - specific heat ratio
-%        type - 'reciprocal' or 'classic' (defaults to 'reciprocal')
-%               (OPTIONAL)
-% OUTPUT: [M_subsonic,M_supersonic] - subsonic and supersonic solutions of
-%                                     the area-Mach number relation for the
-%                                     local Mach number M
-function [M_subsonic,M_supersonic] = area_mach_number_inverse(...
-    area_ratio,gamma,type)
+% MATLAB Central File Exchange: 
+% GitHub: https://github.com/tamaskis/compressible_flow_toolbox-MATLAB
+%
+% See EXAMPLES.mlx for examples and "DOCUMENTATION.pdf" for additional 
+% documentation. Both of these files are included with the download.
+%
+%--------------------------------------------------------------------------
+%
+% -------
+% INPUTS:
+% -------
+%   area_ratio	- (N×1 or 1×N) area ratio
+%                	--> A*/A if type = 'reciprocal'
+%                	--> A/A* if type = 'classic'
+%   gamma    	- (1×1) specific heat ratio
+%   type        - (OPTIONAL) (char) 'reciprocal' or 'classic'
+%                   --> defaults to 'reciprocal'
+%
+% --------
+% OUTPUTS:
+% --------
+%   M_sub       - (N×1 or 1×N) subsonic solution of area-Mach number
+%                 relation for local Mach number
+%   M_sup       - (N×1 or 1×N) supersonic solution of area-Mach number 
+%                 relation for local Mach number
+%
+% -----
+% NOTE:
+% -----
+%   --> N = length of "area_ratio"
+%
+%==========================================================================
+function [M_sub,M_sup] = area_mach_number_inverse(area_ratio,gamma,type)
     
     % defaults "type" to 'reciprocal' if not specified
     if (nargin == 2) || isempty(type)
@@ -67,8 +68,8 @@ function [M_subsonic,M_supersonic] = area_mach_number_inverse(...
             1)))-Astar_A(i);
     
         % preallocates arrays
-        M_subsonic = zeros(size(area_ratio));
-        M_supersonic = zeros(size(area_ratio));
+        M_sub = zeros(size(area_ratio));
+        M_sup = zeros(size(area_ratio));
         
         % finds subsonic and supersonic roots at each area ratio
         for i = 1:length(area_ratio)
@@ -77,15 +78,15 @@ function [M_subsonic,M_supersonic] = area_mach_number_inverse(...
             gi = @(M) g(M,i);
             
             % finds subsonic and supersonic roots
-            M_subsonic(i) = secant_method(gi,0.5,1e-12);
-            M_supersonic(i) = secant_method(gi,1.5,1e-12);
+            M_sub(i) = secant_method(gi,0.5,1e-12);
+            M_sup(i) = secant_method(gi,1.5,1e-12);
             
             % handles special case where A*/A = 1 (because we know the 
             % exact solution in this case and can eliminate numerical 
             % error)
             if (Astar_A(i) == 1)
-                M_subsonic(i) = 1;
-                M_supersonic(i) = 1;
+                M_sub(i) = 1;
+                M_sup(i) = 1;
             end
             
         end
@@ -98,14 +99,14 @@ function [M_subsonic,M_supersonic] = area_mach_number_inverse(...
             1)))-Astar_A;
         
         % finds subsonic and supersonic roots
-        M_subsonic = secant_method(g,0.1,1e-12);
-        M_supersonic = secant_method(g,1.5,1e-12);
+        M_sub = secant_method(g,0.1,1e-12);
+        M_sup = secant_method(g,1.5,1e-12);
         
         % handles special case where A*/A = 1 (because we know the exact
         % solution in this case and can eliminate numerical error)
         if (Astar_A == 1)
-            M_subsonic = 1;
-            M_supersonic = 1;
+            M_sub = 1;
+            M_sup = 1;
         end
         
     end

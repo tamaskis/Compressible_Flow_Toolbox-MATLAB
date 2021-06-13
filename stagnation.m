@@ -1,36 +1,51 @@
+%==========================================================================
+%
 % stagnation  Stagnation-to-static ratios based on local Mach number.
 %
-%   Q_out = stagnation(M,gamma,spec) returns some ratio between the
-%   stagnation quantity and static quantity in the flow of a calorically
-%   perfect gas. "M" is the local Mach number and "gamma" is the specific
-%   heat ratio. "M" can be input as an array; in that case, the function
-%   will return an array of the same size. The identifier "spec" (that
-%   determines the output "Q_out") can have the following values:
-%    --> 'Tt/T' = stagnation-to-static temperature ratio
-%    --> 'Pt/P' = stagnation-to-static pressure ratio
-%    --> 'rhot/rho' = stagnation-to-static density ratio
-%    --> 'at/a' = stagnation-to-static speed of sound ratio
-%    --> 'ht/h' = stagnation-to-static enthalpy ratio
+%   Tt_T = stagnation(M,gamma,'Tt/T')
+%   Pt_P = stagnation(M,gamma,'Pt/P')
+%   rhot_rho = stagnation(M,gamma,'rhot/rho')
+%   at_a = stagnation(M,gamma,'at/a')
+%   ht_h = stagnation(M,gamma,'ht/h')
 %
 % See also flowisentropic
 %
-% GitHub: https://github.com/tamaskis/compressible_flow_relations-MATLAB
+% Copyright © 2021 Tamas Kis
+% Last Update: 2021-06-13
 %
-% See "Compressible Flow Relations - MATLAB implementation" for additional
-% documentation. Examples can be found in EXAMPLES_stagnation.m.
-% Both of these files are included with the download of the "Compressible
-% Flow Relations" toolbox.
+%--------------------------------------------------------------------------
 %
-% Copyright (c) 2021 Tamas Kis
-
-
-
-%% FUNCTION
-
-% INPUT: M - local Mach number
-%        gamma - specific heat ratio
-%        spec - what the function should return
-% OUTPUT: Q_out - output quantity specified by "spec"
+% MATLAB Central File Exchange: 
+% GitHub: https://github.com/tamaskis/compressible_flow_toolbox-MATLAB
+%
+% See EXAMPLES.mlx for examples and "DOCUMENTATION.pdf" for additional 
+% documentation. Both of these files are included with the download.
+%
+%--------------------------------------------------------------------------
+%
+% -------
+% INPUTS:
+% -------
+%   M       - (N×1 or 1×N) local Mach number
+%   gamma   - (1×1) specific heat ratio
+%   spec    - (char) specifies output quantity
+%               --> 'Tt/T' = stagnation-to-static temperature ratio
+%               --> 'Pt/P' = stagnation-to-static pressure ratio
+%               --> 'rhot/rho' = stagnation-to-static density ratio
+%               --> 'at/a' = stagnation-to-static speed of sound ratio
+%               --> 'ht/h' = stagnation-to-static enthalpy ratio
+%
+% --------
+% OUTPUTS:
+% --------
+%   Q_out 	- (N×1 or 1×N) output quantity (specified by "spec")
+%
+% -----
+% NOTE:
+% -----
+%   --> N = length of "M"
+%
+%==========================================================================
 function Q_out = stagnation(M,gamma,spec)
     
     % stagnation-to-static temperature ratio

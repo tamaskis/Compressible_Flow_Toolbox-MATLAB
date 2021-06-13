@@ -1,43 +1,54 @@
+%==========================================================================
+%
 % rayleigh_heat_inverse  Determines the stagnation temperature at one
 % station in a Rayleigh flow given the stagnation temperature at the other
 % station and the (specific) heat addition between the two stations.
 %
-%   Tt_out = rayleigh_heat_inverse(Tt_in,q,gamma,R,spec) returns the 
-%   stagnation temperature "Tt_out" and one station in a frictionless, 
-%   quasi-one-dimensional flow with heat addition (i.e. Rayleigh flow)
-%   given the stagnation temperature "Tt_in" at the other station, the
-%   (specific) heat addition "q" between the two stations, the specific
-%   heat ratio "gamma", and the specific gas constant "R". "Tt_in" and "q" 
-%   may be input as arrays (as long as they are the same size); in that 
-%   case, the function will return an array of the same size. The 
-%   identifier "spec" (that identifies the input "Tt_in") can have the 
-%   following values:
-%    --> 'Tt1' = stagnation temperature at station 1 (then Tt_out will be 
-%                the stagnation temperature at station 2, Tt2)
-%    --> 'Tt2' = stagnation temperature at station 2 (then Tt_out will be 
-%                the stagnation temperature at station 1, Tt1)
+%   Tt1 = rayleigh_heat_inverse(Tt2,q,gamma,R,'Tt2')
+%   Tt2 = rayleigh_heat_inverse(Tt1,q,gamma,R,'Tt1')
 %
 % See also flowrayleigh
 %
-% GitHub: https://github.com/tamaskis/compressible_flow_relations-MATLAB
+% Copyright © 2021 Tamas Kis
+% Last Update: 2021-06-13
 %
-% See "Compressible Flow Relations - MATLAB implementation" for additional
-% documentation. Examples can be found in EXAMPLES_RAYLEIGH.m. Both of
-% these files are included with the download of the "Compressible Flow
-% Relations" toolbox.
+%--------------------------------------------------------------------------
 %
-% Copyright (c) 2021 Tamas Kis
-
-
-
-%% FUNCTION
-
-% INPUT: Tt_in - stagnation temperature at one station [K]
-%        q - (specific) heat addition between the two stations [J/kg]
-%        gamma - specific heat ratio
-%        R - specific gas constant [J/(kg.K)]
-%        spec - identifies input stagnation temperature
-% OUTPUT: Tt_out - stagnation temperature at other station [K]
+% MATLAB Central File Exchange: 
+% GitHub: https://github.com/tamaskis/compressible_flow_toolbox-MATLAB
+%
+% See EXAMPLES.mlx for examples and "DOCUMENTATION.pdf" for additional 
+% documentation. Both of these files are included with the download.
+%
+%--------------------------------------------------------------------------
+%
+% -------
+% INPUTS:
+% -------
+%   Tt_in   - (N×1 or 1×N) [K] stagnation temperature at one station
+%  	q       - (1×1 or N×1 or 1×N) [J/kg] (specific) heat addition between 
+%             the two stations
+%   gamma   - (1×1) specific heat ratio
+%   R       - (1×1) [J/(kg.K)] specific gas constant
+% 	spec    - (char) specifies input stagnation temperature
+%               --> 'Tt1' = station 1 stagnation temperature
+%               --> 'Tt2' = station 2 stagnation temperature
+%
+% --------
+% OUTPUTS:
+% --------
+%   Tt_out  - (N×1 or 1×N) [K] stagnation temperature at other station
+%           	--> Tt1 (station 1 stagnation temperature) if spec = 'Tt2'
+%           	--> Tt2 (station 2 stagnation temperature) if spec = 'Tt1'
+%
+% -----
+% NOTE:
+% -----
+%   --> N = length of "Tt_in"
+%   --> "q" can either be input as a scalar or as a vector with length
+%       equal to that of "Tt_in".
+%
+%==========================================================================
 function Tt_out = rayleigh_heat_inverse(Tt_in,q,gamma,R,spec)
     
     % determines Tt2 if Tt1 input

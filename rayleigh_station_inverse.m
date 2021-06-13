@@ -1,51 +1,80 @@
+%==========================================================================
+%
 % rayleigh_station_inverse  Calculates the Mach number at one station given
 % the Mach number at the other station and some ratio/difference between
 % the two stations.
 %
-%   M_out = rayleigh_station_inverse(M_in,Q_in,gamma,M_spec,Q_spec) returns
-%   the Mach number "M_out" at one station given the Mach number "M_in" at
-%   the other station, some input quantity "Q_in", and the specific heat 
-%   ratio "gamma". "M_in" and "Q_in"  may be input as arrays (as long as
-%   they are the same size); in that case, the function will return an
-%   array of the same size. The identifier "M_spec" (that identifies the 
-%   input "M_in") can have the following values:
-%    --> 'M1' = Mach number at station 1 (then M_out will be the Mach
-%               number at station 2, M2)
-%    --> 'M2' = Mach number at station 2 (then M_out will be the Mach
-%               number at station 1, M1)
-%   The identifier "Q_spec" (that identifies the input "Q_in") can have the
-%   following values:
-%    --> 'T2/T1' = static temperature ratio
-%    --> 'P2/P1' = static pressure ratio
-%    --> 'h2/h1' = static enthalpy ratio
-%    --> 'rho2/rho1' = density ratio
-%    --> 'U2/U1' = velocity ratio
-%    --> 'Tt2/Tt1' = stagnation temperature ratio
-%    --> 'Pt2/Pt1' = stagnation pressure ratio
-%    --> 'ht2/ht1' = stagnation enthalpy ratio
-%    --> '(s2-s1)/cp' = nondimensional entropy change
+%   M1 = rayleigh_station_inverse(M2,T2_T1,gamma,'M2','T2/T1')
+%   M1 = rayleigh_station_inverse(M2,P2_P1,gamma,'M2','P2/P1')
+%   M1 = rayleigh_station_inverse(M2,h2_h1,gamma,'M2','h2/h1')
+%   M1 = rayleigh_station_inverse(M2,rho2_rho1,gamma,'M2','rho2/rho1')
+%   M1 = rayleigh_station_inverse(M2,U2_U1,gamma,'M2','U2/U1')
+%   M1 = rayleigh_station_inverse(M2,Tt2_Tt1,gamma,'M2','Tt2/Tt1')
+%   M1 = rayleigh_station_inverse(M2,Pt2_Pt1,gamma,'M2','Pt2/Pt1')
+%   M1 = rayleigh_station_inverse(M2,ht2_ht1,gamma,'M2','ht2/ht1')
+%   M1 = rayleigh_station_inverse(M2,ds_cp,gamma,'M2','(s2-s1)/cp')
+%
+%   M2 = rayleigh_station_inverse(M1,T2_T1,gamma,'M1','T2/T1')
+%   M2 = rayleigh_station_inverse(M1,P2_P1,gamma,'M1','P2/P1')
+%   M2 = rayleigh_station_inverse(M1,h2_h1,gamma,'M1','h2/h1')
+%   M2 = rayleigh_station_inverse(M1,rho2_rho1,gamma,'M1','rho2/rho1')
+%   M2 = rayleigh_station_inverse(M1,U2_U1,gamma,'M1','U2/U1')
+%   M2 = rayleigh_station_inverse(M1,Tt2_Tt1,gamma,'M1','Tt2/Tt1')
+%   M2 = rayleigh_station_inverse(M1,Pt2_Pt1,gamma,'M1','Pt2/Pt1')
+%   M2 = rayleigh_station_inverse(M1,ht2_ht1,gamma,'M1','ht2/ht1')
+%   M2 = rayleigh_station_inverse(M1,ds_cp,gamma,'M1','(s2-s1)/cp')
 %
 % See also flowrayleigh
 %
-% GitHub: https://github.com/tamaskis/compressible_flow_relations-MATLAB
+% Copyright © 2021 Tamas Kis
+% Last Update: 2021-06-13
 %
-% See "Compressible Flow Relations - MATLAB implementation" for additional
-% documentation. Examples can be found in EXAMPLES_RAYLEIGH.m. Both of
-% these files are included with the download of the "Compressible Flow
-% Relations" toolbox.
+%--------------------------------------------------------------------------
 %
-% Copyright (c) 2021 Tamas Kis
-
-
-
-%% FUNCTION
-
-% INPUT: M_in - Mach number at one station (specified by "M_spec")
-%        Q_in - some input quantity  (specified by "Q_spec")
-%        gamma - specific heat ratio
-%        M_spec - identifies input Mach number
-%        Q_spec - identifies input quantity
-% OUTPUT: M_out - Mach number at the other station
+% MATLAB Central File Exchange: 
+% GitHub: https://github.com/tamaskis/compressible_flow_toolbox-MATLAB
+%
+% See EXAMPLES.mlx for examples and "DOCUMENTATION.pdf" for additional 
+% documentation. Both of these files are included with the download.
+%
+%--------------------------------------------------------------------------
+%
+% -------
+% INPUTS:
+% -------
+%   M_in    - (1×1 or N×1 or 1×N) Mach number at one station (specified by 
+%             "M_spec")
+%   Q_in    - (1×1 or N×1 or 1×N) input quantity (specified by "Q_spec")
+%   gamma   - (1×1) specific heat ratio
+%   M_spec  - (char) specifies input Mach number
+%               --> 'M1' = station 1 Mach number
+%               --> 'M2' = station 2 Mach number
+%   Q_spec  - (char) specifies input quantity
+%               --> 'T2/T1' = static temperature ratio
+%               --> 'P2/P1' = static pressure ratio
+%               --> 'h2/h1' = static enthalpy ratio
+%               --> 'rho2/rho1' = density ratio
+%               --> 'U2/U1' = velocity ratio
+%               --> 'Tt2/Tt1' = stagnation temperature ratio
+%               --> 'Pt2/Pt1' = stagnation pressure ratio
+%               --> 'ht2/ht1' = stagnation enthalpy ratio
+%               --> '(s2-s1)/cp' = nondimensional entropy change
+%
+% --------
+% OUTPUTS:
+% --------
+%   M_out 	- (N×1 or 1×N) Mach number at other station
+%           	--> M1 (station 1 Mach number) if M_spec = 'M2'
+%           	--> M2 (station 2 Mach number) if M_spec = 'M1'
+%
+% -----
+% NOTE:
+% -----
+%   --> N = length of "M_in" OR "Q_in"
+%   --> If M_in is specified as a vector, Q_in must be specified as a
+%       scalar, and vice-versa.
+%
+%==========================================================================
 function M_out = rayleigh_station_inverse(M_in,Q_in,gamma,M_spec,Q_spec)
     
     % makes arrays if necessary

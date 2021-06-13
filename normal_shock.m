@@ -1,43 +1,67 @@
+%==========================================================================
+%
 % normal_shock  Normal shock relations.
 %
-%   Q_out = normal_shock(M1,gamma,spec) returns some ratio or change across
-%   a normal shock. "M1" is the upstream Mach number and "gamma" is the 
-%   specific heat ratio. "M1" can be input as an array; in that case, the 
-%   function will return an array of the same size. The identifier "spec" 
-%   (that determines the output "Q_out") can have the following values:
-%    --> 'M2' = downstream Mach number
-%    --> 'T2/T1' = static temperature ratio
-%    --> 'P2/P1' = static pressure ratio
-%    --> 'rho2/rho1' = static density ratio
-%    --> 'U2/U1' = velocity ratio
-%    --> 'a2/a1' = speed of sound ratio
-%    --> 'h2/h1' = static enthalpy ratio
-%    --> 'Tt2/Tt1' = stagnation temperature ratio
-%    --> 'Pt2/Pt1' = stagnation pressure ratio
-%    --> 'rhot2/rhot1' = stagnation density ratio
-%    --> 'at2/at1' = stagnation speed of sound ratio
-%    --> 'ht2/ht1' = stagnation enthalpy ratio
-%    --> '(s2-s1)/cp' = nondimensional entropy change
+%   M2 = normal_shock(M1,gamma,'M2')
+%   T2_T1 = normal_shock(M1,gamma,'T2/T1')
+%   P2_P1 = normal_shock(M1,gamma,'P2/P1')
+%   rho2_rho1 = normal_shock(M1,gamma,'rho2/rho1')
+%   U2_U1 = normal_shock(M1,gamma,'U2/U1')
+%   a2_a1 = normal_shock(M1,gamma,'a2/a1')
+%   h2_h1 = normal_shock(M1,gamma,'h2/h1')
+%   Tt2_Tt1 = normal_shock(M1,gamma,'Tt2/Tt1')
+%   Pt2_Pt1 = normal_shock(M1,gamma,'Pt2/Pt1')
+%   rhot2_rhot1 = normal_shock(M1,gamma,'rhot2/rhot1')
+%   at2_at1 = normal_shock(M1,gamma,'at2/at1')
+%   ht2_ht1 = normal_shock(M1,gamma,'ht2/ht1')
+%   ds_cp = normal_shock(M1,gamma,'(s2-s1)/cp')
 %
 % See also flownormalshock
 %
-% GitHub: https://github.com/tamaskis/compressible_flow_relations-MATLAB
+% Copyright © 2021 Tamas Kis
+% Last Update: 2021-06-13
 %
-% See "Compressible Flow Relations - MATLAB implementation" for additional
-% documentation. Examples can be found in EXAMPLES_NORMAL_SHOCK.m. Both of
-% these files are included with the download of the "Compressible Flow
-% Relations" toolbox.
+%--------------------------------------------------------------------------
 %
-% Copyright (c) 2021 Tamas Kis
-
-
-
-%% FUNCTION
-
-% INPUT: M1 - upstream Mach number
-%        gamma - specific heat ratio
-%        spec - what the function should return
-% OUTPUT: Q_out - output quantity specified by "spec"
+% MATLAB Central File Exchange: 
+% GitHub: https://github.com/tamaskis/compressible_flow_toolbox-MATLAB
+%
+% See EXAMPLES.mlx for examples and "DOCUMENTATION.pdf" for additional 
+% documentation. Both of these files are included with the download.
+%
+%--------------------------------------------------------------------------
+%
+% -------
+% INPUTS:
+% -------
+%   M1      - (N×1 or 1×N) upstream Mach number
+%   gamma   - (1×1) specific heat ratio
+%   spec    - (char) specifies output quantity
+%               --> 'M2' = downstream Mach number
+%               --> 'T2/T1' = static temperature ratio
+%               --> 'P2/P1' = static pressure ratio
+%               --> 'rho2/rho1' = static density ratio
+%               --> 'U2/U1' = velocity ratio
+%               --> 'a2/a1' = speed of sound ratio
+%               --> 'h2/h1' = static enthalpy ratio
+%               --> 'Tt2/Tt1' = stagnation temperature ratio
+%               --> 'Pt2/Pt1' = stagnation pressure ratio
+%               --> 'rhot2/rhot1' = stagnation density ratio
+%               --> 'at2/at1' = stagnation speed of sound ratio
+%               --> 'ht2/ht1' = stagnation enthalpy ratio
+%               --> '(s2-s1)/cp' = nondimensional entropy change
+%
+% --------
+% OUTPUTS:
+% --------
+%   Q_out 	- (N×1 or 1×N) output quantity (specified by "spec")
+%
+% -----
+% NOTE:
+% -----
+%   --> N = length of "M1"
+%
+%==========================================================================
 function Q_out = normal_shock(M1,gamma,spec)
     
     % downstream Mach number

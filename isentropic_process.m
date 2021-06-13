@@ -1,44 +1,58 @@
-% isentropic_process  Isentropic relations.
+%==========================================================================
 %
-%   Q_out = isentropic_process(Q_in,spec_in,spec_out,gamma) converts any 
-%   ratio to any other ratio in an isentropic process involving a 
-%   calorically perfect gas. "Q_in" is the input described by the
-%   identifier "spec_in", and "gamma" is the specific heat ratio. "Q_in"
-%   can be input as an array; in that case, the function will return an
-%   an array of the same size."Q_out" is the output that is determined by 
-%   the identifier "spec_out". "spec_in" and "spec_out" can both have the 
-%   following values:
-%    --> 'T2/T1' = static temperature ratio
-%    --> 'P2/P1' = static pressure ratio
-%    --> 'h2/h1' = static enthalpy ratio
-%    --> 'rho2/rho1' = static density ratio
-%    --> 'a2/a1' = speed of sound ratio
-%    --> 'Tt2/Tt1' = stagnation temperature ratio
-%    --> 'Pt2/Pt1' = stagnation pressure ratio
-%    --> 'ht2/ht1' = stagnation enthalpy ratio
-%    --> 'rhot2/rhot1' = stagnation density ratio
-%    --> 'at2/at1' = stagnation speed of sound ratio
+% isentropic_process  Converts any ratio to any other ratio in an 
+% isentropic process involving a calorically perfect gas.
+%
+%   Q_out = isentropic_process(Q_in,spec_in,'T2/T1',gamma)
 %
 % See also flowisentropic
 %
-% GitHub: https://github.com/tamaskis/compressible_flow_relations-MATLAB
+% Copyright © 2021 Tamas Kis
+% Last Update: 2021-06-13
 %
-% See "Compressible Flow Relations - MATLAB implementation" for additional
-% documentation. Examples can be found in EXAMPLES_ISENTROPIC_PROCESS.m. 
-% Both of these files are included with the download of the "Compressible 
-% Flow Relations" toolbox.
+%--------------------------------------------------------------------------
 %
-% Copyright (c) 2021 Tamas Kis
-
-
-
-%% FUNCTION
-
-% INPUT: Q_in - input quantity
-%        spec_in - what is input to the function
-%        spec_out - what the function should return
-%        gamma - specific heat ratio
-% OUTPUT: Q_out - output quantity specified by "spec_out"
+% MATLAB Central File Exchange: 
+% GitHub: https://github.com/tamaskis/compressible_flow_toolbox-MATLAB
+%
+% See EXAMPLES.mlx for examples and "DOCUMENTATION.pdf" for additional 
+% documentation. Both of these files are included with the download.
+%
+%--------------------------------------------------------------------------
+%
+% -------
+% INPUTS:
+% -------
+%   Q_in        - (N×1 or 1×N) input quantity
+%   spec_in     - (char) specifies input quantity
+%   spec_out    - (char) specifies output quantity
+%   gamma       - (1×1) specific heat ratio
+%
+% --------
+% OUTPUTS:
+% --------
+%   Q_out       - (N×1 or 1×N) output quantity (specified by "spec_out")
+%
+% -----------------------------
+% OPTIONS FOR spec_in/spec_out:
+% -----------------------------
+%   --> 'T2/T1'         - static temperature ratio
+%   --> 'P2/P1'         - static pressure ratio
+%   --> 'h2/h1'         - static enthalpy ratio
+%	--> 'rho2/rho1'     - static density ratio
+% 	--> 'a2/a1'         - speed of sound ratio
+% 	--> 'Tt2/Tt1'       - stagnation temperature ratio
+% 	--> 'Pt2/Pt1'       - stagnation pressure ratio
+% 	--> 'ht2/ht1'       - stagnation enthalpy ratio
+% 	--> 'rhot2/rhot1'   - stagnation density ratio
+%	--> 'at2/at1'       - stagnation speed of sound ratio
+%
+% -----
+% NOTE:
+% -----
+%   --> N = length of "Q_in"
+%
+%==========================================================================
 function Q_out = isentropic_process(Q_in,spec_in,spec_out,gamma)
     
     % converts any input to a temperature ratio

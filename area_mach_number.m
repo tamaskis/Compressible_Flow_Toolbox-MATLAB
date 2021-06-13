@@ -1,46 +1,47 @@
-% area_mach_number  Evaluates the (reciprocal or classic) area-Mach number
-% relation to find either the sonic-to-local (reciprocal form) of local-to-
-% sonic (classic form) area ratio as a function of the local Mach number.
+%==========================================================================
 %
-%   Astar_A = area_mach_number(M,gamma) returns the sonic-to-local area
-%   ratio A*/A (using the reciprocal form of the area-Mach number relation)
-%   corresponding to the quasi-1D flow of a gas with specific heat ratio
-%   "gamma" and local Mach number "M".
+% area_mach_number  Area ratio from Mach number (using Mach-area relation).
 %
-%   Astar_A = area_mach_number(M,gamma,'reciprocal') returns the sonic-to-
-%   local area ratio A*/A (using the reciprocal form of the area-Mach
-%   number relation) corresponding to the quasi-1D flow of a gas with
-%   specific heat ratio "gamma" and local Mach number "M".
-%
-%   A_Astar = area_mach_number(M,gamma,'classic') returns the local-to-
-%   sonic area ratio A/A* (using the classic form of the area-Mach number
-%   relation) corresponding to the quasi-1D flow of a gas with specific
-%   heat ratio "gamma" and local Mach number "M".
-%
-%   NOTE: The input "M" can be an array. The function will then return an
-%         array of the same size.
+%   Astar_A = area_mach_number(M,gamma)
+%   Astar_A = area_mach_number(M,gamma,'reciprocal')
+%   A_Astar = area_mach_number(M,gamma,'classic')
 %
 % See also flowisentropic
 %
-% GitHub: https://github.com/tamaskis/compressible_flow_relations-MATLAB
+% Copyright © 2021 Tamas Kis
+% Last Update: 2021-06-13
 %
-% See "Compressible Flow Relations - MATLAB implementation" for additional
-% documentation. Examples can be found in EXAMPLES_AREA_MACH_NUMBER.m. Both
-% of these files are included with the download of the "Compressible Flow
-% Relations" toolbox.
+%--------------------------------------------------------------------------
 %
-% Copyright (c) 2021 Tamas Kis
-
-
-
-%% FUNCTION
-
-% INPUT: M - local Mach number
-%        gamma - specific heat ratio
-%        type - 'reciprocal' or 'classic' (defaults to 'reciprocal')
-%               (OPTIONAL)
-% OUTPUT: f - evaluation of specified area-Mach number relation (A*/A or 
-%             A/A*)
+% MATLAB Central File Exchange: 
+% GitHub: https://github.com/tamaskis/compressible_flow_toolbox-MATLAB
+%
+% See EXAMPLES.mlx for examples and "DOCUMENTATION.pdf" for additional 
+% documentation. Both of these files are included with the download.
+%
+%--------------------------------------------------------------------------
+%
+% -------
+% INPUTS:
+% -------
+%   M       - (N×1 or 1×N) local Mach number
+%   gamma   - (1×1) specific heat ratio
+%   type    - (OPTIONAL) (char) 'reciprocal' or 'classic'
+%               --> defaults to 'reciprocal'
+%
+% --------
+% OUTPUTS:
+% --------
+%   f       - (N×1 or 1×N) evaluation of area-Mach number relation
+%               --> A*/A if type = 'reciprocal'
+%               --> A/A* if type = 'classic'
+%
+% -----
+% NOTE:
+% -----
+%   --> N = length of "M"
+%
+%==========================================================================
 function f = area_mach_number(M,gamma,type)
     
     % defaults "type" to 'reciprocal' if not specified

@@ -1,37 +1,52 @@
-% stagnation_inverse  Calculates the local Mach number given
-% some input quantity that is a ratio between stagnation and static
-% conditions.
+%==========================================================================
 %
-%   M = stagnation_inverse(Q_in,gamma,spec) returns the local Mach number
-%   "M" given some input quantity "Q_in" and specific heat ratio gamma.
-%   "Q_in" can be input as an array; in that case, the function will return
-%   an array of the same size. The identifier "spec" (that idenfities the
-%   input "Q_in") can have the following values:
-%    --> 'Tt/T' = stagnation-to-static temperature ratio
-%    --> 'Pt/P' = stagnation-to-static pressure ratio
-%    --> 'rhot/rho' = stagnation-to-static density ratio
-%    --> 'at/a' = stagnation-to-static speed of sound ratio
-%    --> 'ht/h' = stagnation-to-static enthalpy ratio
+% stagnation_inverse  Determines the local Mach number given some input 
+% quantity that is a ratio between stagnation and static conditions.
+%
+%   M = stagnation_inverse(Tt_T,gamma,'Tt/T')
+%   M = stagnation_inverse(Pt_p,gamma,'Pt/P')
+%   M = stagnation_inverse(rhot_rho,gamma,'rhot/rho')
+%   M = stagnation_inverse(at_a,gamma,'at/a')
+%   M = stagnation_inverse(ht_h,gamma,'ht/h')
 %
 % See also flowisentropic
 %
-% GitHub: https://github.com/tamaskis/compressible_flow_relations-MATLAB
+% Copyright © 2021 Tamas Kis
+% Last Update: 2021-06-13
 %
-% See "Compressible Flow Relations - MATLAB implementation" for additional
-% documentation. Examples can be found in EXAMPLES_ISENTROPIC_STAGNATION.m.
-% Both of these files are included with the download of the "Compressible
-% Flow Relations" toolbox.
+%--------------------------------------------------------------------------
 %
-% Copyright (c) 2021 Tamas Kis
-
-
-
-%% FUNCTION
-
-% INPUT: Q_in - some input quantity  (specified by "spec")
-%        gamma - specific heat ratio
-%        spec - identifies input quantity
-% OUTPUT: M - local Mach number
+% MATLAB Central File Exchange: 
+% GitHub: https://github.com/tamaskis/compressible_flow_toolbox-MATLAB
+%
+% See EXAMPLES.mlx for examples and "DOCUMENTATION.pdf" for additional 
+% documentation. Both of these files are included with the download.
+%
+%--------------------------------------------------------------------------
+%
+% -------
+% INPUTS:
+% -------
+%   Q_in 	- (N×1 or 1×N) input quantity (specified by "spec")
+%   gamma   - (1×1) specific heat ratio
+%   spec    - (char) specifies input quantity
+%               --> 'Tt/T' = stagnation-to-static temperature ratio
+%               --> 'Pt/P' = stagnation-to-static pressure ratio
+%               --> 'rhot/rho' = stagnation-to-static density ratio
+%               --> 'at/a' = stagnation-to-static speed of sound ratio
+%               --> 'ht/h' = stagnation-to-static enthalpy ratio
+%
+% --------
+% OUTPUTS:
+% --------
+%   M       - (N×1 or 1×N) local Mach number
+%
+% -----
+% NOTE:
+% -----
+%   --> N = length of "Q_in"
+%
+%==========================================================================
 function M = stagnation_inverse(Q_in,gamma,spec)
     
     % Mach number from stagnation-to-static temperature ratio
