@@ -57,13 +57,11 @@ Description
 Input/Output Parameters
 -----------------------
 
-||
 |**Input Parameter**|**Size/Type**|**Description**|
 |`Q_in`|N×1 or 1×N double|input quantity|
 |`gamma`|1×1 double|specified heat ratio|
 |`Q_spec`|1×1 char|specifies input quantity|
 
-||
 |**Output Parameter**|**Size/Type**|**Description**|
 |`M1`|N×1 or 1×N double|upstream Mach number|
 
