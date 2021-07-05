@@ -7,10 +7,12 @@
 %   Tt1 = rayleigh_heat_inverse(Tt2,q,gamma,R,'Tt2')
 %   Tt2 = rayleigh_heat_inverse(Tt1,q,gamma,R,'Tt1')
 %
-% See also flowrayleigh
+% See also rayleigh_heat, rayleigh_station, rayleigh_station_inverse, 
+% rayleigh_sonic, rayleigh_sonic_inverse, flowrayleigh.
 %
 % Copyright © 2021 Tamas Kis
-% Last Update: 2021-06-13
+% Contact: tamas.a.kis@outlook.com
+% Last Update: 2021-07-04
 %
 %--------------------------------------------------------------------------
 %

@@ -16,7 +16,7 @@
 %   ht2_ht1 = normal_shock(M1,gamma,'ht2/ht1')
 %   ds_cp = normal_shock(M1,gamma,'(s2-s1)/cp')
 %
-% See also inverse_normal_shock, flownormalshock
+% See also normal_shock_inverse, flownormalshock.
 %
 % Copyright © 2021 Tamas Kis
 % Contact: tamas.a.kis@outlook.com

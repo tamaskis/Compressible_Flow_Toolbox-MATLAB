@@ -6,10 +6,11 @@
 %   Astar_A = area_mach_number(M,gamma,'reciprocal')
 %   A_Astar = area_mach_number(M,gamma,'classic')
 %
-% See also flowisentropic
+% See also area_mach_number_inverse, flowisentropic.
 %
 % Copyright © 2021 Tamas Kis
-% Last Update: 2021-06-13
+% Contact: tamas.a.kis@outlook.com
+% Last Update: 2021-07-04
 %
 %--------------------------------------------------------------------------
 %

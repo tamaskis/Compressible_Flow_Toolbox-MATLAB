@@ -12,10 +12,13 @@
 %   ht2_ht1 = rayleigh_station(M1,M2,gamma,'ht2/ht1')
 %   ds_cp = rayleigh_station(M1,M2,gamma,'(s2-s1)/cp')
 %
-% See also flowrayleigh
+% See also rayleigh_station_inverse, rayleigh_sonic, 
+% rayleigh_sonic_inverse, rayleigh_heat, rayleigh_heat_inverse, 
+% flowrayleigh.
 %
 % Copyright © 2021 Tamas Kis
-% Last Update: 2021-06-13
+% Contact: tamas.a.kis@outlook.com
+% Last Update: 2021-07-04
 %
 %--------------------------------------------------------------------------
 %

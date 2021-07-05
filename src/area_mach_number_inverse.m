@@ -7,10 +7,11 @@
 %   [M_sub,M_sup] = area_mach_number_inverse(Astar_A,gamma,'reciprocal')
 %   [M_sub,M_sup] = area_mach_number_inverse(A_Astar,gamma,'classic')
 %
-% See also flowisentropic
+% See also area_mach_number, flowisentropic.
 %
 % Copyright © 2021 Tamas Kis
-% Last Update: 2021-06-13
+% Contact: tamas.a.kis@outlook.com
+% Last Update: 2021-07-04
 %
 %--------------------------------------------------------------------------
 %

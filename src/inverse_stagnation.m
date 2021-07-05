@@ -1,18 +1,19 @@
 %==========================================================================
 %
-% stagnation_inverse  Determines the local Mach number given some input 
+% inverse_stagnation  Determines the local Mach number given some input 
 % quantity that is a ratio between stagnation and static conditions.
 %
-%   M = stagnation_inverse(Tt_T,gamma,'Tt/T')
-%   M = stagnation_inverse(Pt_p,gamma,'Pt/P')
-%   M = stagnation_inverse(rhot_rho,gamma,'rhot/rho')
-%   M = stagnation_inverse(at_a,gamma,'at/a')
-%   M = stagnation_inverse(ht_h,gamma,'ht/h')
+%   M = inverse_stagnation(Tt_T,gamma,'Tt/T')
+%   M = inverse_stagnation(Pt_p,gamma,'Pt/P')
+%   M = inverse_stagnation(rhot_rho,gamma,'rhot/rho')
+%   M = inverse_stagnation(at_a,gamma,'at/a')
+%   M = inverse_stagnation(ht_h,gamma,'ht/h')
 %
-% See also flowisentropic
+% See also stagnation, flowisentropic.
 %
 % Copyright © 2021 Tamas Kis
-% Last Update: 2021-06-13
+% Contact: tamas.a.kis@outlook.com
+% Last Update: 2021-07-04
 %
 %--------------------------------------------------------------------------
 %
@@ -47,7 +48,7 @@
 %   --> N = length of "Q_in"
 %
 %==========================================================================
-function M = stagnation_inverse(Q_in,gamma,spec)
+function M = inverse_stagnation(Q_in,gamma,spec)
     
     % Mach number from stagnation-to-static temperature ratio
     if strcmp(spec,'Tt/T')

@@ -8,10 +8,11 @@
 %   at_a = stagnation(M,gamma,'at/a')
 %   ht_h = stagnation(M,gamma,'ht/h')
 %
-% See also flowisentropic
+% See also inverse_stagnation, flowisentropic.
 %
 % Copyright © 2021 Tamas Kis
-% Last Update: 2021-06-13
+% Contact: tamas.a.kis@outlook.com
+% Last Update: 2021-07-04
 %
 %--------------------------------------------------------------------------
 %

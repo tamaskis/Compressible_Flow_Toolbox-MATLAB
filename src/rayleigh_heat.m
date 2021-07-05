@@ -5,10 +5,13 @@
 %
 %   q = rayleigh_heat(Tt1,Tt2,gamma,R)
 %
-% See also flowrayleigh
+% See also rayleigh_heat_inverse, rayleigh_station,
+% rayleigh_station_inverse, rayleigh_sonic, rayleigh_sonic_inverse,
+% flowrayleigh.
 %
 % Copyright © 2021 Tamas Kis
-% Last Update: 2021-06-13
+% Contact: tamas.a.kis@outlook.com
+% Last Update: 2021-07-04
 %
 %--------------------------------------------------------------------------
 %

@@ -5,10 +5,11 @@
 %
 %   Q_out = isentropic_process(Q_in,spec_in,'T2/T1',gamma)
 %
-% See also flowisentropic
+% See also flowisentropic.
 %
 % Copyright © 2021 Tamas Kis
-% Last Update: 2021-06-13
+% Contact: tamas.a.kis@outlook.com
+% Last Update: 2021-07-04
 %
 %--------------------------------------------------------------------------
 %

@@ -14,10 +14,12 @@
 %   [M_sub,M_sup] = rayleigh_sonic_inverse(ht_htstar,gamma,'ht/ht*')
 %   [M_sub,M_sup] = rayleigh_sonic_inverse(ds_cp,gamma,'(s-s*)/cp')
 %
-% See also flowrayleigh
+% See also rayleigh_sonic, rayleigh_station, rayleigh_station_inverse,
+% rayleigh_heat, rayleigh_heat_inverse, flowrayleigh.
 %
 % Copyright © 2021 Tamas Kis
-% Last Update: 2021-06-13
+% Contact: tamas.a.kis@outlook.com
+% Last Update: 2021-07-04
 %
 %--------------------------------------------------------------------------
 %
