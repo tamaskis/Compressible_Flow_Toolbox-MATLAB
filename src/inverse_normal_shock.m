@@ -17,10 +17,11 @@
 %   M1 = normal_shock_inverse(ht2_ht1,gamma,'ht2/ht1')
 %   M1 = normal_shock_inverse(ds_cp,gamma,'(s2-s1)/cp')
 %
-% See also flownormalshock
+% See also normal_shock, flownormalshock
 %
 % Copyright © 2021 Tamas Kis
-% Last Update: 2021-06-13
+% Contact: tamas.a.kis@outlook.com
+% Last Update: 2021-07-04
 %
 %--------------------------------------------------------------------------
 %
@@ -63,7 +64,7 @@
 %   --> N = length of "Q_in"
 %
 %==========================================================================
-function M1 = normal_shock_inverse(Q_in,gamma,spec)
+function M1 = inverse_normal_shock(Q_in,gamma,spec)
     
     % returns M1 = NaN and displays warnings if stagnation temperature
     % ratio or stagnation enthalpy ratio are specified
