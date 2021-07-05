@@ -1,3 +1,3 @@
 # matlab_compressible_flow_relations
 
-![dummy text](Compressible Flow Toolbox.jpg)
+![dummy text](Compressible Flow Toolbox.png)
