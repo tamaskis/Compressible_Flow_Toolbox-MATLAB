@@ -1,6 +1,6 @@
 %==========================================================================
 %
-% stagnation  Stagnation-to-static ratios based on local Mach number.
+% stagnation  Stagnation-to-static ratios given the local Mach number.
 %
 %   Tt_T = stagnation(M,'Tt/T')
 %   Pt_P = stagnation(M,'Pt/P')

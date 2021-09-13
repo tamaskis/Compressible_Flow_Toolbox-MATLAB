@@ -25,7 +25,7 @@
 % INPUT:
 % ------
 %   w       - (1D double array) angle required to accelerate flow from 
-%             Mach 1 to the local Mach number M
+%             Mach 1 to the local Mach number [rad]
 %   gamma   - (OPTIONAL) (1×1 double) specific heat ratio
 %               --> defaults to 1.4
 %

@@ -27,7 +27,7 @@
 % ------
 % INPUT:
 % ------
-%   area_ratio	- (1D double array) area ratio
+%   area_ratio	- (1D double array) area ratio (specified by "type")
 %                	--> A*/A if type = 'reciprocal'
 %                	--> A/A* if type = 'classic'
 %   type        - (OPTIONAL) (char) 'reciprocal' or 'classic'

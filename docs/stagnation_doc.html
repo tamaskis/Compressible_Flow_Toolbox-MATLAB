@@ -1,0 +1,225 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>stagnation</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-13"><meta name="DC.source" content="stagnation_doc.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1><tt>stagnation</tt></h1><!--introduction--><p>Stagnation-to-static ratios given the local Mach number.</p><p><a href="index.html">Back to Compressible Flow Toolbox Contents</a></p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Input/Output Parameters</a></li><li><a href="#3">Examples</a></li><li><a href="#10">See also</a></li></ul></div><h2 id="1">Syntax</h2><pre class="language-matlab">Tt_T = stagnation(M,<span class="string">'Tt/T'</span>)
+Pt_P = stagnation(M,<span class="string">'Pt/P'</span>)
+rhot_rho = stagnation(M,<span class="string">'rhot/rho'</span>)
+at_a = stagnation(M,<span class="string">'at/a'</span>)
+ht_h = stagnation(M,<span class="string">'ht/h'</span>)
+__ = stagnation(__,gamma)
+</pre><h2 id="2">Input/Output Parameters</h2><p>
+  <table border=1>
+      <tr>
+          <td></td>
+          <td style="text-align:center"><b>Symbol</b></td>
+          <td style="text-align:center"><b>Variable</b></td>
+          <td style="text-align:center"><b>Description</b></td>
+          <td style="text-align:center"><b>Format</b></td>
+      </tr>
+      <tr>
+          <td rowspan="3" style="text-align:center"><b>Input</b></td>
+          <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?M" title="M" /></td>
+          <td><TT>M</TT></td>
+          <td>local Mach number</td>
+          <td style="text-align:center">1D<BR>double array</td>
+      </tr>
+      <tr>
+          <td style="text-align:center">-</td>
+          <td><TT>spec</TT></td>
+          <td>specifies output quantity (see options below)</td>
+          <td style="text-align:center">1×1<BR>char</td>
+      </tr>
+      <tr>
+          <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\gamma" title="\gamma" /></td>
+          <td><TT>gamma</TT></td>
+          <td>(OPTIONAL) specific heat ratio, defaults to 1.4</td>
+          <td style="text-align:center">1×1<BR>double</td>
+      </tr>
+      <tr>
+          <td style="text-align:center"><b>Output</b></td>
+          <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?Q_{\mathrm{out}}" title="Q_{\mathrm{out}}" /></td>
+          <td><TT>Q_out</TT></td>
+          <td>output quantity (specified by <TT>spec</TT>)</td>
+          <td style="text-align:center">1D<BR>double array</td>
+      </tr>
+  </table>
+</p><p>Options for <tt>spec</tt>:</p><div><ul><li><tt>'Tt/T'</tt> = stagnation-to-static temperature ratio (<img src="stagnation_doc_eq05050214975964997604.png" alt="$T_{t}/T$" style="width:23px;height:11px;">)</li><li><tt>'Pt/P'</tt> = stagnation-to-static pressure ratio (<img src="stagnation_doc_eq06660929748035925497.png" alt="$P_{t}/P$" style="width:25px;height:11px;">)</li><li><tt>'rhot/rho'</tt> = stagnation-to-static density ratio (<img src="stagnation_doc_eq14499417919879699138.png" alt="$\rho_{t}/\rho$" style="width:20px;height:11px;">)</li><li><tt>'at/a'</tt> = stagnation-to-static speed of sound ratio (<img src="stagnation_doc_eq09982308204070654516.png" alt="$a_{t}/a$" style="width:20px;height:11px;">)</li><li><tt>'ht/h'</tt> = stagnation-to-static enthalpy ratio (<img src="stagnation_doc_eq13882215844182978010.png" alt="$h_{t}/h$" style="width:21px;height:11px;">)</li></ul></div><h2 id="3">Examples</h2><p><i>All stagnation-to-static ratios for a Mach 3 flow (in air).</i></p><p>Set <img src="stagnation_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">.</p><pre class="codeinput">M = 3;
+</pre><p>Stagnation-to-static temperature ratio (<img src="stagnation_doc_eq05050214975964997604.png" alt="$T_{t}/T$" style="width:23px;height:11px;">).</p><pre class="codeinput">Tt_T = stagnation(M,<span class="string">'Tt/T'</span>)
+</pre><pre class="codeoutput">
+Tt_T =
+
+    2.8000
+
+</pre><p>Stagnation-to-static pressure ratio (<img src="stagnation_doc_eq06660929748035925497.png" alt="$P_{t}/P$" style="width:25px;height:11px;">).</p><pre class="codeinput">Pt_P = stagnation(M,<span class="string">'Pt/P'</span>)
+</pre><pre class="codeoutput">
+Pt_P =
+
+   36.7327
+
+</pre><p>Stagnation-to-static density ratio (<img src="stagnation_doc_eq14499417919879699138.png" alt="$\rho_{t}/\rho$" style="width:20px;height:11px;">).</p><pre class="codeinput">rhot_rho = stagnation(M,<span class="string">'rhot/rho'</span>)
+</pre><pre class="codeoutput">
+rhot_rho =
+
+   13.1188
+
+</pre><p>Stagnation-to-static speed of sound ratio (<img src="stagnation_doc_eq09982308204070654516.png" alt="$a_{t}/a$" style="width:20px;height:11px;">).</p><pre class="codeinput">at_a = stagnation(M,<span class="string">'at/a'</span>)
+</pre><pre class="codeoutput">
+at_a =
+
+    1.6733
+
+</pre><p>Stagnation-to-static enthalpy ratio (<img src="stagnation_doc_eq13882215844182978010.png" alt="$h_{t}/h$" style="width:21px;height:11px;">).</p><pre class="codeinput">ht_h = stagnation(M,<span class="string">'ht/h'</span>)
+</pre><pre class="codeoutput">
+ht_h =
+
+    2.8000
+
+</pre><h2 id="10">See also</h2><p><a href="stagnation_inverse_doc.html"><tt>stagnation_inverse</tt></a>.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% |stagnation|
+% Stagnation-to-static ratios given the local Mach number.
+% 
+% <index.html Back to Compressible Flow Toolbox Contents>
+%% Syntax
+%   Tt_T = stagnation(M,'Tt/T')
+%   Pt_P = stagnation(M,'Pt/P')
+%   rhot_rho = stagnation(M,'rhot/rho')
+%   at_a = stagnation(M,'at/a')
+%   ht_h = stagnation(M,'ht/h')
+%   __ = stagnation(__,gamma)
+%% Input/Output Parameters
+% <html>
+%   <table border=1>
+%       <tr>
+%           <td></td>
+%           <td style="text-align:center"><b>Symbol</b></td>
+%           <td style="text-align:center"><b>Variable</b></td>
+%           <td style="text-align:center"><b>Description</b></td>
+%           <td style="text-align:center"><b>Format</b></td>
+%       </tr>
+%       <tr>
+%           <td rowspan="3" style="text-align:center"><b>Input</b></td>
+%           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?M" title="M" /></td>
+%           <td><TT>M</TT></td>
+%           <td>local Mach number</td>
+%           <td style="text-align:center">1D<BR>double array</td>
+%       </tr>
+%       <tr>
+%           <td style="text-align:center">-</td>
+%           <td><TT>spec</TT></td>
+%           <td>specifies output quantity (see options below)</td>
+%           <td style="text-align:center">1×1<BR>char</td>
+%       </tr>
+%       <tr>
+%           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\gamma" title="\gamma" /></td>
+%           <td><TT>gamma</TT></td>
+%           <td>(OPTIONAL) specific heat ratio, defaults to 1.4</td>
+%           <td style="text-align:center">1×1<BR>double</td>
+%       </tr>
+%       <tr>
+%           <td style="text-align:center"><b>Output</b></td>
+%           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?Q_{\mathrm{out}}" title="Q_{\mathrm{out}}" /></td>
+%           <td><TT>Q_out</TT></td>
+%           <td>output quantity (specified by <TT>spec</TT>)</td>
+%           <td style="text-align:center">1D<BR>double array</td>
+%       </tr>
+%   </table>
+% </html>
+%
+% Options for |spec|:
+%
+% * |'Tt/T'| = stagnation-to-static temperature ratio ($T_{t}/T$)
+% * |'Pt/P'| = stagnation-to-static pressure ratio ($P_{t}/P$)
+% * |'rhot/rho'| = stagnation-to-static density ratio ($\rho_{t}/\rho$)
+% * |'at/a'| = stagnation-to-static speed of sound ratio ($a_{t}/a$)
+% * |'ht/h'| = stagnation-to-static enthalpy ratio ($h_{t}/h$)
+%% Examples
+% _All stagnation-to-static ratios for a Mach 3 flow (in air)._
+%%
+% Set $M$.
+M = 3;
+%%
+% Stagnation-to-static temperature ratio ($T_{t}/T$).
+Tt_T = stagnation(M,'Tt/T')
+%%
+% Stagnation-to-static pressure ratio ($P_{t}/P$).
+Pt_P = stagnation(M,'Pt/P')
+%%
+% Stagnation-to-static density ratio ($\rho_{t}/\rho$).
+rhot_rho = stagnation(M,'rhot/rho')
+%%
+% Stagnation-to-static speed of sound ratio ($a_{t}/a$).
+at_a = stagnation(M,'at/a')
+%%
+% Stagnation-to-static enthalpy ratio ($h_{t}/h$).
+ht_h = stagnation(M,'ht/h')
+%% See also
+% <stagnation_inverse_doc.html |stagnation_inverse|>.
+##### SOURCE END #####
+--></body></html>

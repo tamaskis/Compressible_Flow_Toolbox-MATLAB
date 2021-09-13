@@ -32,7 +32,7 @@
 % OUTPUT:
 % -------
 %   w       - (1D double array) angle required to accelerate flow from Mach
-%             1 to the local Mach number M
+%             1 to the local Mach number [rad]
 %
 %==========================================================================
 function w = prandtl_meyer(M,gamma)

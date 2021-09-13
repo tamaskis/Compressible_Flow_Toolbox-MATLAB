@@ -1,7 +1,7 @@
 %==========================================================================
 %
-% stagnation_inverse  Determines the local Mach number given some input 
-% quantity that is a ratio between stagnation and static conditions.
+% stagnation_inverse  Determines the local Mach number given some 
+% stagnation-to-static ratio.
 %
 %   M = stagnation_inverse('Tt/T',Tt_T)
 %   M = stagnation_inverse('Pt/P',Pt_p)

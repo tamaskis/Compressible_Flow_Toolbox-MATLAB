@@ -131,7 +131,7 @@ function M1 = normal_shock_inverse(spec,Q_in,gamma)
     else
         M1 = zeros(size(Q_in));
         for i = 1:length(Q_in)
-            g = @(M1) normal_shock(M1,gamma,spec)-Q_in(i);
+            g = @(M1) normal_shock(M1,spec,gamma)-Q_in(i);
             M1(i) = secant_method(g,1.5);
         end
 
