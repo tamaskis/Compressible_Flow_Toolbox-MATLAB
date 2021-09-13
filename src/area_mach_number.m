@@ -2,56 +2,66 @@
 %
 % area_mach_number  Area ratio from Mach number (using Mach-area relation).
 %
-%   Astar_A = area_mach_number(M,gamma)
-%   Astar_A = area_mach_number(M,gamma,'reciprocal')
-%   A_Astar = area_mach_number(M,gamma,'classic')
+%   Astar_A = area_mach_number(M)
+%   Astar_A = area_mach_number(M,'reciprocal')
+%   A_Astar = area_mach_number(M,'classic')
+%   __ = area_mach_number(__,gamma)
 %
-% See also area_mach_number_inverse, flowisentropic.
+% See also area_mach_number_inverse.
 %
 % Copyright © 2021 Tamas Kis
+% Last Update: 2021-09-13
+% Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
-% Last Update: 2021-07-04
+%
+% TECHNICAL DOCUMENTATION:
+% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+%
+% REFERENCES:
+%   [1] Anderson, "Modern Compressible Flow", 3rd Ed.
+%   [2] Cantwell, AA 210A Course Reader (Stanford University)
 %
 %--------------------------------------------------------------------------
 %
-% MATLAB Central File Exchange: 
-% GitHub: https://github.com/tamaskis/compressible_flow_toolbox-MATLAB
-%
-% See EXAMPLES.mlx for examples and "DOCUMENTATION.pdf" for additional 
-% documentation. Both of these files are included with the download.
-%
-%--------------------------------------------------------------------------
-%
-% -------
-% INPUTS:
-% -------
-%   M       - (N×1 or 1×N) local Mach number
-%   gamma   - (1×1) specific heat ratio
+% ------
+% INPUT:
+% ------
+%   M       - (1D double array) local Mach number
 %   type    - (OPTIONAL) (char) 'reciprocal' or 'classic'
 %               --> defaults to 'reciprocal'
+%   gamma   - (OPTIONAL) (1×1 double) specific heat ratio
+%               --> defaults to 1.4
 %
-% --------
-% OUTPUTS:
-% --------
-%   f       - (N×1 or 1×N) evaluation of area-Mach number relation
+% -------
+% OUTPUT:
+% -------
+%   f       - (1D double array) evaluation of area-Mach number relation
 %               --> A*/A if type = 'reciprocal'
 %               --> A/A* if type = 'classic'
 %
-% -----
-% NOTE:
-% -----
-%   --> N = length of "M"
-%
 %==========================================================================
-function f = area_mach_number(M,gamma,type)
+function f = area_mach_number(M,type,gamma)
+    
+    % ----------------------------------------------------
+    % Sets unspecified parameters to their default values.
+    % ----------------------------------------------------
     
     % defaults "type" to 'reciprocal' if not specified
-    if (nargin == 2) || isempty(type)
+    if (nargin < 2) || isempty(type)
         type = 'reciprocal';
     end
+    
+    % defaults "gamma" to 1.4 if not specified
+    if (nargin < 3) || isempty(gamma)
+        gamma = 1.4;
+    end
+    
+    % -------------
+    % Calculations.
+    % -------------
 
     % calculates specified area ratio
-    if strcmp(type,'classic')
+    if strcmpi(type,'classic')
         f = (1./M).*((2+(gamma-1)*M.^2)/(gamma+1)).^((gamma+1)/(2*(...
             gamma-1)));
     else

@@ -4,80 +4,102 @@
 % the Mach number at the other station and some ratio/difference between
 % the two stations.
 %
-%   M1 = rayleigh_station_inverse(M2,T2_T1,gamma,'M2','T2/T1')
-%   M1 = rayleigh_station_inverse(M2,P2_P1,gamma,'M2','P2/P1')
-%   M1 = rayleigh_station_inverse(M2,h2_h1,gamma,'M2','h2/h1')
-%   M1 = rayleigh_station_inverse(M2,rho2_rho1,gamma,'M2','rho2/rho1')
-%   M1 = rayleigh_station_inverse(M2,U2_U1,gamma,'M2','U2/U1')
-%   M1 = rayleigh_station_inverse(M2,Tt2_Tt1,gamma,'M2','Tt2/Tt1')
-%   M1 = rayleigh_station_inverse(M2,Pt2_Pt1,gamma,'M2','Pt2/Pt1')
-%   M1 = rayleigh_station_inverse(M2,ht2_ht1,gamma,'M2','ht2/ht1')
-%   M1 = rayleigh_station_inverse(M2,ds_cp,gamma,'M2','(s2-s1)/cp')
+%   M1 = rayleigh_station_inverse('M2',M2,'T2/T1',T2_T1)
+%   M1 = rayleigh_station_inverse('M2',M2,'P2/P1',P2_P1)
+%   M1 = rayleigh_station_inverse('M2',M2,'h2/h1',h2_h1)
+%   M1 = rayleigh_station_inverse('M2',M2,'rho2/rho1',rho2_rho1)
+%   M1 = rayleigh_station_inverse('M2',M2,'U2/U1',U2_U1)
+%   M1 = rayleigh_station_inverse('M2',M2,'Tt2/Tt1',Tt2_Tt1)
+%   M1 = rayleigh_station_inverse('M2',M2,'Pt2/Pt1',Pt2_Pt1)
+%   M1 = rayleigh_station_inverse('M2',M2,'ht2/ht1',ht2_ht1)
+%   M1 = rayleigh_station_inverse('M2',M2,'rhot2/rhot1',rhot2_rhot1)
+%   M1 = rayleigh_station_inverse('M2',M2,'(s2-s1)/cp',ds_cp)
+%   M1 = rayleigh_station_inverse('M2',M2,__,gamma)
 %
-%   M2 = rayleigh_station_inverse(M1,T2_T1,gamma,'M1','T2/T1')
-%   M2 = rayleigh_station_inverse(M1,P2_P1,gamma,'M1','P2/P1')
-%   M2 = rayleigh_station_inverse(M1,h2_h1,gamma,'M1','h2/h1')
-%   M2 = rayleigh_station_inverse(M1,rho2_rho1,gamma,'M1','rho2/rho1')
-%   M2 = rayleigh_station_inverse(M1,U2_U1,gamma,'M1','U2/U1')
-%   M2 = rayleigh_station_inverse(M1,Tt2_Tt1,gamma,'M1','Tt2/Tt1')
-%   M2 = rayleigh_station_inverse(M1,Pt2_Pt1,gamma,'M1','Pt2/Pt1')
-%   M2 = rayleigh_station_inverse(M1,ht2_ht1,gamma,'M1','ht2/ht1')
-%   M2 = rayleigh_station_inverse(M1,ds_cp,gamma,'M1','(s2-s1)/cp')
+%   M2 = rayleigh_station_inverse('M1',M1,'T2/T1',T2_T1)
+%   M2 = rayleigh_station_inverse('M1',M1,'P2/P1',P2_P1)
+%   M2 = rayleigh_station_inverse('M1',M1,'h2/h1',h2_h1)
+%   M2 = rayleigh_station_inverse('M1',M1,'rho2/rho1',rho2_rho1)
+%   M2 = rayleigh_station_inverse('M1',M1,'U2/U1',U2_U1)
+%   M2 = rayleigh_station_inverse('M1',M1,'Tt2/Tt1',Tt2_Tt1)
+%   M2 = rayleigh_station_inverse('M1',M1,'Pt2/Pt1',Pt2_Pt1)
+%   M2 = rayleigh_station_inverse('M1',M1,'ht2/ht1',ht2_ht1)
+%   M2 = rayleigh_station_inverse('M1',M1,'rhot2/rhot1',rhot2_rhot1)
+%   M2 = rayleigh_station_inverse('M1',M1,'(s2-s1)/cp',ds_cp)
+%   M1 = rayleigh_station_inverse('M1',M1,__,gamma)
 %
 % See also rayleigh_station, rayleigh_sonic, rayleigh_sonic_inverse, 
-% rayleigh_heat, rayleigh_heat_inverse, flowrayleigh.
+% rayleigh_heat, rayleigh_heat_inverse.
 %
 % Copyright © 2021 Tamas Kis
+% Last Update: 2021-09-13
+% Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
-% Last Update: 2021-07-04
+%
+% TECHNICAL DOCUMENTATION:
+% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+%
+% REFERENCES:
+%   [1] Anderson, "Modern Compressible Flow", 3rd Ed.
+%   [2] Cantwell, AA 210A Course Reader (Stanford University)
+%   [3] https://en.wikipedia.org/wiki/Rayleigh_flow
 %
 %--------------------------------------------------------------------------
 %
-% MATLAB Central File Exchange: 
-% GitHub: https://github.com/tamaskis/compressible_flow_toolbox-MATLAB
-%
-% See EXAMPLES.mlx for examples and "DOCUMENTATION.pdf" for additional 
-% documentation. Both of these files are included with the download.
-%
-%--------------------------------------------------------------------------
-%
-% -------
-% INPUTS:
-% -------
-%   M_in    - (1×1 or N×1 or 1×N) Mach number at one station (specified by 
-%             "M_spec")
-%   Q_in    - (1×1 or N×1 or 1×N) input quantity (specified by "Q_spec")
-%   gamma   - (1×1) specific heat ratio
+% ------
+% INPUT:
+% ------
 %   M_spec  - (char) specifies input Mach number
 %               --> 'M1' = station 1 Mach number
 %               --> 'M2' = station 2 Mach number
-%   Q_spec  - (char) specifies input quantity
-%               --> 'T2/T1' = static temperature ratio
-%               --> 'P2/P1' = static pressure ratio
-%               --> 'h2/h1' = static enthalpy ratio
-%               --> 'rho2/rho1' = density ratio
-%               --> 'U2/U1' = velocity ratio
-%               --> 'Tt2/Tt1' = stagnation temperature ratio
-%               --> 'Pt2/Pt1' = stagnation pressure ratio
-%               --> 'ht2/ht1' = stagnation enthalpy ratio
-%               --> '(s2-s1)/cp' = nondimensional entropy change
+%   M_in    - (1D double array) Mach number at one station (specified by 
+%             "M_spec")
+%   Q_spec  - (char) specifies input quantity (see options belows)
+%   Q_in    - (1D double array) input quantity (specified by "Q_spec")
+%   gamma   - (OPTIONAL) (1×1 double) specific heat ratio
+%               --> defaults to 1.4
 %
-% --------
-% OUTPUTS:
-% --------
-%   M_out 	- (N×1 or 1×N) Mach number at other station
+% -------
+% OUTPUT:
+% -------
+%   M_out 	- (1D double array) Mach number at other station
 %           	--> M1 (station 1 Mach number) if M_spec = 'M2'
 %           	--> M2 (station 2 Mach number) if M_spec = 'M1'
+%
+% ---------------------
+% OPTIONS FOR "Q_spec":
+% ---------------------
+% 	--> 'T2/T1'         - static temperature ratio
+% 	--> 'P2/P1'         - static pressure ratio
+%  	--> 'h2/h1'         - static enthalpy ratio
+%  	--> 'rho2/rho1'     - density ratio
+%   --> 'U2/U1'         - velocity ratio
+%	--> 'Tt2/Tt1'       - stagnation temperature ratio
+%   --> 'Pt2/Pt1'       - stagnation pressure ratio
+% 	--> 'ht2/ht1'       - stagnation enthalpy ratio
+% 	--> '(s2-s1)/cp'    - nondimensional entropy change
 %
 % -----
 % NOTE:
 % -----
-%   --> N = length of "M_in" OR "Q_in"
 %   --> If M_in is specified as a vector, Q_in must be specified as a
 %       scalar, and vice-versa.
 %
 %==========================================================================
-function M_out = rayleigh_station_inverse(M_in,Q_in,gamma,M_spec,Q_spec)
+function M_out = rayleigh_station_inverse(M_spec,M_in,Q_spec,Q_in,gamma)
+    
+    % ----------------------------------------------------
+    % Sets unspecified parameters to their default values.
+    % ----------------------------------------------------
+    
+    % defaults "gamma" to 1.4 if not specified
+    if (nargin == 4) || isempty(gamma)
+        gamma = 1.4;
+    end
+    
+    % -------------
+    % Calculations.
+    % -------------
     
     % makes arrays if necessary
     if (length(M_in) > 1) && (length(Q_in) == 1)
@@ -91,7 +113,7 @@ function M_out = rayleigh_station_inverse(M_in,Q_in,gamma,M_spec,Q_spec)
     if length(M_in) > 1
         
         % sets up function to find root of
-        if strcmp(M_spec,'M1')
+        if strcmpi(M_spec,'M1')
             g = @(M,i) rayleigh_station(M_in(i),M,gamma,Q_spec)-Q_in(i);
         else
             g = @(M,i) rayleigh_station(M,M_in(i),gamma,Q_spec)-Q_in(i);
@@ -121,10 +143,10 @@ function M_out = rayleigh_station_inverse(M_in,Q_in,gamma,M_spec,Q_spec)
     else
         
         % sets up function that we will find root of to find M_out
-        if strcmp(M_spec,'M1')
+        if strcmpi(M_spec,'M1')
             g = @(M) rayleigh_station(M_in,M,gamma,Q_spec)-Q_in;
         else
-            if M_in < 1 && ~strcmp(Q_spec,'rho2/rho1')
+            if M_in < 1 && ~strcmpi(Q_spec,'rho2/rho1')
                 g = @(M) 1/rayleigh_station(M,M_in,gamma,Q_spec)-1/Q_in;
             else
                 g = @(M) rayleigh_station(M,M_in,gamma,Q_spec)-Q_in;
@@ -137,8 +159,8 @@ function M_out = rayleigh_station_inverse(M_in,Q_in,gamma,M_spec,Q_spec)
         if (M_in >= 1)
             M_out = secant_method(g,1.5,1e-12);
         else
-            if strcmp(Q_spec,'T2/T1') || strcmp(Q_spec,'h2/h1')
-                if strcmp(M_spec,'M1')
+            if strcmpi(Q_spec,'T2/T1') || strcmpi(Q_spec,'h2/h1')
+                if strcmpi(M_spec,'M1')
                     M_out_lower = secant_method(g,0.5,1e-12);
                     M_out_upper = secant_method(g,0.9,1e-12);
                     M_out = [M_out_lower,M_out_upper];

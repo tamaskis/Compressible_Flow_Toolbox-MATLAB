@@ -9,11 +9,11 @@
 %   root = secant_method(f,x0,TOL,imax)
 %   root = secant_method(__,'all')
 %
-% See also fzero, bisection_method, newtons_method
+% See also fzero, bisection_method, newtons_method.
 %
 % Copyright © 2021 Tamas Kis
 % Contact: tamas.a.kis@outlook.com
-% Last Update: 2021-07-04
+% Last Update: 2021-07-09
 %
 %--------------------------------------------------------------------------
 %
@@ -25,9 +25,9 @@
 %
 %--------------------------------------------------------------------------
 %
-% -------
-% INPUTS:
-% -------
+% ------
+% INPUT:
+% ------
 %   f       - (function_handle) f(x)
 %   x0      - (1×1) initial guess for root
 %   TOL     - (OPTIONAL) (1×1) tolerance
@@ -36,9 +36,9 @@
 %             all intermediate root estimates; otherwise, a faster 
 %             algorithm is used to only return the converged root
 %
-% --------
-% OUTPUTS:
-% --------
+% -------
+% OUTPUT:
+% -------
 %   root    - (1×1 or n×1) root of f(x)
 %           	--> if "output" is specified as 'all', then "root" will be
 %                   a vector, where the first element is the initial guess,
@@ -63,7 +63,7 @@ function root = secant_method(f,x0,TOL,imax,output)
     if nargin < 5
         return_all = false;
     else
-        if strcmp(output,'all')
+        if strcmpi(output,'all')
             return_all = true;
         else
             return_all = false;
@@ -102,6 +102,8 @@ function root = secant_method(f,x0,TOL,imax,output)
         % returns converged root along with intermediate root estimates
         root = x(1:i);
     
+    % implements (faster) algorithm for the secant method where only the
+    % converged root estimate is returned
     else
         
         % sets root estimates for 1st iteration of the secant method

@@ -9,11 +9,11 @@
 %   root = bisection_method(f,a,b,TOL,imax)
 %   root = bisection_method(__,'all')
 %
-% See also fzero, newtons_method, secant_method
+% See also fzero, newtons_method, secant_method.
 %
 % Copyright © 2021 Tamas Kis
 % Contact: tamas.a.kis@outlook.com
-% Last Update: 2021-07-04
+% Last Update: 2021-07-09
 %
 %--------------------------------------------------------------------------
 %
@@ -25,9 +25,9 @@
 %
 %--------------------------------------------------------------------------
 %
-% -------
-% INPUTS:
-% -------
+% ------
+% INPUT:
+% ------
 %   f       - (function_handle) f(x)
 %   a       - (1×1) lower bound for initial guess of interval with root
 %   b       - (1×1) upper bound for initial guess of interval with root
@@ -37,9 +37,9 @@
 %             all intermediate root estimates; otherwise, a faster 
 %             algorithm is used to only return the converged root
 %
-% --------
-% OUTPUTS:
-% --------
+% -------
+% OUTPUT:
+% -------
 %   root    - (1×1 or n×1) root of f(x)
 %           	--> if "output" is specified as 'all', then "root" will be
 %                   a vector, where the first element is the initial guess,
@@ -64,7 +64,7 @@ function root = bisection_method(f,a,b,TOL,imax,output)
     if nargin < 6
         return_all = false;
     else
-        if strcmp(output,'all')
+        if strcmpi(output,'all')
             return_all = true;
         else
             return_all = false;
@@ -105,6 +105,8 @@ function root = bisection_method(f,a,b,TOL,imax,output)
         % returns converged root along with intermediate root estimates
         root = x(1:i);
     
+  	% implements (faster) algorithm for the bisection method where only the
+    % converged root estimate is returned
     else
         
         % sets initial guess

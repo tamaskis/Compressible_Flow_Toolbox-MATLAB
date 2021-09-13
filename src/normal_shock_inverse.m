@@ -3,84 +3,98 @@
 % normal_shock_inverse  Determines the Mach number upstream of a normal
 % shock given some input quantity.
 %
-%   M1 = normal_shock_inverse(M2,gamma,'M2')
-%   M1 = normal_shock_inverse(T2_T1,gamma,'T2/T1')
-%   M1 = normal_shock_inverse(P2_P1,gamma,'P2/P1')
-%   M1 = normal_shock_inverse(rho2_rho1,gamma,'rho2/rho1')
-%   M1 = normal_shock_inverse(U2_U1,gamma,'U2/U1')
-%   M1 = normal_shock_inverse(a2_a1,gamma,'a2/a1')
-%   M1 = normal_shock_inverse(h2_h1,gamma,'h2/h1')
-%   M1 = normal_shock_inverse(Tt2_Tt1,gamma,'Tt2/Tt1')
-%   M1 = normal_shock_inverse(Pt2_Pt1,gamma,'Pt2/Pt1')
-%   M1 = normal_shock_inverse(rhot2_rhot1,gamma,'rhot2/rhot1')
-%   M1 = normal_shock_inverse(at2_at1,gamma,'at2/at1')
-%   M1 = normal_shock_inverse(ht2_ht1,gamma,'ht2/ht1')
-%   M1 = normal_shock_inverse(ds_cp,gamma,'(s2-s1)/cp')
+%   M1 = normal_shock_inverse('M2',M2)
+%   M1 = normal_shock_inverse('T2/T1',T2_T1)
+%   M1 = normal_shock_inverse('P2/P1',P2_P1)
+%   M1 = normal_shock_inverse('rho2/rho1',rho2_rho1)
+%   M1 = normal_shock_inverse('U2/U1',U2_U1)
+%   M1 = normal_shock_inverse('a2/a1',a2_a1)
+%   M1 = normal_shock_inverse('h2/h1',h2_h1)
+%   M1 = normal_shock_inverse('Tt2/Tt1',Tt2_Tt1)
+%   M1 = normal_shock_inverse('Pt2/Pt1',Pt2_Pt1)
+%   M1 = normal_shock_inverse('rhot2/rhot1',rhot2_rhot1)
+%   M1 = normal_shock_inverse('at2/at1',at2_at1)
+%   M1 = normal_shock_inverse('ht2/ht1',ht2_ht1)
+%   M1 = normal_shock_inverse('(s2-s1)/cp',ds_cp)
+%   M1 = normal_shock_inverse(__,gamma)
 %
-% See also normal_shock, flownormalshock.
+% See also normal_shock.
 %
 % Copyright © 2021 Tamas Kis
+% Last Update: 2021-09-13
+% Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
-% Last Update: 2021-07-04
+%
+% TECHNICAL DOCUMENTATION:
+% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+%
+% REFERENCES:
+%   [1] Anderson, "Modern Compressible Flow", 3rd Ed.
+%   [2] Cantwell, AA 210A Course Reader (Stanford University)
 %
 %--------------------------------------------------------------------------
 %
-% MATLAB Central File Exchange: 
-% GitHub: https://github.com/tamaskis/compressible_flow_toolbox-MATLAB
-%
-% See EXAMPLES.mlx for examples and "DOCUMENTATION.pdf" for additional 
-% documentation. Both of these files are included with the download.
-%
-%--------------------------------------------------------------------------
+% ------
+% INPUT:
+% ------
+%   spec    - (char) specifies input quantity (see options below)
+%   Q_in 	- (1D double array) input quantity (specified by "spec")
+%   gamma   - (OPTIONAL) (1×1 double) specific heat ratio
+%               --> defaults to 1.4
 %
 % -------
-% INPUTS:
+% OUTPUT:
 % -------
-%   Q_in 	- (N×1 or 1×N) input quantity (specified by "spec")
-%   gamma   - (1×1) specific heat ratio
-%   spec    - (char) specifies input quantity
-%               --> 'M2' = downstream Mach number
-%               --> 'T2/T1' = static temperature ratio
-%               --> 'P2/P1' = static pressure ratio
-%               --> 'rho2/rho1' = static density ratio
-%               --> 'U2/U1' = velocity ratio
-%               --> 'a2/a1' = speed of sound ratio
-%               --> 'h2/h1' = static enthalpy ratio
-%               --> 'Tt2/Tt1' = stagnation temperature ratio
-%               --> 'Pt2/Pt1' = stagnation pressure ratio
-%               --> 'rhot2/rhot1' = stagnation density ratio
-%               --> 'at2/at1' = stagnation speed of sound ratio
-%               --> 'ht2/ht1' = stagnation enthalpy ratio
-%               --> '(s2-s1)/cp' = nondimensional entropy change
+%   M1      - (1D double array) upstream Mach number
 %
-% --------
-% OUTPUTS:
-% --------
-%   M1      - (N×1 or 1×N) upstream Mach number
-%
-% -----
-% NOTE:
-% -----
-%   --> N = length of "Q_in"
+% -------------------
+% OPTIONS FOR "spec":
+% -------------------
+% 	--> 'M2'            - downstream Mach number
+%  	--> 'T2/T1'         - static temperature ratio
+%  	--> 'P2/P1'         - static pressure ratio
+%  	--> 'rho2/rho1'     - static density ratio
+%  	--> 'U2/U1'         - velocity ratio
+%  	--> 'a2/a1'         - speed of sound ratio
+% 	--> 'h2/h1'         - static enthalpy ratio
+%  	--> 'Tt2/Tt1'       - stagnation temperature ratio
+%  	--> 'Pt2/Pt1'       - stagnation pressure ratio
+%  	--> 'rhot2/rhot1'   - stagnation density ratio
+%  	--> 'at2/at1'       - stagnation speed of sound ratio
+%  	--> 'ht2/ht1'       - stagnation enthalpy ratio
+%   --> '(s2-s1)/cp'    - nondimensional entropy change
 %
 %==========================================================================
-function M1 = inverse_normal_shock(Q_in,gamma,spec)
+function M1 = normal_shock_inverse(spec,Q_in,gamma)
+
+    % ----------------------------------------------------
+    % Sets unspecified parameters to their default values.
+    % ----------------------------------------------------
+    
+    % defaults "gamma" to 1.4 if not specified
+    if (nargin == 2) || isempty(gamma)
+        gamma = 1.4;
+    end
+    
+    % -------------
+    % Calculations.
+    % -------------
     
     % returns M1 = NaN and displays warnings if stagnation temperature
     % ratio or stagnation enthalpy ratio are specified
-    if strcmp(spec,'Tt2/Tt1') || strcmp(spec,'at2/at1') || strcmp(spec,...
-            'ht2/ht1')
+    if strcmpi(spec,'Tt2/Tt1') || strcmpi(spec,'at2/at1') ||...
+            strcmpi(spec,'ht2/ht1')
     
         % determines string to use
-        if strcmp(spec,'Tt2/Tt1')
+        if strcmpi(spec,'Tt2/Tt1')
             str = "stagnation temperature ratio";
-        elseif strcmp(spec,'at2/at1')
+        elseif strcmpi(spec,'at2/at1')
             str = "stagnation speed of sound ratio";
-        elseif strcmp(spec,'ht2/ht1')
+        elseif strcmpi(spec,'ht2/ht1')
             str = "stagnation enthalpy ratio";
         end
     
-        % prints warning if Tt2/Tt1 or ht2/ht1 is anything other than 1
+        % displays warning if Tt2/Tt1 or ht2/ht1 is anything other than 1
         if Q_in ~= 1
             warning("Input " + str + " is not equal to 1 -- the " +...
                 str + " is always 1 across a normal shock.");
@@ -95,40 +109,30 @@ function M1 = inverse_normal_shock(Q_in,gamma,spec)
         M1 = NaN;
     
     % calculates M1 from M2
-    elseif strcmp(spec,'M2')
+    elseif strcmpi(spec,'M2')
         M1 = sqrt((2+(gamma-1).*Q_in^2)./(2*gamma*Q_in.^2-(gamma-1)));
     
     % calculates M1 from P2/P1
-    elseif strcmp(spec,'P2/P1')
+    elseif strcmpi(spec,'P2/P1')
         M1 = sqrt(((gamma+1)*Q_in+(gamma-1))/(2*gamma));
         
     % calculates M1 from rho2/rho1
-    elseif strcmp(spec,'rho2/rho1')
+    elseif strcmpi(spec,'rho2/rho1')
         M1 = sqrt((2*Q_in)./((1-gamma)*Q_in+(gamma+1)));
 
 	% calculates M1 from U2/U1
-    elseif strcmp(spec,'U2/U1')
+    elseif strcmpi(spec,'U2/U1')
         M1 = sqrt(2./((gamma+1)*Q_in-(gamma-1)));
 
-    % calculates M1 from input quantity
+    % calculates M1(i) for each Q_in(i) using root finding procedure for
+    % all other inputs (no closed-form solution)
+    %   --> supersonic initial guess is used because normal shocks only
+    %       occur in supersonic flow
     else
-          
-        % preallocates array to store M1 for each Q_in
         M1 = zeros(size(Q_in));
-        
-        % sets up function that we will find root of to find M1
-        g = @(M1,i) normal_shock(M1,gamma,spec)-Q_in(i);
-        
-        % calculates M_out for each Q_in
         for i = 1:length(Q_in)
-            
-            % assigns new function handle
-            gi = @(M1) g(M1,i);
-            
-            % finds root (uses supersonic initial guess because normal
-            % shocks only occur in supersonic flow)
-            M1(i) = secant_method(gi,1.5,1e-12);
-            
+            g = @(M1) normal_shock(M1,gamma,spec)-Q_in(i);
+            M1(i) = secant_method(g,1.5);
         end
 
     end

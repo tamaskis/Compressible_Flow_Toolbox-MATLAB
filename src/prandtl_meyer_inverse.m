@@ -1,13 +1,11 @@
 %==========================================================================
 %
-% rayleigh_heat  Determines the (specific) heat addition between two 
-% stations in a Rayleigh flow.
+% prandtl_meyer_inverse  Inverse Prandtl-Meyer function.
 %
-%   q = rayleigh_heat(Tt1,Tt2)
-%   q = rayleigh_heat(Tt1,Tt2,gamma,R)
+%   M = prandtl_meyer_inverse(w)
+%   M = prandtl_meyer_inverse(w,gamma)
 %
-% See also rayleigh_heat_inverse, rayleigh_station,
-% rayleigh_station_inverse, rayleigh_sonic, rayleigh_sonic_inverse.
+% See also prandtl_meyer_inverse.
 %
 % Copyright © 2021 Tamas Kis
 % Last Update: 2021-09-13
@@ -20,46 +18,45 @@
 % REFERENCES:
 %   [1] Anderson, "Modern Compressible Flow", 3rd Ed.
 %   [2] Cantwell, AA 210A Course Reader (Stanford University)
-%   [3] https://en.wikipedia.org/wiki/Rayleigh_flow
 %
 %--------------------------------------------------------------------------
 %
 % ------
 % INPUT:
 % ------
-%   Tt1     - (1D double array) station 1 stagnation temperature [K]
-%   Tt2     - (1D double array) station 2 stagnation temperature [K]
+%   w       - (1D double array) angle required to accelerate flow from 
+%             Mach 1 to the local Mach number M
 %   gamma   - (OPTIONAL) (1×1 double) specific heat ratio
 %               --> defaults to 1.4
-%   R       - (OPTIONAL) (1×1 double) specific gas constant [J/(kg.K)]
-%               --> defaults 287 J/(kg.K)
 %
 % -------
 % OUTPUT:
 % -------
-%   q       - (1D double array) (specific) heat addition [J/kg]
+%   M       - (1D double array) local Mach number
 %
 %==========================================================================
-function q = rayleigh_heat(Tt1,Tt2,gamma,R)
-
+function M = prandtl_meyer_inverse(w,gamma)
+    
     % ----------------------------------------------------
     % Sets unspecified parameters to their default values.
     % ----------------------------------------------------
     
     % defaults "gamma" to 1.4 if not specified
-    if (nargin < 3) || isempty(gamma)
+    if (nargin == 1) || isempty(gamma)
         gamma = 1.4;
-    end
-    
-    % defaults "R" to 287 J/(kg.K) if not specified
-    if (nargin < 4) || isempty(R)
-        R = 287;
     end
     
     % -------------
     % Calculations.
     % -------------
     
-    q = (gamma*R*(Tt2-Tt1))/(gamma-1);
+    % preallocates M
+    M = zeros(size(w));
+    
+    % calculates M(i) for each w(i) using root finding procedure
+    for i = 1:length(w)
+        f = @(M) prandtl_meyer(M,gamma)-w(i);
+        M(i) = secant_method(f,1.5);
+    end
     
 end
