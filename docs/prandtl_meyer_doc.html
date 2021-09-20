@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prandtl_meyer</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-13"><meta name="DC.source" content="prandtl_meyer_doc.m"><style type="text/css">
+      --><title>prandtl_meyer</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-20"><meta name="DC.source" content="prandtl_meyer_doc.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -85,14 +85,14 @@ w = prandtl_meyer(M,gamma)
           <td><TT>M</TT></td>
           <td>local Mach number</td>
           <td style="text-align:center">1D<BR>double array</td>
-          <td>-</td>
+          <td style="text-align:center">-</td>
       </tr>
       <tr>
           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\gamma" title="\gamma" /></td>
           <td><TT>gamma</TT></td>
           <td>(OPTIONAL) specific heat ratio, defaults to 1.4</td>
           <td style="text-align:center">1×1<BR>double</td>
-          <td>-</td>
+          <td style="text-align:center">-</td>
       </tr>
       <tr>
           <td style="text-align:center"><b>Output</b></td>
@@ -100,7 +100,7 @@ w = prandtl_meyer(M,gamma)
           <td><TT>w</TT></td>
           <td>angle required to accelerate flow from Mach 1 to the local Mach number</td>
           <td style="text-align:center">1D<BR>double array</td>
-          <td>rad</td>
+          <td style="text-align:center">rad</td>
       </tr>
   </table>
 </p><h2 id="3">Example #1: Prandtl-Meyer angle for Mach 2 flow (in air).</h2><p><img src="prandtl_meyer_doc_eq08589834809570054062.png" alt="$\omega$" style="width:7px;height:6px;"> for <img src="prandtl_meyer_doc_eq12774531833852759057.png" alt="$M=2$" style="width:32px;height:8px;"> (in air).</p><pre class="codeinput">w = prandtl_meyer(2)
@@ -141,14 +141,14 @@ w =
 %           <td><TT>M</TT></td>
 %           <td>local Mach number</td>
 %           <td style="text-align:center">1D<BR>double array</td>
-%           <td>-</td>
+%           <td style="text-align:center">-</td>
 %       </tr>
 %       <tr>
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\gamma" title="\gamma" /></td>
 %           <td><TT>gamma</TT></td>
 %           <td>(OPTIONAL) specific heat ratio, defaults to 1.4</td>
 %           <td style="text-align:center">1×1<BR>double</td>
-%           <td>-</td>
+%           <td style="text-align:center">-</td>
 %       </tr>
 %       <tr>
 %           <td style="text-align:center"><b>Output</b></td>
@@ -156,7 +156,7 @@ w =
 %           <td><TT>w</TT></td>
 %           <td>angle required to accelerate flow from Mach 1 to the local Mach number</td>
 %           <td style="text-align:center">1D<BR>double array</td>
-%           <td>rad</td>
+%           <td style="text-align:center">rad</td>
 %       </tr>
 %   </table>
 % </html>

@@ -22,14 +22,14 @@
 %           <td><TT>M</TT></td>
 %           <td>local Mach number</td>
 %           <td style="text-align:center">1D<BR>double array</td>
-%           <td>-</td>
+%           <td style="text-align:center">-</td>
 %       </tr>
 %       <tr>
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\gamma" title="\gamma" /></td>
 %           <td><TT>gamma</TT></td>
 %           <td>(OPTIONAL) specific heat ratio, defaults to 1.4</td>
 %           <td style="text-align:center">1×1<BR>double</td>
-%           <td>-</td>
+%           <td style="text-align:center">-</td>
 %       </tr>
 %       <tr>
 %           <td style="text-align:center"><b>Output</b></td>
@@ -37,7 +37,7 @@
 %           <td><TT>w</TT></td>
 %           <td>angle required to accelerate flow from Mach 1 to the local Mach number</td>
 %           <td style="text-align:center">1D<BR>double array</td>
-%           <td>rad</td>
+%           <td style="text-align:center">rad</td>
 %       </tr>
 %   </table>
 % </html>

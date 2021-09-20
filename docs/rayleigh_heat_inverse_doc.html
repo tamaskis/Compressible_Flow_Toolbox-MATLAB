@@ -1,0 +1,258 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>rayleigh_heat_inverse</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-20"><meta name="DC.source" content="rayleigh_heat_inverse_doc.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1><tt>rayleigh_heat_inverse</tt></h1><!--introduction--><p>Determines the stagnation temperature at one station in a Rayleigh flow given the stagnation temperature at the other station and the (specific) heat addition between the two stations.</p><p><a href="index.html">Back to Compressible Flow Toolbox Contents</a></p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Input/Output Parameters</a></li><li><a href="#3">Example #1: Station 1 stagnation temperature for specific heat addition in air.</a></li><li><a href="#4">Example #2: Station 2 stagnation temperature for specific heat addition in air.</a></li><li><a href="#5">Example #3: Station 1 stagnation temperature for specific heat addition in helium.</a></li><li><a href="#6">Example #4: Station 2 stagnation temperature for specific heat addition in helium.</a></li><li><a href="#7">See also</a></li></ul></div><h2 id="1">Syntax</h2><pre class="language-matlab">Tt1 = rayleigh_heat_inverse(<span class="string">'Tt2'</span>,Tt2,q)
+Tt1 = rayleigh_heat_inverse(<span class="string">'Tt2'</span>,Tt2,q,gamma,R)
+Tt2 = rayleigh_heat_inverse(<span class="string">'Tt1'</span>,Tt1,q)
+Tt2 = rayleigh_heat_inverse(<span class="string">'Tt1'</span>,Tt1,q,gamma,R)
+</pre><h2 id="2">Input/Output Parameters</h2><p>
+  <table border=1>
+      <tr>
+          <td></td>
+          <td style="text-align:center"><b>Symbol</b></td>
+          <td style="text-align:center"><b>Variable</b></td>
+          <td style="text-align:center"><b>Description</b></td>
+          <td style="text-align:center"><b>Format</b></td>
+          <td style="text-align:center"><b>Units</b></td>
+      </tr>
+      <tr>
+          <td rowspan="5" style="text-align:center"><b>Input</b></td>
+          <td style="text-align:center">-</td>
+          <td><TT>spec</TT></td>
+          <td>specifies input stagnation temperature (<TT>'Tt1'</TT> or <TT>'Tt2'</TT>)</td>
+          <td style="text-align:center">char</td>
+          <td style="text-align:center">-</td>
+      </tr>
+      <tr>
+          <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?T_{t,\mathrm{in}}" title="" /></td>
+          <td><TT>Tt_in</TT></td>
+          <td>input stagnation temperature</td>
+          <td style="text-align:center">1D<BR>double array</td>
+          <td style="text-align:center">K</td>
+      </tr>
+      <tr>
+          <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?q" title="q" /></td>
+          <td><TT>q</TT></td>
+          <td>(specific) heat addition between stations 1 and 2</td>
+          <td style="text-align:center">1D<BR>double array</td>
+          <td style="text-align:center">J/kg</td>
+      </tr>
+      <tr>
+          <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\gamma" title="\gamma" /></td>
+          <td><TT>gamma</TT></td>
+          <td>(OPTIONAL) specific heat ratio, defaults to 1.4</td>
+          <td style="text-align:center">1×1<BR>double</td>
+          <td style="text-align:center">-</td>
+      </tr>
+      <tr>
+          <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?R" title="R" /></td>
+          <td><TT>R</TT></td>
+          <td>(OPTIONAL) specific gas constant, defaults to 287 J/(kg.K)</td>
+          <td style="text-align:center">1×1<BR>double</td>
+          <td style="text-align:center">J/(kg.K)</td>
+      </tr>
+      <tr>
+          <td style="text-align:center"><b>Output</b></td>
+          <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?T_{t,\mathrm{out}}" title="" /></td>
+          <td><TT>Tt_out</TT></td>
+          <td>output stagnation temperature</td>
+          <td style="text-align:center">1D<BR>double array</td>
+          <td style="text-align:center">K</td>
+      </tr>
+  </table>
+</p><h2 id="3">Example #1: Station 1 stagnation temperature for specific heat addition in air.</h2><p><i>$T</i>{t1}$ with <img src="rayleigh_heat_inverse_doc_eq11547385349994842780.png" alt="$T_{t2}=2000\;\mathrm{K}$" style="width:62px;height:10px;"> and <img src="rayleigh_heat_inverse_doc_eq04194383136543436197.png" alt="$q=1.0045\times10^{6}\;\mathrm{J/kg}$" style="width:105px;height:12px;"> (in air)._</p><pre class="codeinput">Tt2 = 2000;
+q = 1.0045e6;
+Tt1 = rayleigh_heat_inverse(<span class="string">'Tt2'</span>,Tt2,q)
+</pre><pre class="codeoutput">
+Tt1 =
+
+   1.0000e+03
+
+</pre><h2 id="4">Example #2: Station 2 stagnation temperature for specific heat addition in air.</h2><p><i>$T</i>{t2}$ with <img src="rayleigh_heat_inverse_doc_eq01333399793075818961.png" alt="$T_{t1}=1000\;\mathrm{K}$" style="width:62px;height:10px;"> and <img src="rayleigh_heat_inverse_doc_eq04194383136543436197.png" alt="$q=1.0045\times10^{6}\;\mathrm{J/kg}$" style="width:105px;height:12px;"> (in air)._</p><pre class="codeinput">Tt1 = 1000;
+q = 1.0045e6;
+Tt2 = rayleigh_heat_inverse(<span class="string">'Tt1'</span>,Tt1,q)
+</pre><pre class="codeoutput">
+Tt2 =
+
+   2.0000e+03
+
+</pre><h2 id="5">Example #3: Station 1 stagnation temperature for specific heat addition in helium.</h2><p><i>$T</i>{t1}$ with <img src="rayleigh_heat_inverse_doc_eq11547385349994842780.png" alt="$T_{t2}=2000\;\mathrm{K}$" style="width:62px;height:10px;"> and <img src="rayleigh_heat_inverse_doc_eq13852809785483534935.png" alt="$q=5.2240\times10^{6}\;\mathrm{J/kg}$" style="width:105px;height:12px;"> (in helium, with <img src="rayleigh_heat_inverse_doc_eq00859024728274304994.png" alt="$\gamma=1.66$" style="width:41px;height:10px;">, <img src="rayleigh_heat_inverse_doc_eq06554711678197860490.png" alt="$R=2077\;\mathrm{J/(kg\cdot K)}$" style="width:95px;height:11px;">)._</p><pre class="codeinput">Tt2 = 2000;
+q = 5.2240e6;
+Tt1 = rayleigh_heat_inverse(<span class="string">'Tt2'</span>,Tt2,q,1.66,2077)
+</pre><pre class="codeoutput">
+Tt1 =
+
+  999.9942
+
+</pre><h2 id="6">Example #4: Station 2 stagnation temperature for specific heat addition in helium.</h2><p><i>$T</i>{t2}$ with <img src="rayleigh_heat_inverse_doc_eq01333399793075818961.png" alt="$T_{t1}=1000\;\mathrm{K}$" style="width:62px;height:10px;"> and <img src="rayleigh_heat_inverse_doc_eq13852809785483534935.png" alt="$q=5.2240\times10^{6}\;\mathrm{J/kg}$" style="width:105px;height:12px;"> (in helium, with <img src="rayleigh_heat_inverse_doc_eq00859024728274304994.png" alt="$\gamma=1.66$" style="width:41px;height:10px;"> and <img src="rayleigh_heat_inverse_doc_eq06554711678197860490.png" alt="$R=2077\;\mathrm{J/(kg\cdot K)}$" style="width:95px;height:11px;">)._</p><pre class="codeinput">Tt1 = 1000;
+q = 5.2240e6;
+Tt2 = rayleigh_heat_inverse(<span class="string">'Tt1'</span>,Tt1,q,1.66,2077)
+</pre><pre class="codeoutput">
+Tt2 =
+
+   2.0000e+03
+
+</pre><h2 id="7">See also</h2><p><a href="rayleigh_heat_doc.html"><tt>rayleigh_heat</tt></a>.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% |rayleigh_heat_inverse|
+% Determines the stagnation temperature at one station in a Rayleigh flow 
+% given the stagnation temperature at the other station and the (specific) 
+% heat addition between the two stations.
+% 
+% <index.html Back to Compressible Flow Toolbox Contents>
+%% Syntax
+%   Tt1 = rayleigh_heat_inverse('Tt2',Tt2,q)
+%   Tt1 = rayleigh_heat_inverse('Tt2',Tt2,q,gamma,R)
+%   Tt2 = rayleigh_heat_inverse('Tt1',Tt1,q)
+%   Tt2 = rayleigh_heat_inverse('Tt1',Tt1,q,gamma,R)
+%% Input/Output Parameters
+% <html>
+%   <table border=1>
+%       <tr>
+%           <td></td>
+%           <td style="text-align:center"><b>Symbol</b></td>
+%           <td style="text-align:center"><b>Variable</b></td>
+%           <td style="text-align:center"><b>Description</b></td>
+%           <td style="text-align:center"><b>Format</b></td>
+%           <td style="text-align:center"><b>Units</b></td>
+%       </tr>
+%       <tr>
+%           <td rowspan="5" style="text-align:center"><b>Input</b></td>
+%           <td style="text-align:center">-</td>
+%           <td><TT>spec</TT></td>
+%           <td>specifies input stagnation temperature (<TT>'Tt1'</TT> or <TT>'Tt2'</TT>)</td>
+%           <td style="text-align:center">char</td>
+%           <td style="text-align:center">-</td>
+%       </tr>
+%       <tr>
+%           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?T_{t,\mathrm{in}}" title="" /></td>
+%           <td><TT>Tt_in</TT></td>
+%           <td>input stagnation temperature</td>
+%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">K</td>
+%       </tr>
+%       <tr>
+%           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?q" title="q" /></td>
+%           <td><TT>q</TT></td>
+%           <td>(specific) heat addition between stations 1 and 2</td>
+%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">J/kg</td>
+%       </tr>
+%       <tr>
+%           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\gamma" title="\gamma" /></td>
+%           <td><TT>gamma</TT></td>
+%           <td>(OPTIONAL) specific heat ratio, defaults to 1.4</td>
+%           <td style="text-align:center">1×1<BR>double</td>
+%           <td style="text-align:center">-</td>
+%       </tr>
+%       <tr>
+%           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?R" title="R" /></td>
+%           <td><TT>R</TT></td>
+%           <td>(OPTIONAL) specific gas constant, defaults to 287 J/(kg.K)</td>
+%           <td style="text-align:center">1×1<BR>double</td>
+%           <td style="text-align:center">J/(kg.K)</td>
+%       </tr>
+%       <tr>
+%           <td style="text-align:center"><b>Output</b></td>
+%           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?T_{t,\mathrm{out}}" title="" /></td>
+%           <td><TT>Tt_out</TT></td>
+%           <td>output stagnation temperature</td>
+%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">K</td>
+%       </tr>
+%   </table>
+% </html>
+%% Example #1: Station 1 stagnation temperature for specific heat addition in air.
+% _$T_{t1}$ with $T_{t2}=2000\;\mathrm{K}$ and $q=1.0045\times10^{6}\;\mathrm{J/kg}$
+% (in air)._
+Tt2 = 2000;
+q = 1.0045e6;
+Tt1 = rayleigh_heat_inverse('Tt2',Tt2,q)
+%% Example #2: Station 2 stagnation temperature for specific heat addition in air.
+% _$T_{t2}$ with $T_{t1}=1000\;\mathrm{K}$ and $q=1.0045\times10^{6}\;\mathrm{J/kg}$
+% (in air)._
+Tt1 = 1000;
+q = 1.0045e6;
+Tt2 = rayleigh_heat_inverse('Tt1',Tt1,q)
+%% Example #3: Station 1 stagnation temperature for specific heat addition in helium.
+% _$T_{t1}$ with $T_{t2}=2000\;\mathrm{K}$ and $q=5.2240\times10^{6}\;\mathrm{J/kg}$
+% (in helium, with $\gamma=1.66$, $R=2077\;\mathrm{J/(kg\cdot K)}$)._
+Tt2 = 2000;
+q = 5.2240e6;
+Tt1 = rayleigh_heat_inverse('Tt2',Tt2,q,1.66,2077)
+%% Example #4: Station 2 stagnation temperature for specific heat addition in helium.
+% _$T_{t2}$ with $T_{t1}=1000\;\mathrm{K}$ and $q=5.2240\times10^{6}\;\mathrm{J/kg}$
+% (in helium, with $\gamma=1.66$ and $R=2077\;\mathrm{J/(kg\cdot K)}$)._
+Tt1 = 1000;
+q = 5.2240e6;
+Tt2 = rayleigh_heat_inverse('Tt1',Tt1,q,1.66,2077)
+%% See also
+% <rayleigh_heat_doc.html |rayleigh_heat|>.
+##### SOURCE END #####
+--></body></html>

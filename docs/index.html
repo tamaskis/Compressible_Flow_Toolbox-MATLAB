@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Compressible Flow Toolbox Documentation</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-13"><meta name="DC.source" content="index.m"><style type="text/css">
+      --><title>Compressible Flow Toolbox Documentation</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-20"><meta name="DC.source" content="index.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Compressible Flow Toolbox Documentation</h1><!--introduction--><p><img vspace="5" hspace="5" src="compressible_flow_toolbox.png" alt=""> </p><p>Copyright &copy; 2021 Tamas Kis</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Technical Documentation</a></li><li><a href="#2">Stagnation (Total) Quantities</a></li><li><a href="#3">Isentropic Process Functions</a></li><li><a href="#4">Normal Shocks</a></li><li><a href="#5">Oblique Shocks and Expansions</a></li><li><a href="#6">Area-Mach Number Relation (Quasi 1D Flow)</a></li><li><a href="#7">Root-Finding Methods</a></li></ul></div><h2 id="1">Technical Documentation</h2><p>Click <a href="https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf">here</a>.</p><h2 id="2">Stagnation (Total) Quantities</h2><div><ul><li><a href="stagnation_doc.html"><b><tt>stagnation</tt></b></a> finds the stagnation-to-static ratios given the local Mach number.</li><li><a href="stagnation_inverse_doc.html"><b><tt>stagnation_inverse</tt></b></a> determines the local Mach number given some stagnation-to-static ratio.</li></ul></div><h2 id="3">Isentropic Process Functions</h2><h2 id="4">Normal Shocks</h2><div><ul><li><a href="normal_shock_doc.html"><b><tt>normal_shock</tt></b></a> finds the Mach number downstream of a normal shock, or some ratio across a normal shock.</li><li><a href="normal_shock_inverse_doc.html"><b><tt>normal_shock_inverse</tt></b></a> returns the upstream Mach number given either the downstream Mach number or some ratio across the normal shock.</li></ul></div><h2 id="5">Oblique Shocks and Expansions</h2><div><ul><li><a href="prandtl_meyer_doc.html"><b><tt>prandtl_meyer</tt></b></a> finds the angle required to accelerate the flow from Mach 1 to the specified local Mach number (implementation of the Prandtl-Meyer function).</li><li><a href="prandtl_meyer_inverse_doc.html"><b><tt>prandtl_meyer_inverse</tt></b></a> finds the local Mach number given the Prandtl-Meyer angle.</li></ul></div><h2 id="6">Area-Mach Number Relation (Quasi 1D Flow)</h2><div><ul><li><a href="area_mach_number_doc.html"><b><tt>area_mach_number</tt></b></a> finds the area ratio from the Mach number in quasi 1D flow (using the area-Mach number relation).</li><li><a href="area_mach_number_inverse_doc.html"><b><tt>area_mach_number_inverse</tt></b></a> finds the local Mach number (subsonic and supersonic solutions) from the area ratio in quasi 1D flow (i.e. solving the area-Mach number relation for the local Mach number).</li></ul></div><h2 id="7">Root-Finding Methods</h2><div><ul><li><a href="https://www.mathworks.com/matlabcentral/fileexchange/85745-secant-method-secant_method"><b><tt>secant_method</tt></b></a></li><li><a href="https://www.mathworks.com/matlabcentral/fileexchange/87042-bisection-method-bisection_method?s_tid=srchtitle"><b><tt>bisection_method</tt></b></a></li></ul></div><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>Compressible Flow Toolbox Documentation</h1><!--introduction--><p><img vspace="5" hspace="5" src="compressible_flow_toolbox.png" alt=""> </p><p>Copyright &copy; 2021 Tamas Kis</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Technical Documentation</a></li><li><a href="#2">Stagnation (Total) Quantities</a></li><li><a href="#3">Isentropic Processes</a></li><li><a href="#4">Normal Shocks</a></li><li><a href="#5">Oblique Shocks and Expansions</a></li><li><a href="#6">Area-Mach Number Relation</a></li><li><a href="#7">Fanno Flow (Adiabatic, Quasi-1D Flow with Friction)</a></li><li><a href="#8">Rayleigh Flow (Frictionless, Quasi-1D Flow with Heat Addition)</a></li><li><a href="#9">Root-Finding Methods</a></li></ul></div><h2 id="1">Technical Documentation</h2><p>Click <a href="https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf">here</a>.</p><h2 id="2">Stagnation (Total) Quantities</h2><div><ul><li><a href="stagnation_doc.html"><b><tt>stagnation</tt></b></a> finds the stagnation-to-static ratios given the local Mach number.</li><li><a href="stagnation_inverse_doc.html"><b><tt>stagnation_inverse</tt></b></a> determines the local Mach number given some stagnation-to-static ratio.</li></ul></div><h2 id="3">Isentropic Processes</h2><div><ul><li><a href="isentropic_process_doc.html"><b><tt>isentropic_process</tt></b></a> converts any ratio to any other ratio in an isentropic process involving a calorically perfect gas.</li></ul></div><h2 id="4">Normal Shocks</h2><div><ul><li><a href="normal_shock_doc.html"><b><tt>normal_shock</tt></b></a> finds the Mach number downstream of a normal shock, or some ratio across a normal shock.</li><li><a href="normal_shock_inverse_doc.html"><b><tt>normal_shock_inverse</tt></b></a> returns the upstream Mach number given either the downstream Mach number or some ratio across the normal shock.</li></ul></div><h2 id="5">Oblique Shocks and Expansions</h2><div><ul><li><a href="prandtl_meyer_doc.html"><b><tt>prandtl_meyer</tt></b></a> finds the angle required to accelerate the flow from Mach 1 to the specified local Mach number (implementation of the Prandtl-Meyer function).</li><li><a href="prandtl_meyer_inverse_doc.html"><b><tt>prandtl_meyer_inverse</tt></b></a> finds the local Mach number given the Prandtl-Meyer angle.</li></ul></div><h2 id="6">Area-Mach Number Relation</h2><div><ul><li><a href="area_mach_number_doc.html"><b><tt>area_mach_number</tt></b></a> finds the area ratio from the Mach number in quasi 1D flow (using the area-Mach number relation).</li><li><a href="area_mach_number_inverse_doc.html"><b><tt>area_mach_number_inverse</tt></b></a> finds the local Mach number (subsonic and supersonic solutions) from the area ratio in quasi 1D flow (i.e. solving the area-Mach number relation for the local Mach number).</li></ul></div><h2 id="7">Fanno Flow (Adiabatic, Quasi-1D Flow with Friction)</h2><h2 id="8">Rayleigh Flow (Frictionless, Quasi-1D Flow with Heat Addition)</h2><div><ul><li><a href="rayleigh_heat_doc.html"><b><tt>rayleigh_heat</tt></b></a> determines the (specific) heat addition between two stations in a Rayleigh flow.</li><li><a href="rayleigh_heat_inverse_doc.html"><b><tt>rayleigh_heat_inverse</tt></b></a> determines the stagnation temperature at one station in a Rayleigh flow given the stagnation temperature at the other station and the (specific) heat addition between the two stations.</li><li><a href="rayleigh_sonic_doc.html"><b><tt>rayleigh_sonic</tt></b></a> finds some ratio between local and sonic conditions in a Rayleigh flow.</li><li><a href="rayleigh_sonic_inverse_doc.html"><b><tt>rayleigh_sonic_inverse</tt></b></a> finds the local Mach number given some ratio or difference between local and sonic conditions in a Rayleigh flow.</li></ul></div><h2 id="9">Root-Finding Methods</h2><div><ul><li><a href="https://www.mathworks.com/matlabcentral/fileexchange/85745-secant-method-secant_method"><b><tt>secant_method</tt></b></a></li><li><a href="https://www.mathworks.com/matlabcentral/fileexchange/87042-bisection-method-bisection_method?s_tid=srchtitle"><b><tt>bisection_method</tt></b></a></li></ul></div><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Compressible Flow Toolbox Documentation
 % 
@@ -81,7 +81,10 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 % ratios given the local Mach number.
 % * <stagnation_inverse_doc.html *|stagnation_inverse|*> determines the 
 % local Mach number given some stagnation-to-static ratio.
-%% Isentropic Process Functions
+%% Isentropic Processes
+% * <isentropic_process_doc.html *|isentropic_process|*> converts any ratio
+% to any other ratio in an isentropic process involving a calorically
+% perfect gas.
 %% Normal Shocks
 % * <normal_shock_doc.html *|normal_shock|*> finds the Mach number
 % downstream of a normal shock, or some ratio across a normal shock.
@@ -94,7 +97,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 % (implementation of the Prandtl-Meyer function).
 % * <prandtl_meyer_inverse_doc.html *|prandtl_meyer_inverse|*> finds the
 % local Mach number given the Prandtl-Meyer angle.
-%% Area-Mach Number Relation (Quasi 1D Flow)
+%% Area-Mach Number Relation
 % * <area_mach_number_doc.html *|area_mach_number|*> finds the area ratio
 % from the Mach number in quasi 1D flow (using the area-Mach number 
 % relation).
@@ -102,6 +105,19 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 % the local Mach number (subsonic and supersonic solutions) from the area 
 % ratio in quasi 1D flow (i.e. solving the area-Mach number relation for 
 % the local Mach number).
+%% Fanno Flow (Adiabatic, Quasi-1D Flow with Friction)
+%% Rayleigh Flow (Frictionless, Quasi-1D Flow with Heat Addition)
+% * <rayleigh_heat_doc.html *|rayleigh_heat|*> determines the (specific) 
+% heat addition between two stations in a Rayleigh flow.
+% * <rayleigh_heat_inverse_doc.html *|rayleigh_heat_inverse|*> determines 
+% the stagnation temperature at one station in a Rayleigh flow given the 
+% stagnation temperature at the other station and the (specific) heat 
+% addition between the two stations.
+% * <rayleigh_sonic_doc.html *|rayleigh_sonic|*> finds some ratio between
+% local and sonic conditions in a Rayleigh flow.
+% * <rayleigh_sonic_inverse_doc.html *|rayleigh_sonic_inverse|*> finds the
+% local Mach number given some ratio or difference between local and sonic 
+% conditions in a Rayleigh flow.
 %% Root-Finding Methods
 % * <https://www.mathworks.com/matlabcentral/fileexchange/85745-secant-method-secant_method *|secant_method|*>
 % * <https://www.mathworks.com/matlabcentral/fileexchange/87042-bisection-method-bisection_method?s_tid=srchtitle *|bisection_method|*>

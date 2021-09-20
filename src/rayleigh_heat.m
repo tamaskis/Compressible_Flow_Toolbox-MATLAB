@@ -10,7 +10,7 @@
 % rayleigh_station_inverse, rayleigh_sonic, rayleigh_sonic_inverse.
 %
 % Copyright © 2021 Tamas Kis
-% Last Update: 2021-09-13
+% Last Update: 2021-09-20
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %
@@ -37,7 +37,8 @@
 % -------
 % OUTPUT:
 % -------
-%   q       - (1D double array) (specific) heat addition [J/kg]
+%   q       - (1D double array) (specific) heat addition between stations 1
+%             and 2 [J/kg]
 %
 %==========================================================================
 function q = rayleigh_heat(Tt1,Tt2,gamma,R)

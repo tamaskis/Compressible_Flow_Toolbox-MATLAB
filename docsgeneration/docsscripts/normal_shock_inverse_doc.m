@@ -75,7 +75,7 @@
 %% Examples
 % _Upstream Mach number ($M_{1}$) from all quantities/ratios across a
 % normal shock in air ($\gamma=1.4$). Note that all values are taken from
-% the examples in the <normal_shock_documentation.html |normal_shock|> 
+% the examples in the <normal_shock_doc.html |normal_shock|> 
 % documentation._
 %%
 % Upstream Mach number ($M_{1}$) from downstream Mach number ($M_{2}$).

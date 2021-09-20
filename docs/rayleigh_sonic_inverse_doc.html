@@ -1,0 +1,331 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>rayleigh_sonic_inverse</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-20"><meta name="DC.source" content="rayleigh_sonic_inverse_doc.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1><tt>rayleigh_sonic_inverse</tt></h1><!--introduction--><p>Calculates the subsonic and supersonic solutions for the local Mach number in a Rayleigh flow given some ratio or difference between local and sonic conditions.</p><p><a href="index.html">Back to Compressible Flow Toolbox Contents</a></p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Input/Output Parameters</a></li><li><a href="#3">Examples</a></li><li><a href="#13">See also</a></li></ul></div><h2 id="1">Syntax</h2><pre class="language-matlab">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'T/T*'</span>,T_Tstar)
+[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'P/P*'</span>,P_Pstar)
+[M_sub,M_sup] = rayleigh_sonic_inverse'h/h*<span class="untermstring">',(h_hstar)</span>
+[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'rho/rho*'</span>,rho_rhostar)
+[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'U/U*'</span>,U_Ustar)
+[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'Pt/Tt*'</span>,Tt_Ttstar)
+[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'Pt/Pt*'</span>,Pt_Ptstar)
+[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'ht/ht*'</span>,ht_htstar)
+[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'(s-s*)/cp'</span>,ds_cp)
+[M_sub,M_sup] = rayleigh_sonic_inverse(__,gamma)
+</pre><h2 id="2">Input/Output Parameters</h2><p>
+  <table border=1>
+      <tr>
+          <td></td>
+          <td style="text-align:center"><b>Symbol</b></td>
+          <td style="text-align:center"><b>Variable</b></td>
+          <td style="text-align:center"><b>Description</b></td>
+          <td style="text-align:center"><b>Format</b></td>
+      </tr>
+      <tr>
+          <td rowspan="3" style="text-align:center"><b>Input</b></td>
+          <td style="text-align:center">-</td>
+          <td><TT>spec</TT></td>
+          <td>specifies input quantity (see options below)</td>
+          <td style="text-align:center">1×1<BR>char</td>
+      </tr>
+      <tr>
+          <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?Q_{\mathrm{in}}" title="" /></td>
+          <td><TT>Q_in</TT></td>
+          <td>input quantity</td>
+          <td style="text-align:center">1D<BR>double array</td>
+      </tr>
+      <tr>
+          <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\gamma" title="\gamma" /></td>
+          <td><TT>gamma</TT></td>
+          <td>(OPTIONAL) specific heat ratio, defaults to 1.4</td>
+          <td style="text-align:center">1×1<BR>double</td>
+      </tr>
+      <tr>
+          <td rowspan="2" style="text-align:center"><b>Output</b></td>
+          <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?M_{\mathrm{sub}}" title="" /></td>
+          <td><TT>M_sub</TT></td>
+          <td>subsonic solution for local Mach number</td>
+          <td style="text-align:center">1D<BR>double array</td>
+      </tr>
+      <tr>
+          <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?M_{\mathrm{sup}}" title="" /></td>
+          <td><TT>M_sup</TT></td>
+          <td>supersonic solution for local Mach number</td>
+          <td style="text-align:center">1D<BR>double array</td>
+      </tr>
+  </table>
+</p><p>Options for <tt>spec</tt>:</p><div><ul><li><tt>'T/T*'</tt> = local-to-sonic static temperature ratio (<img src="rayleigh_sonic_inverse_doc_eq14334952862233039116.png" alt="$T/T^{*}$" style="width:25px;height:11px;">)</li><li><tt>'P/P*'</tt> = local-to-sonic static pressure ratio (<img src="rayleigh_sonic_inverse_doc_eq11091537824513916837.png" alt="$P/P^{*}$" style="width:26px;height:11px;">)</li><li><tt>'h/h*'</tt> = local-to-sonic static enthalpy ratio (<img src="rayleigh_sonic_inverse_doc_eq06366074408847463900.png" alt="$h/h^{*}$" style="width:22px;height:11px;">)</li><li><tt>'rho/rho*'</tt> = local-to-sonic density ratio (<img src="rayleigh_sonic_inverse_doc_eq12319235656501518131.png" alt="$\rho/\rho^{*}$" style="width:21px;height:11px;">)</li><li><tt>'U/U*'</tt> = local-to-sonic velocity ratio (<img src="rayleigh_sonic_inverse_doc_eq03752005065094872495.png" alt="$U/U^{*}$" style="width:26px;height:11px;">)</li><li><tt>'Tt/Tt*'</tt> = local-to-sonic stagnation temperature ratio (<img src="rayleigh_sonic_inverse_doc_eq09363161020312629126.png" alt="$T_{t}/T_{t}^{*}$" style="width:27px;height:11px;">)</li><li><tt>'Pt/Pt*'</tt> = local-to-sonic stagnation pressure ratio (<img src="rayleigh_sonic_inverse_doc_eq13689250871831082035.png" alt="$P_{t}/P_{t}^{*}$" style="width:28px;height:11px;">)</li><li><tt>'ht/ht*'</tt> = local-to-sonic stagnation enthalpy ratio (<img src="rayleigh_sonic_inverse_doc_eq03840889662957628022.png" alt="$h_{t}/h_{t}^{*}$" style="width:25px;height:11px;">)</li><li><tt>'(s-s*)/cp'</tt> = sonic-to-local nondimensional entropy change (<img src="rayleigh_sonic_inverse_doc_eq04491849770546179925.png" alt="$(s-s^{*})/c_{p}$" style="width:50px;height:12px;">)</li></ul></div><h2 id="3">Examples</h2><p><i>Local Mach number from local-to-sonic ratios in a Rayleigh flow in air (<img src="rayleigh_sonic_inverse_doc_eq17585610266604048686.png" alt="$\gamma=1.4$" style="width:35px;height:10px;">). Note that all values are taken from the examples in the <a href="rayleigh_sonic_doc.html"><tt>rayleigh_sonic</tt></a> documentation.</i></p><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic static temperature ratio (<img src="rayleigh_sonic_inverse_doc_eq14334952862233039116.png" alt="$T/T^{*}$" style="width:25px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'T/T*'</span>,0.2803)
+</pre><pre class="codeoutput">
+M_sub =
+
+    0.2381
+
+
+M_sup =
+
+    2.9999
+
+</pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic static pressure ratio (<img src="rayleigh_sonic_inverse_doc_eq11091537824513916837.png" alt="$P/P^{*}$" style="width:26px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'P/P*'</span>,0.1765)
+</pre><pre class="codeoutput">
+M_sub =
+
+    2.9997
+
+
+M_sup =
+
+    2.9997
+
+</pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic static enthalpy ratio (<img src="rayleigh_sonic_inverse_doc_eq06366074408847463900.png" alt="$h/h^{*}$" style="width:22px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'h/h*'</span>,0.2803)
+</pre><pre class="codeoutput">
+M_sub =
+
+    0.2381
+
+
+M_sup =
+
+    2.9999
+
+</pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic static density ratio (<img src="rayleigh_sonic_inverse_doc_eq12319235656501518131.png" alt="$\rho/\rho^{*}$" style="width:21px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'rho/rho*'</span>,0.6296)
+</pre><pre class="codeoutput">
+M_sub =
+
+    3.0010
+
+
+M_sup =
+
+    3.0010
+
+</pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic velocity ratio (<img src="rayleigh_sonic_inverse_doc_eq03752005065094872495.png" alt="$U/U^{*}$" style="width:26px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'U/U*'</span>,1.5882)
+</pre><pre class="codeoutput">
+M_sub =
+
+    2.9995
+
+
+M_sup =
+
+    2.9995
+
+</pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic stagnation temperature ratio (<img src="rayleigh_sonic_inverse_doc_eq09363161020312629126.png" alt="$T_{t}/T_{t}^{*}$" style="width:27px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'Tt/Tt*'</span>,0.6540)
+</pre><pre class="codeoutput">
+M_sub =
+
+    0.4752
+
+
+M_sup =
+
+    2.9998
+
+</pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic stagnation pressure ratio (<img src="rayleigh_sonic_inverse_doc_eq13689250871831082035.png" alt="$P_{t}/P_{t}^{*}$" style="width:28px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'Pt/Pt*'</span>,3.4245)
+</pre><pre class="codeoutput">Warning: The method failed after n=1000000 iterations. 
+
+M_sub =
+
+    0.0012
+
+
+M_sup =
+
+    3.0000
+
+</pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic stagnation enthalpy ratio (<img src="rayleigh_sonic_inverse_doc_eq03840889662957628022.png" alt="$h_{t}/h_{t}^{*}$" style="width:25px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'ht/ht*'</span>,0.6540)
+</pre><pre class="codeoutput">
+M_sub =
+
+    0.4752
+
+
+M_sup =
+
+    2.9998
+
+</pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from sonic-to-local nondimensional entropy change (<img src="rayleigh_sonic_inverse_doc_eq04491849770546179925.png" alt="$(s-s^{*})/c_{p}$" style="width:50px;height:12px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'(s-s*)/cp'</span>,-0.7764)
+</pre><pre class="codeoutput">
+M_sub =
+
+    0.3731
+
+
+M_sup =
+
+    3.0001
+
+</pre><h2 id="13">See also</h2><p><a href="rayleigh_sonic_doc.html"><tt>rayleigh_sonic</tt></a>.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% |rayleigh_sonic_inverse|
+% Calculates the subsonic and supersonic solutions for the local Mach 
+% number in a Rayleigh flow given some ratio or difference between local 
+% and sonic conditions.
+% 
+% <index.html Back to Compressible Flow Toolbox Contents>
+%% Syntax
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('T/T*',T_Tstar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('P/P*',P_Pstar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse'h/h*',(h_hstar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('rho/rho*',rho_rhostar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('U/U*',U_Ustar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('Pt/Tt*',Tt_Ttstar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('Pt/Pt*',Pt_Ptstar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('ht/ht*',ht_htstar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('(s-s*)/cp',ds_cp)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse(__,gamma)
+%% Input/Output Parameters
+% <html>
+%   <table border=1>
+%       <tr>
+%           <td></td>
+%           <td style="text-align:center"><b>Symbol</b></td>
+%           <td style="text-align:center"><b>Variable</b></td>
+%           <td style="text-align:center"><b>Description</b></td>
+%           <td style="text-align:center"><b>Format</b></td>
+%       </tr>
+%       <tr>
+%           <td rowspan="3" style="text-align:center"><b>Input</b></td>
+%           <td style="text-align:center">-</td>
+%           <td><TT>spec</TT></td>
+%           <td>specifies input quantity (see options below)</td>
+%           <td style="text-align:center">1×1<BR>char</td>
+%       </tr>
+%       <tr>
+%           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?Q_{\mathrm{in}}" title="" /></td>
+%           <td><TT>Q_in</TT></td>
+%           <td>input quantity</td>
+%           <td style="text-align:center">1D<BR>double array</td>
+%       </tr>
+%       <tr>
+%           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\gamma" title="\gamma" /></td>
+%           <td><TT>gamma</TT></td>
+%           <td>(OPTIONAL) specific heat ratio, defaults to 1.4</td>
+%           <td style="text-align:center">1×1<BR>double</td>
+%       </tr>
+%       <tr>
+%           <td rowspan="2" style="text-align:center"><b>Output</b></td>
+%           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?M_{\mathrm{sub}}" title="" /></td>
+%           <td><TT>M_sub</TT></td>
+%           <td>subsonic solution for local Mach number</td>
+%           <td style="text-align:center">1D<BR>double array</td>
+%       </tr>
+%       <tr>
+%           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?M_{\mathrm{sup}}" title="" /></td>
+%           <td><TT>M_sup</TT></td>
+%           <td>supersonic solution for local Mach number</td>
+%           <td style="text-align:center">1D<BR>double array</td>
+%       </tr>
+%   </table>
+% </html>
+%
+% Options for |spec|:
+%
+% * |'T/T*'| = local-to-sonic static temperature ratio ($T/T^{*}$)
+% * |'P/P*'| = local-to-sonic static pressure ratio ($P/P^{*}$)
+% * |'h/h*'| = local-to-sonic static enthalpy ratio ($h/h^{*}$)
+% * |'rho/rho*'| = local-to-sonic density ratio ($\rho/\rho^{*}$)
+% * |'U/U*'| = local-to-sonic velocity ratio ($U/U^{*}$)
+% * |'Tt/Tt*'| = local-to-sonic stagnation temperature ratio ($T_{t}/T_{t}^{*}$)
+% * |'Pt/Pt*'| = local-to-sonic stagnation pressure ratio ($P_{t}/P_{t}^{*}$)
+% * |'ht/ht*'| = local-to-sonic stagnation enthalpy ratio ($h_{t}/h_{t}^{*}$)
+% * |'(s-s*)/cp'| = sonic-to-local nondimensional entropy change ($(s-s^{*})/c_{p}$)
+%% Examples
+% _Local Mach number from local-to-sonic ratios in a Rayleigh flow in air 
+% ($\gamma=1.4$). Note that all values are taken from the examples in the
+% <rayleigh_sonic_doc.html |rayleigh_sonic|> documentation._ 
+%%
+% Local Mach number ($M$) from local-to-sonic static temperature ratio ($T/T^{*}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('T/T*',0.2803)
+%%
+% Local Mach number ($M$) from local-to-sonic static pressure ratio ($P/P^{*}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('P/P*',0.1765)
+%%
+% Local Mach number ($M$) from local-to-sonic static enthalpy ratio ($h/h^{*}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('h/h*',0.2803)
+%%
+% Local Mach number ($M$) from local-to-sonic static density ratio ($\rho/\rho^{*}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('rho/rho*',0.6296)
+%%
+% Local Mach number ($M$) from local-to-sonic velocity ratio ($U/U^{*}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('U/U*',1.5882)
+%%
+% Local Mach number ($M$) from local-to-sonic stagnation temperature ratio ($T_{t}/T_{t}^{*}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('Tt/Tt*',0.6540)
+%%
+% Local Mach number ($M$) from local-to-sonic stagnation pressure ratio ($P_{t}/P_{t}^{*}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('Pt/Pt*',3.4245)
+%%
+% Local Mach number ($M$) from local-to-sonic stagnation enthalpy ratio ($h_{t}/h_{t}^{*}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('ht/ht*',0.6540)
+%%
+% Local Mach number ($M$) from sonic-to-local nondimensional entropy change ($(s-s^{*})/c_{p}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('(s-s*)/cp',-0.7764)
+%% See also
+% <rayleigh_sonic_doc.html |rayleigh_sonic|>.
+##### SOURCE END #####
+--></body></html>
