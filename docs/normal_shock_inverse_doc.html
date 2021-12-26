@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>normal_shock_inverse</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-20"><meta name="DC.source" content="normal_shock_inverse_doc.m"><style type="text/css">
+      --><title>normal_shock_inverse</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-10-29"><meta name="DC.source" content="normal_shock_inverse_doc.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -121,43 +121,43 @@ M1 = normal_shock_inverse(__,gamma)
 </pre><pre class="codeoutput">
 M2 =
 
-    2.9998
+   2.999847170448934
 
 </pre><p>Upstream Mach number (<img src="normal_shock_inverse_doc_eq15881875510505807195.png" alt="$M_{1}$" style="width:14px;height:10px;">) from static temperature ratio (<img src="normal_shock_inverse_doc_eq12553088108111122839.png" alt="$T_{2}/T_{1}$" style="width:26px;height:11px;">).</p><pre class="codeinput">T2_T1 = normal_shock_inverse(<span class="string">'T2/T1'</span>,2.6790)
 </pre><pre class="codeoutput">
 T2_T1 =
 
-    3.0000
+   2.999989510471814
 
 </pre><p>Upstream Mach number (<img src="normal_shock_inverse_doc_eq15881875510505807195.png" alt="$M_{1}$" style="width:14px;height:10px;">) from static pressure ratio (<img src="normal_shock_inverse_doc_eq05618693213234080270.png" alt="$P_{2}/P_{1}$" style="width:27px;height:11px;">).</p><pre class="codeinput">P2_P1 = normal_shock_inverse(<span class="string">'P2/P1'</span>,10.3333)
 </pre><pre class="codeoutput">
 P2_P1 =
 
-    3.0000
+   2.999995238091459
 
 </pre><p>Upstream Mach number (<img src="normal_shock_inverse_doc_eq15881875510505807195.png" alt="$M_{1}$" style="width:14px;height:10px;">) from static density ratio (<img src="normal_shock_inverse_doc_eq01258411689976535246.png" alt="$\rho_{2}/\rho_{1}$" style="width:25px;height:11px;">).</p><pre class="codeinput">rho2_rho1 = normal_shock_inverse(<span class="string">'rho2/rho1'</span>,3.8571)
 </pre><pre class="codeoutput">
 rho2_rho1 =
 
-    3.0000
+   2.999953333903693
 
 </pre><p>Upstream Mach number (<img src="normal_shock_inverse_doc_eq15881875510505807195.png" alt="$M_{1}$" style="width:14px;height:10px;">) from velocity ratio (<img src="normal_shock_inverse_doc_eq17914656599505253673.png" alt="$U_{2}/U_{1}$" style="width:28px;height:11px;">).</p><pre class="codeinput">U2_U1 = normal_shock_inverse(<span class="string">'U2/U1'</span>,0.2593)
 </pre><pre class="codeoutput">
 U2_U1 =
 
-    2.9993
+   2.999340217720171
 
 </pre><p>Upstream Mach number (<img src="normal_shock_inverse_doc_eq15881875510505807195.png" alt="$M_{1}$" style="width:14px;height:10px;">) from speed of sound ratio (<img src="normal_shock_inverse_doc_eq00795990486375567221.png" alt="$a_{2}/a_{1}$" style="width:25px;height:11px;">).</p><pre class="codeinput">a2_a1 = normal_shock_inverse(<span class="string">'a2/a1'</span>,1.6368)
 </pre><pre class="codeoutput">
 a2_a1 =
 
-    3.0001
+   3.000086573339974
 
 </pre><p>Upstream Mach number (<img src="normal_shock_inverse_doc_eq15881875510505807195.png" alt="$M_{1}$" style="width:14px;height:10px;">) from static enthalpy ratio (<img src="normal_shock_inverse_doc_eq08456106468505353404.png" alt="$h_{2}/h_{1}$" style="width:26px;height:11px;">).</p><pre class="codeinput">h2_h1 = normal_shock_inverse(<span class="string">'h2/h1'</span>,0.3733)
 </pre><pre class="codeoutput">
 h2_h1 =
 
-    2.9998
+   2.999828588861234
 
 </pre><p>Upstream Mach number (<img src="normal_shock_inverse_doc_eq15881875510505807195.png" alt="$M_{1}$" style="width:14px;height:10px;">) from stagnation temperature ratio (<img src="normal_shock_inverse_doc_eq12243403514466805918.png" alt="$T_{t2}/T_{t1}$" style="width:32px;height:11px;">).</p><pre class="codeinput">Tt2_Tt1 = normal_shock_inverse(<span class="string">'Tt2/Tt1'</span>,1)
 </pre><pre class="codeoutput">Warning: Cannot determine upstream Mach number -- the stagnation temperature
@@ -171,13 +171,13 @@ Tt2_Tt1 =
 </pre><pre class="codeoutput">
 Pt2_Pt1 =
 
-    3.0002
+   3.000155395587309
 
 </pre><p>Upstream Mach number (<img src="normal_shock_inverse_doc_eq15881875510505807195.png" alt="$M_{1}$" style="width:14px;height:10px;">) from stagnation density ratio (<img src="normal_shock_inverse_doc_eq04552293313725137028.png" alt="$\rho_{t2}/\rho_{t1}$" style="width:30px;height:11px;">).</p><pre class="codeinput">rhot2_rhot1 = normal_shock_inverse(<span class="string">'rhot2/rhot1'</span>,0.3283)
 </pre><pre class="codeoutput">
 rhot2_rhot1 =
 
-    3.0002
+   3.000155395587309
 
 </pre><p>Upstream Mach number (<img src="normal_shock_inverse_doc_eq15881875510505807195.png" alt="$M_{1}$" style="width:14px;height:10px;">) from stagnation speed of sound ratio (<img src="normal_shock_inverse_doc_eq02759985136035125752.png" alt="$a_{t2}/a_{t1}$" style="width:30px;height:11px;">).</p><pre class="codeinput">at2_at1 = normal_shock_inverse(<span class="string">'at2/at1'</span>,1)
 </pre><pre class="codeoutput">Warning: Cannot determine upstream Mach number -- the stagnation speed of sound
@@ -199,7 +199,7 @@ ht2_ht1 =
 </pre><pre class="codeoutput">
 ds_cp =
 
-    5.9737
+   5.973738291683497
 
 </pre><h2 id="17">See also</h2><p><a href="normal_shock_doc.html"><tt>normal_shock</tt></a>.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####

@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>normal_shock</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-20"><meta name="DC.source" content="normal_shock_doc.m"><style type="text/css">
+      --><title>normal_shock</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-10-29"><meta name="DC.source" content="normal_shock_doc.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -122,43 +122,43 @@ __ = normal_shock(__,gamma)
 </pre><pre class="codeoutput">
 M2 =
 
-    0.4752
+   0.475190963311491
 
 </pre><p>Static temperature ratio (<img src="normal_shock_doc_eq12553088108111122839.png" alt="$T_{2}/T_{1}$" style="width:26px;height:11px;">).</p><pre class="codeinput">T2_T1 = normal_shock(M1,<span class="string">'T2/T1'</span>)
 </pre><pre class="codeoutput">
 T2_T1 =
 
-    2.6790
+   2.679012345679012
 
 </pre><p>Static pressure ratio (<img src="normal_shock_doc_eq05618693213234080270.png" alt="$P_{2}/P_{1}$" style="width:27px;height:11px;">).</p><pre class="codeinput">P2_P1 = normal_shock(M1,<span class="string">'P2/P1'</span>)
 </pre><pre class="codeoutput">
 P2_P1 =
 
-   10.3333
+  10.333333333333334
 
 </pre><p>Static density ratio (<img src="normal_shock_doc_eq01258411689976535246.png" alt="$\rho_{2}/\rho_{1}$" style="width:25px;height:11px;">).</p><pre class="codeinput">rho2_rho_1 = normal_shock(M1,<span class="string">'rho2/rho1'</span>)
 </pre><pre class="codeoutput">
 rho2_rho_1 =
 
-    3.8571
+   3.857142857142857
 
 </pre><p>Velocity ratio (<img src="normal_shock_doc_eq17914656599505253673.png" alt="$U_{2}/U_{1}$" style="width:28px;height:11px;">).</p><pre class="codeinput">U2_U1 = normal_shock(M1,<span class="string">'U2/U1'</span>)
 </pre><pre class="codeoutput">
 U2_U1 =
 
-    0.2593
+   0.259259259259259
 
 </pre><p>Speed of sound ratio (<img src="normal_shock_doc_eq00795990486375567221.png" alt="$a_{2}/a_{1}$" style="width:25px;height:11px;">).</p><pre class="codeinput">a2_a1 = normal_shock(M1,<span class="string">'a2/a1'</span>)
 </pre><pre class="codeoutput">
 a2_a1 =
 
-    1.6368
+   1.636768873628471
 
 </pre><p>Static enthalpy ratio (<img src="normal_shock_doc_eq08456106468505353404.png" alt="$h_{2}/h_{1}$" style="width:26px;height:11px;">).</p><pre class="codeinput">h2_h1 = normal_shock(M1,<span class="string">'h2/h1'</span>)
 </pre><pre class="codeoutput">
 h2_h1 =
 
-    0.3733
+   0.373271889400922
 
 </pre><p>Stagnation temperature ratio (<img src="normal_shock_doc_eq12243403514466805918.png" alt="$T_{t2}/T_{t1}$" style="width:32px;height:11px;">).</p><pre class="codeinput">Tt2_Tt1 = normal_shock(M1,<span class="string">'Tt2/Tt1'</span>)
 </pre><pre class="codeoutput">
@@ -170,13 +170,13 @@ Tt2_Tt1 =
 </pre><pre class="codeoutput">
 Pt2_Pt1 =
 
-    0.3283
+   0.328343888190737
 
 </pre><p>Stagnation density ratio (<img src="normal_shock_doc_eq04552293313725137028.png" alt="$\rho_{t2}/\rho_{t1}$" style="width:30px;height:11px;">).</p><pre class="codeinput">rhot2_rhot1 = normal_shock(M1,<span class="string">'rhot2/rhot1'</span>)
 </pre><pre class="codeoutput">
 rhot2_rhot1 =
 
-    0.3283
+   0.328343888190737
 
 </pre><p>Stagnation speed of sound ratio (<img src="normal_shock_doc_eq02759985136035125752.png" alt="$a_{t2}/a_{t1}$" style="width:30px;height:11px;">).</p><pre class="codeinput">at2_at1 = normal_shock(M1,<span class="string">'at2/at1'</span>)
 </pre><pre class="codeoutput">
@@ -194,7 +194,7 @@ ht2_ht1 =
 </pre><pre class="codeoutput">
 ds_cp =
 
-    0.3182
+   0.318198222920296
 
 </pre><h2 id="18">See also</h2><p><a href="normal_shock_inverse_doc.html"><tt>normal_shock_inverse</tt></a>.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####

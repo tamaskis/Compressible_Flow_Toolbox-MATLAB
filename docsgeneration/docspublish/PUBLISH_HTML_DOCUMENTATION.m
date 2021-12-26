@@ -22,8 +22,8 @@ code_folders = ["../../src"];
 % specific .m documentation files that should be published
 %   --> define as "[]" if you want to publish all .m documentation files
 %mfiles = ["index"];
-mfiles = ["rayleigh_sonic_inverse_doc"];
-%mfiles = [];
+%mfiles = ["rayleigh_sonic_inverse_doc.m"];
+mfiles = [];
 
 % specific image files that should be published
 %   --> define as "[]" if you want to publish all image files

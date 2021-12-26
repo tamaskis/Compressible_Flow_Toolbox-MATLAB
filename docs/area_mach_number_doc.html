@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>area_mach_number</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-20"><meta name="DC.source" content="area_mach_number_doc.m"><style type="text/css">
+      --><title>area_mach_number</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-10-29"><meta name="DC.source" content="area_mach_number_doc.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -111,19 +111,19 @@ __ = area_mach_number(__,gamma)
 </pre><pre class="codeoutput">
 Astar_A =
 
-    0.2362
+   0.236151603498542
 
 </pre><h2 id="4">Example #2: Local-to-sonic area ratio from Mach number (in air).</h2><p><img src="area_mach_number_doc_eq05241662320289361838.png" alt="$A/A^{*}$" style="width:25px;height:11px;"> for <img src="area_mach_number_doc_eq07187184117199334346.png" alt="$M=3$" style="width:32px;height:8px;"> (in air).</p><pre class="codeinput">A_Astar = area_mach_number(3,<span class="string">'classic'</span>)
 </pre><pre class="codeoutput">
 A_Astar =
 
-    4.2346
+   4.234567901234570
 
 </pre><h2 id="5">Example #3: Sonic-to-local area ratio from Mach number (in helium).</h2><p><img src="area_mach_number_doc_eq14060688417882514373.png" alt="$A^{*}/A$" style="width:26px;height:11px;"> for <img src="area_mach_number_doc_eq07187184117199334346.png" alt="$M=3$" style="width:32px;height:8px;"> (in helium, <img src="area_mach_number_doc_eq00859024728274304994.png" alt="$\gamma=1.66$" style="width:41px;height:10px;">).</p><pre class="codeinput">Astar_A = area_mach_number(3,[],1.66)
 </pre><pre class="codeoutput">
 Astar_A =
 
-    0.3312
+   0.331167324723811
 
 </pre><h2 id="6">See also</h2><p><a href="area_mach_number_inverse_doc.html"><tt>area_mach_number_inverse</tt></a>.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####

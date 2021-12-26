@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>isentropic_process</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-20"><meta name="DC.source" content="isentropic_process_doc.m"><style type="text/css">
+      --><title>isentropic_process</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-10-29"><meta name="DC.source" content="isentropic_process_doc.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -116,14 +116,14 @@ P2_P1 = isentropic_process(<span class="string">'T2/T1'</span>,T2_T1,<span class
 </pre><pre class="codeoutput">
 P2_P1 =
 
-   11.3137
+  11.313708498984763
 
 </pre><h2 id="4">Example #2: Static temperature ratio from static pressure ratio (in air).</h2><p>Static temperature ratio from a static pressure ratio of <img src="isentropic_process_doc_eq01111411419135649491.png" alt="$P_{2}/P_{1}=11.3137$" style="width:79px;height:11px;"> (from Example #1, we know we should get <img src="isentropic_process_doc_eq00248500898599852087.png" alt="$T_{2}/T_{1}=2$" style="width:47px;height:11px;">).</p><pre class="codeinput">P2_P1 = 11.3137;
 T2_T1 = isentropic_process(<span class="string">'P2/P1'</span>,P2_P1,<span class="string">'T2/T1'</span>)
 </pre><pre class="codeoutput">
 T2_T1 =
 
-    2.0000
+   1.999999570736331
 
 </pre><h2 id="5">Example #3: Static density ratio from stagnation pressure ratio (in helium).</h2><p>Static density ratio from a stagnation pressure ratio of <img src="isentropic_process_doc_eq13327995478018365862.png" alt="$P_{t2}/P_{t1}=2$" style="width:54px;height:11px;"> in helium (<img src="isentropic_process_doc_eq00859024728274304994.png" alt="$\gamma=1.66$" style="width:41px;height:10px;">).</p><pre class="codeinput">Pt2_Pt1 = 2;
 gamma = 1.66;
@@ -131,7 +131,7 @@ rho2_rho1 = isentropic_process(<span class="string">'Pt2/Pt1'</span>,Pt2_Pt1,<sp
 </pre><pre class="codeoutput">
 rho2_rho1 =
 
-    1.6407
+   1.640670712015276
 
 </pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####

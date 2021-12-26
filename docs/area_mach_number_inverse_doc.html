@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>area_mach_number_inverse</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-20"><meta name="DC.source" content="area_mach_number_inverse_doc.m"><style type="text/css">
+      --><title>area_mach_number_inverse</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-10-29"><meta name="DC.source" content="area_mach_number_inverse_doc.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -117,34 +117,34 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 </pre><pre class="codeoutput">
 M_sub =
 
-    0.1383
+   0.138263663349695
 
 
 M_sup =
 
-    2.9998
+   2.999784837136942
 
 </pre><h2 id="4">Example #2: Mach number from local-to-sonic area ratio (in air).</h2><p><img src="area_mach_number_inverse_doc_eq07372758315901225561.png" alt="$M_{\mathrm{sub}}$" style="width:22px;height:10px;"> and <img src="area_mach_number_inverse_doc_eq09033346292487897663.png" alt="$M_{\mathrm{sup}}$" style="width:22px;height:11px;"> for <img src="area_mach_number_inverse_doc_eq04887361698285311879.png" alt="$A/A^{*}=4.2346$" style="width:71px;height:11px;">.</p><pre class="codeinput">[M_subsonic,M_supersonic] = area_mach_number_inverse(4.2346,<span class="string">'classic'</span>)
 </pre><pre class="codeoutput">
 M_subsonic =
 
-    0.1382
+   0.138233598964681
 
 
 M_supersonic =
 
-    3.0000
+   3.000007959153885
 
 </pre><h2 id="5">Example #3: Mach number from sonic-to-local area ratio (in helium).</h2><p><img src="area_mach_number_inverse_doc_eq07372758315901225561.png" alt="$M_{\mathrm{sub}}$" style="width:22px;height:10px;"> and <img src="area_mach_number_inverse_doc_eq09033346292487897663.png" alt="$M_{\mathrm{sup}}$" style="width:22px;height:11px;"> for <img src="area_mach_number_inverse_doc_eq07996956609688306742.png" alt="$A^{*}/A=0.3312$" style="width:71px;height:11px;"> (in helium, <img src="area_mach_number_inverse_doc_eq00859024728274304994.png" alt="$\gamma=1.66$" style="width:41px;height:10px;">).</p><pre class="codeinput">[M_sub,M_sup] = area_mach_number_inverse(0.3312,[],1.66)
 </pre><pre class="codeoutput">
 M_sub =
 
-    0.1910
+   0.190976973466182
 
 
 M_sup =
 
-    2.9999
+   2.999853117681214
 
 </pre><h2 id="6">See also</h2><p><a href="area_mach_number_doc.html"><tt>area_mach_number</tt></a>.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####

@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>rayleigh_sonic</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-20"><meta name="DC.source" content="rayleigh_sonic_doc.m"><style type="text/css">
+      --><title>rayleigh_sonic</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-10-29"><meta name="DC.source" content="rayleigh_sonic_doc.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,13 +67,16 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1><tt>rayleigh_sonic</tt></h1><!--introduction--><p>Rayleigh line relations between local and sonic conditions.</p><p><a href="index.html">Back to Compressible Flow Toolbox Contents</a></p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Input/Output Parameters</a></li><li><a href="#3">Examples</a></li><li><a href="#14">See also</a></li></ul></div><h2 id="1">Syntax</h2><pre class="language-matlab">T_Tstar = rayleigh_sonic(M,<span class="string">'T/T*'</span>)
+  </style></head><body><div class="content"><h1><tt>rayleigh_sonic</tt></h1><!--introduction--><p>Rayleigh line relations between local and sonic conditions.</p><p><a href="index.html">Back to Compressible Flow Toolbox Contents</a></p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Input/Output Parameters</a></li><li><a href="#3">Examples</a></li><li><a href="#17">See also</a></li></ul></div><h2 id="1">Syntax</h2><pre class="language-matlab">T_Tstar = rayleigh_sonic(M,<span class="string">'T/T*'</span>)
 P_Pstar = rayleigh_sonic(M,<span class="string">'P/P*'</span>)
-h_hstar = rayleigh_sonic(M,<span class="string">'h/h*'</span>)
 rho_rhostar = rayleigh_sonic(M,<span class="string">'rho/rho*'</span>)
 U_Ustar = rayleigh_sonic(M,<span class="string">'U/U*'</span>)
+a_astar = rayleigh_sonic(M,<span class="string">'a/a*'</span>)
+h_hstar = rayleigh_sonic(M,<span class="string">'h/h*'</span>)
 Tt_Ttstar = rayleigh_sonic(M,<span class="string">'Tt/Tt*'</span>)
 Pt_Ptstar = rayleigh_sonic(M,<span class="string">'Pt/Pt*'</span>)
+rhot_rhotstar = rayleigh_sonic(M,<span class="string">'rhot/rhot*'</span>)
+at_atstar = rayleigh_sonic(M,<span class="string">'at/at*'</span>)
 ht_htstar = rayleigh_sonic(M,<span class="string">'ht/ht*'</span>)
 ds_cp = rayleigh_sonic(M,<span class="string">'(s-s*)/cp'</span>)
 __ = rayleigh_sonic(__,gamma)
@@ -113,62 +116,80 @@ __ = rayleigh_sonic(__,gamma)
           <td style="text-align:center">1D<BR>double array</td>
       </tr>
   </table>
-</p><p>Options for <tt>spec</tt>:</p><div><ul><li><tt>'T/T*'</tt> = local-to-sonic static temperature ratio (<img src="rayleigh_sonic_doc_eq14334952862233039116.png" alt="$T/T^{*}$" style="width:25px;height:11px;">)</li><li><tt>'P/P*'</tt> = local-to-sonic static pressure ratio (<img src="rayleigh_sonic_doc_eq11091537824513916837.png" alt="$P/P^{*}$" style="width:26px;height:11px;">)</li><li><tt>'h/h*'</tt> = local-to-sonic static enthalpy ratio (<img src="rayleigh_sonic_doc_eq06366074408847463900.png" alt="$h/h^{*}$" style="width:22px;height:11px;">)</li><li><tt>'rho/rho*'</tt> = local-to-sonic density ratio (<img src="rayleigh_sonic_doc_eq12319235656501518131.png" alt="$\rho/\rho^{*}$" style="width:21px;height:11px;">)</li><li><tt>'U/U*'</tt> = local-to-sonic velocity ratio (<img src="rayleigh_sonic_doc_eq03752005065094872495.png" alt="$U/U^{*}$" style="width:26px;height:11px;">)</li><li><tt>'Tt/Tt*'</tt> = local-to-sonic stagnation temperature ratio (<img src="rayleigh_sonic_doc_eq09363161020312629126.png" alt="$T_{t}/T_{t}^{*}$" style="width:27px;height:11px;">)</li><li><tt>'Pt/Pt*'</tt> = local-to-sonic stagnation pressure ratio (<img src="rayleigh_sonic_doc_eq13689250871831082035.png" alt="$P_{t}/P_{t}^{*}$" style="width:28px;height:11px;">)</li><li><tt>'ht/ht*'</tt> = local-to-sonic stagnation enthalpy ratio (<img src="rayleigh_sonic_doc_eq03840889662957628022.png" alt="$h_{t}/h_{t}^{*}$" style="width:25px;height:11px;">)</li><li><tt>'(s-s*)/cp'</tt> = sonic-to-local nondimensional entropy change (<img src="rayleigh_sonic_doc_eq04491849770546179925.png" alt="$(s-s^{*})/c_{p}$" style="width:50px;height:12px;">)</li></ul></div><h2 id="3">Examples</h2><p><i>All local-to-sonic ratios in a Rayleigh flow with a local Mach number of <img src="rayleigh_sonic_doc_eq07187184117199334346.png" alt="$M=3$" style="width:32px;height:8px;"> in air (<img src="rayleigh_sonic_doc_eq17585610266604048686.png" alt="$\gamma=1.4$" style="width:35px;height:10px;">).</i></p><p>Set <img src="rayleigh_sonic_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">.</p><pre class="codeinput">M = 3;
+</p><p>Options for <tt>spec</tt>:</p><div><ul><li><tt>'T/T*'</tt> = local-to-sonic static temperature ratio (<img src="rayleigh_sonic_doc_eq14334952862233039116.png" alt="$T/T^{*}$" style="width:25px;height:11px;">)</li><li><tt>'P/P*'</tt> = local-to-sonic static pressure ratio (<img src="rayleigh_sonic_doc_eq11091537824513916837.png" alt="$P/P^{*}$" style="width:26px;height:11px;">)</li><li><tt>'rho/rho*'</tt> = local-to-sonic density ratio (<img src="rayleigh_sonic_doc_eq12319235656501518131.png" alt="$\rho/\rho^{*}$" style="width:21px;height:11px;">)</li><li><tt>'U/U*'</tt> = local-to-sonic velocity ratio (<img src="rayleigh_sonic_doc_eq03752005065094872495.png" alt="$U/U^{*}$" style="width:26px;height:11px;">)</li><li><tt>'a/a*'</tt> = local-to-sonic speed of sound ratio (<img src="rayleigh_sonic_doc_eq12920002755180157860.png" alt="$a/a^{*}$" style="width:21px;height:11px;">)</li><li><tt>'h/h*'</tt> = local-to-sonic static enthalpy ratio (<img src="rayleigh_sonic_doc_eq06366074408847463900.png" alt="$h/h^{*}$" style="width:22px;height:11px;">)</li><li><tt>'Tt/Tt*'</tt> = local-to-sonic stagnation temperature ratio (<img src="rayleigh_sonic_doc_eq09363161020312629126.png" alt="$T_{t}/T_{t}^{*}$" style="width:27px;height:11px;">)</li><li><tt>'Pt/Pt*'</tt> = local-to-sonic stagnation pressure ratio (<img src="rayleigh_sonic_doc_eq13689250871831082035.png" alt="$P_{t}/P_{t}^{*}$" style="width:28px;height:11px;">)</li><li><tt>'rhot/rhot*'</tt> = local-to-sonic stagnation density ratio (<img src="rayleigh_sonic_doc_eq15864536166880324524.png" alt="$\rho_{t}/\rho_{t}^{*}$" style="width:24px;height:11px;">)</li><li><tt>'at/at*'</tt> = local-to-sonic stagnation speed of sound ratio (<img src="rayleigh_sonic_doc_eq07789063934635447923.png" alt="$a_{t}/a_{t}^{*}$" style="width:24px;height:11px;">)</li><li><tt>'ht/ht*'</tt> = local-to-sonic stagnation enthalpy ratio (<img src="rayleigh_sonic_doc_eq03840889662957628022.png" alt="$h_{t}/h_{t}^{*}$" style="width:25px;height:11px;">)</li><li><tt>'(s-s*)/cp'</tt> = sonic-to-local nondimensional entropy change (<img src="rayleigh_sonic_doc_eq04491849770546179925.png" alt="$(s-s^{*})/c_{p}$" style="width:50px;height:12px;">)</li></ul></div><h2 id="3">Examples</h2><p><i>All local-to-sonic ratios in a Rayleigh flow with a local Mach number of <img src="rayleigh_sonic_doc_eq07187184117199334346.png" alt="$M=3$" style="width:32px;height:8px;"> in air (<img src="rayleigh_sonic_doc_eq17585610266604048686.png" alt="$\gamma=1.4$" style="width:35px;height:10px;">).</i></p><p>Set <img src="rayleigh_sonic_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">.</p><pre class="codeinput">M = 3;
 </pre><p>Local-to-sonic static temperature ratio (<img src="rayleigh_sonic_doc_eq14334952862233039116.png" alt="$T/T^{*}$" style="width:25px;height:11px;">).</p><pre class="codeinput">T_Tstar = rayleigh_sonic(M,<span class="string">'T/T*'</span>)
 </pre><pre class="codeoutput">
 T_Tstar =
 
-    0.2803
+   0.280276816608997
 
 </pre><p>Local-to-sonic static pressure ratio (<img src="rayleigh_sonic_doc_eq11091537824513916837.png" alt="$P/P^{*}$" style="width:26px;height:11px;">).</p><pre class="codeinput">P_Pstar = rayleigh_sonic(M,<span class="string">'P/P*'</span>)
 </pre><pre class="codeoutput">
 P_Pstar =
 
-    0.1765
-
-</pre><p>Local-to-sonic static enthalpy ratio (<img src="rayleigh_sonic_doc_eq06366074408847463900.png" alt="$h/h^{*}$" style="width:22px;height:11px;">).</p><pre class="codeinput">h_hstar = rayleigh_sonic(M,<span class="string">'h/h*'</span>)
-</pre><pre class="codeoutput">
-h_hstar =
-
-    0.2803
+   0.176470588235294
 
 </pre><p>Local-to-sonic static density ratio (<img src="rayleigh_sonic_doc_eq12319235656501518131.png" alt="$\rho/\rho^{*}$" style="width:21px;height:11px;">).</p><pre class="codeinput">rho_rhostar = rayleigh_sonic(M,<span class="string">'rho/rho*'</span>)
 </pre><pre class="codeoutput">
 rho_rhostar =
 
-    0.6296
+   0.629629629629630
 
 </pre><p>Local-to-sonic velocity ratio (<img src="rayleigh_sonic_doc_eq03752005065094872495.png" alt="$U/U^{*}$" style="width:26px;height:11px;">).</p><pre class="codeinput">U_Ustar = rayleigh_sonic(M,<span class="string">'U/U*'</span>)
 </pre><pre class="codeoutput">
 U_Ustar =
 
-    1.5882
+   1.588235294117647
+
+</pre><p>Local-to-sonic speed of sound ratio (<img src="rayleigh_sonic_doc_eq12920002755180157860.png" alt="$a/a^{*}$" style="width:21px;height:11px;">).</p><pre class="codeinput">a_astar = rayleigh_sonic(M,<span class="string">'a/a*'</span>)
+</pre><pre class="codeoutput">
+a_astar =
+
+   0.529411764705882
+
+</pre><p>Local-to-sonic static enthalpy ratio (<img src="rayleigh_sonic_doc_eq06366074408847463900.png" alt="$h/h^{*}$" style="width:22px;height:11px;">).</p><pre class="codeinput">h_hstar = rayleigh_sonic(M,<span class="string">'h/h*'</span>)
+</pre><pre class="codeoutput">
+h_hstar =
+
+   0.280276816608997
 
 </pre><p>Local-to-sonic stagnation temperature ratio (<img src="rayleigh_sonic_doc_eq09363161020312629126.png" alt="$T_{t}/T_{t}^{*}$" style="width:27px;height:11px;">).</p><pre class="codeinput">Tt_Ttstar = rayleigh_sonic(M,<span class="string">'Tt/Tt*'</span>)
 </pre><pre class="codeoutput">
 Tt_Ttstar =
 
-    0.6540
+   0.653979238754325
 
 </pre><p>Local-to-sonic stagnation pressure ratio (<img src="rayleigh_sonic_doc_eq13689250871831082035.png" alt="$P_{t}/P_{t}^{*}$" style="width:28px;height:11px;">).</p><pre class="codeinput">Pt_Ptstar = rayleigh_sonic(M,<span class="string">'Pt/Pt*'</span>)
 </pre><pre class="codeoutput">
 Pt_Ptstar =
 
-    3.4245
+   3.424451989912536
+
+</pre><p>Local-to-sonic stagnation density ratio (<img src="rayleigh_sonic_doc_eq15864536166880324524.png" alt="$\rho_{t}/\rho_{t}^{*}$" style="width:24px;height:11px;">).</p><pre class="codeinput">rhot_rhotstar = rayleigh_sonic(M,<span class="string">'rhot/rhot*'</span>)
+</pre><pre class="codeoutput">
+rhot_rhotstar =
+
+   5.236331349654618
+
+</pre><p>Local-to-sonic stagnation speed of sound ratio (<img src="rayleigh_sonic_doc_eq07789063934635447923.png" alt="$a_{t}/a_{t}^{*}$" style="width:24px;height:11px;">).</p><pre class="codeinput">at_atstar = rayleigh_sonic(M,<span class="string">'at/at*'</span>)
+</pre><pre class="codeoutput">
+at_atstar =
+
+   0.808689828521619
 
 </pre><p>Local-to-sonic stagnation enthalpy ratio (<img src="rayleigh_sonic_doc_eq03840889662957628022.png" alt="$h_{t}/h_{t}^{*}$" style="width:25px;height:11px;">).</p><pre class="codeinput">ht_htstar = rayleigh_sonic(M,<span class="string">'ht/ht*'</span>)
 </pre><pre class="codeoutput">
 ht_htstar =
 
-    0.6540
+   0.653979238754325
 
 </pre><p>sonic-to-local nondimensional entropy change (<img src="rayleigh_sonic_doc_eq04491849770546179925.png" alt="$(s-s^{*})/c_{p}$" style="width:50px;height:12px;">).</p><pre class="codeinput">ds_cp = rayleigh_sonic(M,<span class="string">'(s-s*)/cp'</span>)
 </pre><pre class="codeoutput">
 ds_cp =
 
-   -0.7764
+  -0.776377231900535
 
-</pre><h2 id="14">See also</h2><p><a href="normal_shock_inverse_doc.html"><tt>normal_shock_inverse</tt></a>.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+</pre><h2 id="17">See also</h2><p><a href="normal_shock_inverse_doc.html"><tt>normal_shock_inverse</tt></a>.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% |rayleigh_sonic|
 % Rayleigh line relations between local and sonic conditions.
@@ -177,11 +198,14 @@ ds_cp =
 %% Syntax
 %   T_Tstar = rayleigh_sonic(M,'T/T*')
 %   P_Pstar = rayleigh_sonic(M,'P/P*')
-%   h_hstar = rayleigh_sonic(M,'h/h*')
 %   rho_rhostar = rayleigh_sonic(M,'rho/rho*')
 %   U_Ustar = rayleigh_sonic(M,'U/U*')
+%   a_astar = rayleigh_sonic(M,'a/a*')
+%   h_hstar = rayleigh_sonic(M,'h/h*')
 %   Tt_Ttstar = rayleigh_sonic(M,'Tt/Tt*')
 %   Pt_Ptstar = rayleigh_sonic(M,'Pt/Pt*')
+%   rhot_rhotstar = rayleigh_sonic(M,'rhot/rhot*')
+%   at_atstar = rayleigh_sonic(M,'at/at*')
 %   ht_htstar = rayleigh_sonic(M,'ht/ht*')
 %   ds_cp = rayleigh_sonic(M,'(s-s*)/cp')
 %   __ = rayleigh_sonic(__,gamma)
@@ -228,11 +252,14 @@ ds_cp =
 %
 % * |'T/T*'| = local-to-sonic static temperature ratio ($T/T^{*}$)
 % * |'P/P*'| = local-to-sonic static pressure ratio ($P/P^{*}$)
-% * |'h/h*'| = local-to-sonic static enthalpy ratio ($h/h^{*}$)
 % * |'rho/rho*'| = local-to-sonic density ratio ($\rho/\rho^{*}$)
 % * |'U/U*'| = local-to-sonic velocity ratio ($U/U^{*}$)
+% * |'a/a*'| = local-to-sonic speed of sound ratio ($a/a^{*}$)
+% * |'h/h*'| = local-to-sonic static enthalpy ratio ($h/h^{*}$)
 % * |'Tt/Tt*'| = local-to-sonic stagnation temperature ratio ($T_{t}/T_{t}^{*}$)
 % * |'Pt/Pt*'| = local-to-sonic stagnation pressure ratio ($P_{t}/P_{t}^{*}$)
+% * |'rhot/rhot*'| = local-to-sonic stagnation density ratio ($\rho_{t}/\rho_{t}^{*}$)
+% * |'at/at*'| = local-to-sonic stagnation speed of sound ratio ($a_{t}/a_{t}^{*}$)
 % * |'ht/ht*'| = local-to-sonic stagnation enthalpy ratio ($h_{t}/h_{t}^{*}$)
 % * |'(s-s*)/cp'| = sonic-to-local nondimensional entropy change ($(s-s^{*})/c_{p}$)
 %% Examples
@@ -248,20 +275,29 @@ T_Tstar = rayleigh_sonic(M,'T/T*')
 % Local-to-sonic static pressure ratio ($P/P^{*}$).
 P_Pstar = rayleigh_sonic(M,'P/P*')
 %%
-% Local-to-sonic static enthalpy ratio ($h/h^{*}$).
-h_hstar = rayleigh_sonic(M,'h/h*')
-%%
 % Local-to-sonic static density ratio ($\rho/\rho^{*}$).
 rho_rhostar = rayleigh_sonic(M,'rho/rho*')
 %%
 % Local-to-sonic velocity ratio ($U/U^{*}$).
 U_Ustar = rayleigh_sonic(M,'U/U*')
 %%
+% Local-to-sonic speed of sound ratio ($a/a^{*}$).
+a_astar = rayleigh_sonic(M,'a/a*')
+%%
+% Local-to-sonic static enthalpy ratio ($h/h^{*}$).
+h_hstar = rayleigh_sonic(M,'h/h*')
+%%
 % Local-to-sonic stagnation temperature ratio ($T_{t}/T_{t}^{*}$).
 Tt_Ttstar = rayleigh_sonic(M,'Tt/Tt*')
 %%
 % Local-to-sonic stagnation pressure ratio ($P_{t}/P_{t}^{*}$).
 Pt_Ptstar = rayleigh_sonic(M,'Pt/Pt*')
+%%
+% Local-to-sonic stagnation density ratio ($\rho_{t}/\rho_{t}^{*}$).
+rhot_rhotstar = rayleigh_sonic(M,'rhot/rhot*')
+%%
+% Local-to-sonic stagnation speed of sound ratio ($a_{t}/a_{t}^{*}$).
+at_atstar = rayleigh_sonic(M,'at/at*')
 %%
 % Local-to-sonic stagnation enthalpy ratio ($h_{t}/h_{t}^{*}$).
 ht_htstar = rayleigh_sonic(M,'ht/ht*')

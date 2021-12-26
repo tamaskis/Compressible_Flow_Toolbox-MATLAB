@@ -7,11 +7,14 @@
 %% Syntax
 %   [M_sub,M_sup] = rayleigh_sonic_inverse('T/T*',T_Tstar)
 %   [M_sub,M_sup] = rayleigh_sonic_inverse('P/P*',P_Pstar)
-%   [M_sub,M_sup] = rayleigh_sonic_inverse'h/h*',(h_hstar)
 %   [M_sub,M_sup] = rayleigh_sonic_inverse('rho/rho*',rho_rhostar)
 %   [M_sub,M_sup] = rayleigh_sonic_inverse('U/U*',U_Ustar)
-%   [M_sub,M_sup] = rayleigh_sonic_inverse('Pt/Tt*',Tt_Ttstar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('a/a*',a_astar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('h/h*',h_hstar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('Tt/Tt*',Tt_Ttstar)
 %   [M_sub,M_sup] = rayleigh_sonic_inverse('Pt/Pt*',Pt_Ptstar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('rhot/rhot*',rhot_rhotstar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('at/at*',at_atstar)
 %   [M_sub,M_sup] = rayleigh_sonic_inverse('ht/ht*',ht_htstar)
 %   [M_sub,M_sup] = rayleigh_sonic_inverse('(s-s*)/cp',ds_cp)
 %   [M_sub,M_sup] = rayleigh_sonic_inverse(__,gamma)
@@ -64,11 +67,14 @@
 %
 % * |'T/T*'| = local-to-sonic static temperature ratio ($T/T^{*}$)
 % * |'P/P*'| = local-to-sonic static pressure ratio ($P/P^{*}$)
-% * |'h/h*'| = local-to-sonic static enthalpy ratio ($h/h^{*}$)
 % * |'rho/rho*'| = local-to-sonic density ratio ($\rho/\rho^{*}$)
 % * |'U/U*'| = local-to-sonic velocity ratio ($U/U^{*}$)
+% * |'a/a*'| = local-to-sonic speed of sound ratio ($a/a^{*}$)
+% * |'h/h*'| = local-to-sonic static enthalpy ratio ($h/h^{*}$)
 % * |'Tt/Tt*'| = local-to-sonic stagnation temperature ratio ($T_{t}/T_{t}^{*}$)
 % * |'Pt/Pt*'| = local-to-sonic stagnation pressure ratio ($P_{t}/P_{t}^{*}$)
+% * |'rhot/rhot*'| = local-to-sonic stagnation density ratio ($\rho_{t}/\rho_{t}^{*}$)
+% * |'at/at*'| = local-to-sonic stagnation speed of sound ratio ($a_{t}/a_{t}^{*}$)
 % * |'ht/ht*'| = local-to-sonic stagnation enthalpy ratio ($h_{t}/h_{t}^{*}$)
 % * |'(s-s*)/cp'| = sonic-to-local nondimensional entropy change ($(s-s^{*})/c_{p}$)
 %% Examples
@@ -82,20 +88,29 @@
 % Local Mach number ($M$) from local-to-sonic static pressure ratio ($P/P^{*}$).
 [M_sub,M_sup] = rayleigh_sonic_inverse('P/P*',0.1765)
 %%
-% Local Mach number ($M$) from local-to-sonic static enthalpy ratio ($h/h^{*}$).
-[M_sub,M_sup] = rayleigh_sonic_inverse('h/h*',0.2803)
-%%
 % Local Mach number ($M$) from local-to-sonic static density ratio ($\rho/\rho^{*}$).
 [M_sub,M_sup] = rayleigh_sonic_inverse('rho/rho*',0.6296)
 %%
 % Local Mach number ($M$) from local-to-sonic velocity ratio ($U/U^{*}$).
 [M_sub,M_sup] = rayleigh_sonic_inverse('U/U*',1.5882)
 %%
+% Local Mach number ($M$) from local-to-sonic speed of sound ratio ($a/a^{*}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('a/a*',0.5294)
+%%
+% Local Mach number ($M$) from local-to-sonic static enthalpy ratio ($h/h^{*}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('h/h*',0.2803)
+%%
 % Local Mach number ($M$) from local-to-sonic stagnation temperature ratio ($T_{t}/T_{t}^{*}$).
 [M_sub,M_sup] = rayleigh_sonic_inverse('Tt/Tt*',0.6540)
 %%
 % Local Mach number ($M$) from local-to-sonic stagnation pressure ratio ($P_{t}/P_{t}^{*}$).
 [M_sub,M_sup] = rayleigh_sonic_inverse('Pt/Pt*',3.4245)
+%%
+% Local Mach number ($M$) from local-to-sonic stagnation density ratio ($\rho_{t}/\rho_{t}^{*}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('rhot/rhot*',5.2363)
+%%
+% Local Mach number ($M$) from local-to-sonic stagnation speed of sound ratio ($a_{t}/a_{t}^{*}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('at/at*',0.8087)
 %%
 % Local Mach number ($M$) from local-to-sonic stagnation enthalpy ratio ($h_{t}/h_{t}^{*}$).
 [M_sub,M_sup] = rayleigh_sonic_inverse('ht/ht*',0.6540)

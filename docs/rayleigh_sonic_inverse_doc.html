@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>rayleigh_sonic_inverse</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-20"><meta name="DC.source" content="rayleigh_sonic_inverse_doc.m"><style type="text/css">
+      --><title>rayleigh_sonic_inverse</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-10-29"><meta name="DC.source" content="rayleigh_sonic_inverse_doc.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,13 +67,16 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1><tt>rayleigh_sonic_inverse</tt></h1><!--introduction--><p>Calculates the subsonic and supersonic solutions for the local Mach number in a Rayleigh flow given some ratio or difference between local and sonic conditions.</p><p><a href="index.html">Back to Compressible Flow Toolbox Contents</a></p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Input/Output Parameters</a></li><li><a href="#3">Examples</a></li><li><a href="#13">See also</a></li></ul></div><h2 id="1">Syntax</h2><pre class="language-matlab">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'T/T*'</span>,T_Tstar)
+  </style></head><body><div class="content"><h1><tt>rayleigh_sonic_inverse</tt></h1><!--introduction--><p>Calculates the subsonic and supersonic solutions for the local Mach number in a Rayleigh flow given some ratio or difference between local and sonic conditions.</p><p><a href="index.html">Back to Compressible Flow Toolbox Contents</a></p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Input/Output Parameters</a></li><li><a href="#3">Examples</a></li><li><a href="#16">See also</a></li></ul></div><h2 id="1">Syntax</h2><pre class="language-matlab">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'T/T*'</span>,T_Tstar)
 [M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'P/P*'</span>,P_Pstar)
-[M_sub,M_sup] = rayleigh_sonic_inverse'h/h*<span class="untermstring">',(h_hstar)</span>
 [M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'rho/rho*'</span>,rho_rhostar)
 [M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'U/U*'</span>,U_Ustar)
-[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'Pt/Tt*'</span>,Tt_Ttstar)
+[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'a/a*'</span>,a_astar)
+[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'h/h*'</span>,h_hstar)
+[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'Tt/Tt*'</span>,Tt_Ttstar)
 [M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'Pt/Pt*'</span>,Pt_Ptstar)
+[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'rhot/rhot*'</span>,rhot_rhotstar)
+[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'at/at*'</span>,at_atstar)
 [M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'ht/ht*'</span>,ht_htstar)
 [M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'(s-s*)/cp'</span>,ds_cp)
 [M_sub,M_sup] = rayleigh_sonic_inverse(__,gamma)
@@ -119,107 +122,139 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
           <td style="text-align:center">1D<BR>double array</td>
       </tr>
   </table>
-</p><p>Options for <tt>spec</tt>:</p><div><ul><li><tt>'T/T*'</tt> = local-to-sonic static temperature ratio (<img src="rayleigh_sonic_inverse_doc_eq14334952862233039116.png" alt="$T/T^{*}$" style="width:25px;height:11px;">)</li><li><tt>'P/P*'</tt> = local-to-sonic static pressure ratio (<img src="rayleigh_sonic_inverse_doc_eq11091537824513916837.png" alt="$P/P^{*}$" style="width:26px;height:11px;">)</li><li><tt>'h/h*'</tt> = local-to-sonic static enthalpy ratio (<img src="rayleigh_sonic_inverse_doc_eq06366074408847463900.png" alt="$h/h^{*}$" style="width:22px;height:11px;">)</li><li><tt>'rho/rho*'</tt> = local-to-sonic density ratio (<img src="rayleigh_sonic_inverse_doc_eq12319235656501518131.png" alt="$\rho/\rho^{*}$" style="width:21px;height:11px;">)</li><li><tt>'U/U*'</tt> = local-to-sonic velocity ratio (<img src="rayleigh_sonic_inverse_doc_eq03752005065094872495.png" alt="$U/U^{*}$" style="width:26px;height:11px;">)</li><li><tt>'Tt/Tt*'</tt> = local-to-sonic stagnation temperature ratio (<img src="rayleigh_sonic_inverse_doc_eq09363161020312629126.png" alt="$T_{t}/T_{t}^{*}$" style="width:27px;height:11px;">)</li><li><tt>'Pt/Pt*'</tt> = local-to-sonic stagnation pressure ratio (<img src="rayleigh_sonic_inverse_doc_eq13689250871831082035.png" alt="$P_{t}/P_{t}^{*}$" style="width:28px;height:11px;">)</li><li><tt>'ht/ht*'</tt> = local-to-sonic stagnation enthalpy ratio (<img src="rayleigh_sonic_inverse_doc_eq03840889662957628022.png" alt="$h_{t}/h_{t}^{*}$" style="width:25px;height:11px;">)</li><li><tt>'(s-s*)/cp'</tt> = sonic-to-local nondimensional entropy change (<img src="rayleigh_sonic_inverse_doc_eq04491849770546179925.png" alt="$(s-s^{*})/c_{p}$" style="width:50px;height:12px;">)</li></ul></div><h2 id="3">Examples</h2><p><i>Local Mach number from local-to-sonic ratios in a Rayleigh flow in air (<img src="rayleigh_sonic_inverse_doc_eq17585610266604048686.png" alt="$\gamma=1.4$" style="width:35px;height:10px;">). Note that all values are taken from the examples in the <a href="rayleigh_sonic_doc.html"><tt>rayleigh_sonic</tt></a> documentation.</i></p><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic static temperature ratio (<img src="rayleigh_sonic_inverse_doc_eq14334952862233039116.png" alt="$T/T^{*}$" style="width:25px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'T/T*'</span>,0.2803)
+</p><p>Options for <tt>spec</tt>:</p><div><ul><li><tt>'T/T*'</tt> = local-to-sonic static temperature ratio (<img src="rayleigh_sonic_inverse_doc_eq14334952862233039116.png" alt="$T/T^{*}$" style="width:25px;height:11px;">)</li><li><tt>'P/P*'</tt> = local-to-sonic static pressure ratio (<img src="rayleigh_sonic_inverse_doc_eq11091537824513916837.png" alt="$P/P^{*}$" style="width:26px;height:11px;">)</li><li><tt>'rho/rho*'</tt> = local-to-sonic density ratio (<img src="rayleigh_sonic_inverse_doc_eq12319235656501518131.png" alt="$\rho/\rho^{*}$" style="width:21px;height:11px;">)</li><li><tt>'U/U*'</tt> = local-to-sonic velocity ratio (<img src="rayleigh_sonic_inverse_doc_eq03752005065094872495.png" alt="$U/U^{*}$" style="width:26px;height:11px;">)</li><li><tt>'a/a*'</tt> = local-to-sonic speed of sound ratio (<img src="rayleigh_sonic_inverse_doc_eq12920002755180157860.png" alt="$a/a^{*}$" style="width:21px;height:11px;">)</li><li><tt>'h/h*'</tt> = local-to-sonic static enthalpy ratio (<img src="rayleigh_sonic_inverse_doc_eq06366074408847463900.png" alt="$h/h^{*}$" style="width:22px;height:11px;">)</li><li><tt>'Tt/Tt*'</tt> = local-to-sonic stagnation temperature ratio (<img src="rayleigh_sonic_inverse_doc_eq09363161020312629126.png" alt="$T_{t}/T_{t}^{*}$" style="width:27px;height:11px;">)</li><li><tt>'Pt/Pt*'</tt> = local-to-sonic stagnation pressure ratio (<img src="rayleigh_sonic_inverse_doc_eq13689250871831082035.png" alt="$P_{t}/P_{t}^{*}$" style="width:28px;height:11px;">)</li><li><tt>'rhot/rhot*'</tt> = local-to-sonic stagnation density ratio (<img src="rayleigh_sonic_inverse_doc_eq15864536166880324524.png" alt="$\rho_{t}/\rho_{t}^{*}$" style="width:24px;height:11px;">)</li><li><tt>'at/at*'</tt> = local-to-sonic stagnation speed of sound ratio (<img src="rayleigh_sonic_inverse_doc_eq07789063934635447923.png" alt="$a_{t}/a_{t}^{*}$" style="width:24px;height:11px;">)</li><li><tt>'ht/ht*'</tt> = local-to-sonic stagnation enthalpy ratio (<img src="rayleigh_sonic_inverse_doc_eq03840889662957628022.png" alt="$h_{t}/h_{t}^{*}$" style="width:25px;height:11px;">)</li><li><tt>'(s-s*)/cp'</tt> = sonic-to-local nondimensional entropy change (<img src="rayleigh_sonic_inverse_doc_eq04491849770546179925.png" alt="$(s-s^{*})/c_{p}$" style="width:50px;height:12px;">)</li></ul></div><h2 id="3">Examples</h2><p><i>Local Mach number from local-to-sonic ratios in a Rayleigh flow in air (<img src="rayleigh_sonic_inverse_doc_eq17585610266604048686.png" alt="$\gamma=1.4$" style="width:35px;height:10px;">). Note that all values are taken from the examples in the <a href="rayleigh_sonic_doc.html"><tt>rayleigh_sonic</tt></a> documentation.</i></p><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic static temperature ratio (<img src="rayleigh_sonic_inverse_doc_eq14334952862233039116.png" alt="$T/T^{*}$" style="width:25px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'T/T*'</span>,0.2803)
 </pre><pre class="codeoutput">
 M_sub =
 
-    0.2381
+   0.238106782919658
 
 
 M_sup =
 
-    2.9999
+   2.999854542259840
 
 </pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic static pressure ratio (<img src="rayleigh_sonic_inverse_doc_eq11091537824513916837.png" alt="$P/P^{*}$" style="width:26px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'P/P*'</span>,0.1765)
 </pre><pre class="codeoutput">
 M_sub =
 
-    2.9997
+   NaN
 
 
 M_sup =
 
-    2.9997
-
-</pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic static enthalpy ratio (<img src="rayleigh_sonic_inverse_doc_eq06366074408847463900.png" alt="$h/h^{*}$" style="width:22px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'h/h*'</span>,0.2803)
-</pre><pre class="codeoutput">
-M_sub =
-
-    0.2381
-
-
-M_sup =
-
-    2.9999
+   2.999730191563444
 
 </pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic static density ratio (<img src="rayleigh_sonic_inverse_doc_eq12319235656501518131.png" alt="$\rho/\rho^{*}$" style="width:21px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'rho/rho*'</span>,0.6296)
 </pre><pre class="codeoutput">
 M_sub =
 
-    3.0010
+   0.999999999999545
 
 
 M_sup =
 
-    3.0010
+   3.000960461045896
 
 </pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic velocity ratio (<img src="rayleigh_sonic_inverse_doc_eq03752005065094872495.png" alt="$U/U^{*}$" style="width:26px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'U/U*'</span>,1.5882)
 </pre><pre class="codeoutput">
 M_sub =
 
-    2.9995
+   NaN
 
 
 M_sup =
 
-    2.9995
+   2.999546759326620
+
+</pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic speed of sound ratio (<img src="rayleigh_sonic_inverse_doc_eq12920002755180157860.png" alt="$a/a^{*}$" style="width:21px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'a/a*'</span>,0.5294)
+</pre><pre class="codeoutput">
+M_sub =
+
+   0.238089034885434
+
+
+M_sup =
+
+   3.000078162480936
+
+</pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic static enthalpy ratio (<img src="rayleigh_sonic_inverse_doc_eq06366074408847463900.png" alt="$h/h^{*}$" style="width:22px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'h/h*'</span>,0.2803)
+</pre><pre class="codeoutput">
+M_sub =
+
+   0.238106782919658
+
+
+M_sup =
+
+   2.999854542259840
 
 </pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic stagnation temperature ratio (<img src="rayleigh_sonic_inverse_doc_eq09363161020312629126.png" alt="$T_{t}/T_{t}^{*}$" style="width:27px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'Tt/Tt*'</span>,0.6540)
 </pre><pre class="codeoutput">
 M_sub =
 
-    0.4752
+   0.475204365203808
 
 
 M_sup =
 
-    2.9998
+   2.999773353101604
 
 </pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic stagnation pressure ratio (<img src="rayleigh_sonic_inverse_doc_eq13689250871831082035.png" alt="$P_{t}/P_{t}^{*}$" style="width:28px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'Pt/Pt*'</span>,3.4245)
-</pre><pre class="codeoutput">Warning: The method failed after n=1000000 iterations. 
-
+</pre><pre class="codeoutput">
 M_sub =
 
-    0.0012
+   NaN
 
 
 M_sup =
 
-    3.0000
+   3.000015888975860
+
+</pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic stagnation density ratio (<img src="rayleigh_sonic_inverse_doc_eq15864536166880324524.png" alt="$\rho_{t}/\rho_{t}^{*}$" style="width:24px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'rhot/rhot*'</span>,5.2363)
+</pre><pre class="codeoutput">
+M_sub =
+
+   0.236490502458309
+
+
+M_sup =
+
+   2.999994144254102
+
+</pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic stagnation speed of sound ratio (<img src="rayleigh_sonic_inverse_doc_eq07789063934635447923.png" alt="$a_{t}/a_{t}^{*}$" style="width:24px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'at/at*'</span>,0.8087)
+</pre><pre class="codeoutput">
+M_sub =
+
+   0.475201582961290
+
+
+M_sup =
+
+   2.999820401368333
 
 </pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from local-to-sonic stagnation enthalpy ratio (<img src="rayleigh_sonic_inverse_doc_eq03840889662957628022.png" alt="$h_{t}/h_{t}^{*}$" style="width:25px;height:11px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'ht/ht*'</span>,0.6540)
 </pre><pre class="codeoutput">
 M_sub =
 
-    0.4752
+   0.475204365203808
 
 
 M_sup =
 
-    2.9998
+   2.999773353101604
 
 </pre><p>Local Mach number (<img src="rayleigh_sonic_inverse_doc_eq00802513524912003067.png" alt="$M$" style="width:12px;height:8px;">) from sonic-to-local nondimensional entropy change (<img src="rayleigh_sonic_inverse_doc_eq04491849770546179925.png" alt="$(s-s^{*})/c_{p}$" style="width:50px;height:12px;">).</p><pre class="codeinput">[M_sub,M_sup] = rayleigh_sonic_inverse(<span class="string">'(s-s*)/cp'</span>,-0.7764)
 </pre><pre class="codeoutput">
 M_sub =
 
-    0.3731
+   0.373059245726381
 
 
 M_sup =
 
-    3.0001
+   3.000058058992373
 
-</pre><h2 id="13">See also</h2><p><a href="rayleigh_sonic_doc.html"><tt>rayleigh_sonic</tt></a>.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+</pre><h2 id="16">See also</h2><p><a href="rayleigh_sonic_doc.html"><tt>rayleigh_sonic</tt></a>.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% |rayleigh_sonic_inverse|
 % Calculates the subsonic and supersonic solutions for the local Mach 
@@ -230,11 +265,14 @@ M_sup =
 %% Syntax
 %   [M_sub,M_sup] = rayleigh_sonic_inverse('T/T*',T_Tstar)
 %   [M_sub,M_sup] = rayleigh_sonic_inverse('P/P*',P_Pstar)
-%   [M_sub,M_sup] = rayleigh_sonic_inverse'h/h*',(h_hstar)
 %   [M_sub,M_sup] = rayleigh_sonic_inverse('rho/rho*',rho_rhostar)
 %   [M_sub,M_sup] = rayleigh_sonic_inverse('U/U*',U_Ustar)
-%   [M_sub,M_sup] = rayleigh_sonic_inverse('Pt/Tt*',Tt_Ttstar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('a/a*',a_astar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('h/h*',h_hstar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('Tt/Tt*',Tt_Ttstar)
 %   [M_sub,M_sup] = rayleigh_sonic_inverse('Pt/Pt*',Pt_Ptstar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('rhot/rhot*',rhot_rhotstar)
+%   [M_sub,M_sup] = rayleigh_sonic_inverse('at/at*',at_atstar)
 %   [M_sub,M_sup] = rayleigh_sonic_inverse('ht/ht*',ht_htstar)
 %   [M_sub,M_sup] = rayleigh_sonic_inverse('(s-s*)/cp',ds_cp)
 %   [M_sub,M_sup] = rayleigh_sonic_inverse(__,gamma)
@@ -287,11 +325,14 @@ M_sup =
 %
 % * |'T/T*'| = local-to-sonic static temperature ratio ($T/T^{*}$)
 % * |'P/P*'| = local-to-sonic static pressure ratio ($P/P^{*}$)
-% * |'h/h*'| = local-to-sonic static enthalpy ratio ($h/h^{*}$)
 % * |'rho/rho*'| = local-to-sonic density ratio ($\rho/\rho^{*}$)
 % * |'U/U*'| = local-to-sonic velocity ratio ($U/U^{*}$)
+% * |'a/a*'| = local-to-sonic speed of sound ratio ($a/a^{*}$)
+% * |'h/h*'| = local-to-sonic static enthalpy ratio ($h/h^{*}$)
 % * |'Tt/Tt*'| = local-to-sonic stagnation temperature ratio ($T_{t}/T_{t}^{*}$)
 % * |'Pt/Pt*'| = local-to-sonic stagnation pressure ratio ($P_{t}/P_{t}^{*}$)
+% * |'rhot/rhot*'| = local-to-sonic stagnation density ratio ($\rho_{t}/\rho_{t}^{*}$)
+% * |'at/at*'| = local-to-sonic stagnation speed of sound ratio ($a_{t}/a_{t}^{*}$)
 % * |'ht/ht*'| = local-to-sonic stagnation enthalpy ratio ($h_{t}/h_{t}^{*}$)
 % * |'(s-s*)/cp'| = sonic-to-local nondimensional entropy change ($(s-s^{*})/c_{p}$)
 %% Examples
@@ -305,20 +346,29 @@ M_sup =
 % Local Mach number ($M$) from local-to-sonic static pressure ratio ($P/P^{*}$).
 [M_sub,M_sup] = rayleigh_sonic_inverse('P/P*',0.1765)
 %%
-% Local Mach number ($M$) from local-to-sonic static enthalpy ratio ($h/h^{*}$).
-[M_sub,M_sup] = rayleigh_sonic_inverse('h/h*',0.2803)
-%%
 % Local Mach number ($M$) from local-to-sonic static density ratio ($\rho/\rho^{*}$).
 [M_sub,M_sup] = rayleigh_sonic_inverse('rho/rho*',0.6296)
 %%
 % Local Mach number ($M$) from local-to-sonic velocity ratio ($U/U^{*}$).
 [M_sub,M_sup] = rayleigh_sonic_inverse('U/U*',1.5882)
 %%
+% Local Mach number ($M$) from local-to-sonic speed of sound ratio ($a/a^{*}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('a/a*',0.5294)
+%%
+% Local Mach number ($M$) from local-to-sonic static enthalpy ratio ($h/h^{*}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('h/h*',0.2803)
+%%
 % Local Mach number ($M$) from local-to-sonic stagnation temperature ratio ($T_{t}/T_{t}^{*}$).
 [M_sub,M_sup] = rayleigh_sonic_inverse('Tt/Tt*',0.6540)
 %%
 % Local Mach number ($M$) from local-to-sonic stagnation pressure ratio ($P_{t}/P_{t}^{*}$).
 [M_sub,M_sup] = rayleigh_sonic_inverse('Pt/Pt*',3.4245)
+%%
+% Local Mach number ($M$) from local-to-sonic stagnation density ratio ($\rho_{t}/\rho_{t}^{*}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('rhot/rhot*',5.2363)
+%%
+% Local Mach number ($M$) from local-to-sonic stagnation speed of sound ratio ($a_{t}/a_{t}^{*}$).
+[M_sub,M_sup] = rayleigh_sonic_inverse('at/at*',0.8087)
 %%
 % Local Mach number ($M$) from local-to-sonic stagnation enthalpy ratio ($h_{t}/h_{t}^{*}$).
 [M_sub,M_sup] = rayleigh_sonic_inverse('ht/ht*',0.6540)

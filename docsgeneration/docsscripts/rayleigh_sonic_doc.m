@@ -5,11 +5,14 @@
 %% Syntax
 %   T_Tstar = rayleigh_sonic(M,'T/T*')
 %   P_Pstar = rayleigh_sonic(M,'P/P*')
-%   h_hstar = rayleigh_sonic(M,'h/h*')
 %   rho_rhostar = rayleigh_sonic(M,'rho/rho*')
 %   U_Ustar = rayleigh_sonic(M,'U/U*')
+%   a_astar = rayleigh_sonic(M,'a/a*')
+%   h_hstar = rayleigh_sonic(M,'h/h*')
 %   Tt_Ttstar = rayleigh_sonic(M,'Tt/Tt*')
 %   Pt_Ptstar = rayleigh_sonic(M,'Pt/Pt*')
+%   rhot_rhotstar = rayleigh_sonic(M,'rhot/rhot*')
+%   at_atstar = rayleigh_sonic(M,'at/at*')
 %   ht_htstar = rayleigh_sonic(M,'ht/ht*')
 %   ds_cp = rayleigh_sonic(M,'(s-s*)/cp')
 %   __ = rayleigh_sonic(__,gamma)
@@ -56,11 +59,14 @@
 %
 % * |'T/T*'| = local-to-sonic static temperature ratio ($T/T^{*}$)
 % * |'P/P*'| = local-to-sonic static pressure ratio ($P/P^{*}$)
-% * |'h/h*'| = local-to-sonic static enthalpy ratio ($h/h^{*}$)
 % * |'rho/rho*'| = local-to-sonic density ratio ($\rho/\rho^{*}$)
 % * |'U/U*'| = local-to-sonic velocity ratio ($U/U^{*}$)
+% * |'a/a*'| = local-to-sonic speed of sound ratio ($a/a^{*}$)
+% * |'h/h*'| = local-to-sonic static enthalpy ratio ($h/h^{*}$)
 % * |'Tt/Tt*'| = local-to-sonic stagnation temperature ratio ($T_{t}/T_{t}^{*}$)
 % * |'Pt/Pt*'| = local-to-sonic stagnation pressure ratio ($P_{t}/P_{t}^{*}$)
+% * |'rhot/rhot*'| = local-to-sonic stagnation density ratio ($\rho_{t}/\rho_{t}^{*}$)
+% * |'at/at*'| = local-to-sonic stagnation speed of sound ratio ($a_{t}/a_{t}^{*}$)
 % * |'ht/ht*'| = local-to-sonic stagnation enthalpy ratio ($h_{t}/h_{t}^{*}$)
 % * |'(s-s*)/cp'| = sonic-to-local nondimensional entropy change ($(s-s^{*})/c_{p}$)
 %% Examples
@@ -76,20 +82,29 @@ T_Tstar = rayleigh_sonic(M,'T/T*')
 % Local-to-sonic static pressure ratio ($P/P^{*}$).
 P_Pstar = rayleigh_sonic(M,'P/P*')
 %%
-% Local-to-sonic static enthalpy ratio ($h/h^{*}$).
-h_hstar = rayleigh_sonic(M,'h/h*')
-%%
 % Local-to-sonic static density ratio ($\rho/\rho^{*}$).
 rho_rhostar = rayleigh_sonic(M,'rho/rho*')
 %%
 % Local-to-sonic velocity ratio ($U/U^{*}$).
 U_Ustar = rayleigh_sonic(M,'U/U*')
 %%
+% Local-to-sonic speed of sound ratio ($a/a^{*}$).
+a_astar = rayleigh_sonic(M,'a/a*')
+%%
+% Local-to-sonic static enthalpy ratio ($h/h^{*}$).
+h_hstar = rayleigh_sonic(M,'h/h*')
+%%
 % Local-to-sonic stagnation temperature ratio ($T_{t}/T_{t}^{*}$).
 Tt_Ttstar = rayleigh_sonic(M,'Tt/Tt*')
 %%
 % Local-to-sonic stagnation pressure ratio ($P_{t}/P_{t}^{*}$).
 Pt_Ptstar = rayleigh_sonic(M,'Pt/Pt*')
+%%
+% Local-to-sonic stagnation density ratio ($\rho_{t}/\rho_{t}^{*}$).
+rhot_rhotstar = rayleigh_sonic(M,'rhot/rhot*')
+%%
+% Local-to-sonic stagnation speed of sound ratio ($a_{t}/a_{t}^{*}$).
+at_atstar = rayleigh_sonic(M,'at/at*')
 %%
 % Local-to-sonic stagnation enthalpy ratio ($h_{t}/h_{t}^{*}$).
 ht_htstar = rayleigh_sonic(M,'ht/ht*')
