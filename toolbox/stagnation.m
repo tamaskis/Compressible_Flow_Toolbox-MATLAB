@@ -11,17 +11,13 @@
 %
 % See also stagnation_inverse.
 %
-% Copyright © 2021 Tamas Kis
-% Last Update: 2021-12-24
+% Copyright © 2022 Tamas Kis
+% Last Update: 2022-04-16
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %
 % TECHNICAL DOCUMENTATION:
 % https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
-%
-% REFERENCES:
-%   [1] Anderson, "Modern Compressible Flow", 3rd Ed. (pp. 77-80, 88)
-%   [2] Cantwell, AA 210A Course Reader (Stanford University) (p. 5-22)
 %
 %--------------------------------------------------------------------------
 %

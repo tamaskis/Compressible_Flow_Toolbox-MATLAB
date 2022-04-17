@@ -11,19 +11,6 @@
 
 
 
-%% SCRIPT SETUP
-
-% clears Workspace and Command Window, closes all figures
-clear; clc; close all;
-
-% adds path to "Compressible Flow Toolbox" functions
-addpath(genpath("../toolbox"));
-
-% error tolerance
-err = 1e-4;
-
-
-
 %% NOTE
 
 % The stagnation function is tested against tabulated values in [1], as
@@ -34,6 +21,19 @@ err = 1e-4;
 %   --> ρt/ρ
 % Therefore, we cannot test at/a and ht/h against tabulated values.
 % However, we do know that at/a = √(Tt/T) and ht/h = Tt/T.
+
+
+
+%% SCRIPT SETUP
+
+% clears Workspace and Command Window, closes all figures
+clear; clc; close all;
+
+% adds path to "Compressible Flow Toolbox" functions
+addpath(genpath("../toolbox"));
+
+% error tolerance
+err = 1e-4;
 
 
 

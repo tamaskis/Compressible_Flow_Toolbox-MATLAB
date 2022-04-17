@@ -9,7 +9,7 @@
 % See also fzero, bisection_method, newtons_method, fixed_point_iteration.
 %
 % Copyright © 2021 Tamas Kis
-% Last Update: 2021-12-11
+% Last Update: 2021-12-27
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %
@@ -30,14 +30,15 @@
 %             (f:R->R)
 %   x0      - (1×1 double) initial guess for root
 %   opts    - (OPTIONAL) (1×1 struct) solver options
-%       • imax          - (1×1 double) maximimum number of iterations
-%       • return_all    - (1×1 logical) all intermediate root estimates are
-%                         returned if set to "true"; otherwise, a faster 
-%                         algorithm is used to return only the converged 
-%                         root
-%       • TOL           - (1×1 double) tolerance
-%       • warnings      - (1×1 logical) true if any warnings should be
-%                         displayed, false if not
+%       • imax       - (1×1 double) maximimum number of iterations 
+%                      (defaults to 1e6)
+%       • return_all - (1×1 logical) all intermediate root estimates are
+%                      returned if set to "true"; otherwise, a faster 
+%                      algorithm is used to return only the converged root
+%                      (defaults to false)
+%       • TOL        - (1×1 double) tolerance (defaults to 1e-12)
+%       • warnings   - (1×1 logical) true if any warnings should be 
+%                      displayed, false if not (defaults to true)
 %
 % -------
 % OUTPUT:
@@ -97,7 +98,7 @@ function root = secant_method(f,x0,opts)
     
         % inputs 1st and 2nd guesses for root into x vector
         x(1) = x0;
-        x(2) = 1.01*x0;
+        x(2) = x0+0.001;
         
         % initializes the error so the loop will be entered
         err = 2*TOL;
@@ -116,12 +117,6 @@ function root = secant_method(f,x0,opts)
             i = i+1;
 
         end
-        
-        % displays warning if maximum number of iterations reached
-        if (i == imax) && warnings
-            warning(strcat('The method failed after n=',num2str(imax),...
-                ' iterations.'));
-        end
 
         % returns converged root along with intermediate root estimates
         root = x(1:i);
@@ -132,9 +127,9 @@ function root = secant_method(f,x0,opts)
     
     else
         
-        % sets root estimates for 1st iteration of the secant method
+        % sets 1st and 2nd guesses for root
         x_old = x0;
-        x_int = 1.01*x0;
+        x_int = x0+0.001;
         
         % initializes x_new so its scope isn't limited to the while loop
         x_new = 0;
@@ -160,16 +155,19 @@ function root = secant_method(f,x0,opts)
             i = i+1;
 
         end
-        
-        % displays warning if maximum number of iterations reached
-        if (i == imax) && warnings
-            warning(strcat('The method failed after n=',num2str(imax),...
-                ' iterations.'));
-        end
 
         % returns converged root
         root = x_new;
         
+    end
+
+    % ---------------------------------------------------------
+    % Displays warning if maximum number of iterations reached.
+    % ---------------------------------------------------------
+
+    if (i == imax) && warnings
+        warning(strcat('The method failed after i=',num2str(imax),...
+            ' iterations.'));
     end
       
 end
