@@ -6,11 +6,11 @@
 %   resize_thumbnail
 %
 % Author: Tamas Kis
-% Last Update: 2021-12-29
+% Last Update: 2022-07-06
 %
 %==========================================================================
 function resize_thumbnail
-
+    
     % reads in original thumbnail image
     A = imread('../thumbnail/thumbnail.png');
     
@@ -20,14 +20,14 @@ function resize_thumbnail
     
     % desired number of cols
     numcols_new = 360;
-
+    
     % desired number of columns
     numrows_new = round((numcols_new/numcols)*numrows);
-
+    
     % resized image
     B = imresize(A,[numrows_new,numcols_new]);
-
+    
     % saves resized image to "docs" folder as "thumbnail_resized.png"
     imwrite(B,'../../docs/thumbnail_resized.png');
-
+    
 end

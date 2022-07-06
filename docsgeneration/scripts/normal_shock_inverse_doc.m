@@ -39,7 +39,7 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?Q_{\mathrm{in}}" title="Q_{\mathrm{in}}" /></td>
 %           <td><TT>Q_in</TT></td>
 %           <td>input quantity (specified by <TT>spec</TT>)</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %       </tr>
 %       <tr>
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\gamma" title="\gamma" /></td>
@@ -52,7 +52,7 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?M_{1}" title="M_{1}" /></td>
 %           <td><TT>M1</TT></td>
 %           <td>upstream Mach number</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %       </tr>
 %   </table>
 % </html>

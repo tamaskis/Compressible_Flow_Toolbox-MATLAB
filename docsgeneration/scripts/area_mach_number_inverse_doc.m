@@ -22,7 +22,7 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\inline&space;A^{*}/A" title="" /><BR>or<BR><img src="https://latex.codecogs.com/svg.latex?\inline&space;A/A^{*}" title="" /></td>
 %           <td><TT>Astar_A</TT><BR>or<BR><TT>A_Astar</TT></td>
 %           <td>area ratio (specified by <TT>type</TT>)</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %       </tr>
 %       <tr>
 %           <td style="text-align:center">-</td>
@@ -41,13 +41,13 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\inline&space;M_{\mathrm{sub}}" title="" /></td>
 %           <td><TT>M_sub</TT></td>
 %           <td>subsonic solution of area-Mach number relation for local Mach number</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %       </tr>
 %       <tr>
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\inline&space;M_{\mathrm{sup}}" title="" /></td>
 %           <td><TT>M_sup</TT></td>
 %           <td>supersonic solution of area-Mach number relation for local Mach number</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %       </tr>
 %   </table>
 % </html>

@@ -32,7 +32,7 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?M_{1}" title="M_{1}" /></td>
 %           <td><TT>M1</TT></td>
 %           <td>upstream Mach number</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %       </tr>
 %       <tr>
 %           <td style="text-align:center">-</td>
@@ -51,7 +51,7 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?Q_{\mathrm{out}}" title="Q_{\mathrm{out}}" /></td>
 %           <td><TT>Q_out</TT></td>
 %           <td>output quantity (specified by <TT>spec</TT>)</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %       </tr>
 %   </table>
 % </html>

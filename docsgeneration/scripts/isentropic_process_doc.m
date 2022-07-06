@@ -27,7 +27,7 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\inline&space;Q_{\mathrm{in}}" title="" /></td>
 %           <td><TT>Q_in</TT></td>
 %           <td>input quantity (specified by <TT>spec_in</TT>)</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %       </tr>
 %       <tr>
 %           <td style="text-align:center">-</td>
@@ -46,7 +46,7 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?Q_{\mathrm{out}}" title="Q_{\mathrm{out}}" /></td>
 %           <td><TT>Q_out</TT></td>
 %           <td>output quantity (specified by <TT>spec_out</TT>)</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %       </tr>
 %   </table>
 % </html>

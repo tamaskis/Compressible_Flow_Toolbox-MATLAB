@@ -2,7 +2,7 @@
 % 
 % <<compressible_flow_toolbox.png>>
 % 
-% Copyright © 2021 Tamas Kis
+% Copyright © 2022 Tamas Kis
 %% Technical Documentation
 % Click <https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf here>.
 %% Stagnation (Total) Quantities

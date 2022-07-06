@@ -39,7 +39,7 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?Q_{\mathrm{in}}" title="" /></td>
 %           <td><TT>Q_in</TT></td>
 %           <td>input quantity</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %       </tr>
 %       <tr>
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\gamma" title="\gamma" /></td>
@@ -52,13 +52,13 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?M_{\mathrm{sub}}" title="" /></td>
 %           <td><TT>M_sub</TT></td>
 %           <td>subsonic solution for local Mach number</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %       </tr>
 %       <tr>
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?M_{\mathrm{sup}}" title="" /></td>
 %           <td><TT>M_sup</TT></td>
 %           <td>supersonic solution for local Mach number</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %       </tr>
 %   </table>
 % </html>

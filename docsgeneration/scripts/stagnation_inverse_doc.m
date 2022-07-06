@@ -30,7 +30,7 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?Q_{\mathrm{out}}" title="Q_{\mathrm{out}}" /></td>
 %           <td><TT>Q_in</TT></td>
 %           <td>input quantity (specified by <TT>spec</TT>)</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %       </tr>
 %       <tr>
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\gamma" title="\gamma" /></td>
@@ -43,7 +43,7 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?M" title="M" /></td>
 %           <td><TT>M</TT></td>
 %           <td>local Mach number</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %       </tr>
 %   </table>
 % </html>

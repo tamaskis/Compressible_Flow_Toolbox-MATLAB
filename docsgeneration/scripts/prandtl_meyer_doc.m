@@ -21,7 +21,7 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?M" title="M" /></td>
 %           <td><TT>M</TT></td>
 %           <td>local Mach number</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %           <td style="text-align:center">-</td>
 %       </tr>
 %       <tr>
@@ -36,7 +36,7 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\omega" title="" /></td>
 %           <td><TT>w</TT></td>
 %           <td>angle required to accelerate flow from Mach 1 to the local Mach number</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %           <td style="text-align:center">rad</td>
 %       </tr>
 %   </table>

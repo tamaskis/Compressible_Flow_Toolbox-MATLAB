@@ -7,7 +7,7 @@
 %   publish_html(code_folders,mfiles,imagefiles,delete_docs)
 %
 % Author: Tamas Kis
-% Last Update: 2021-12-29
+% Last Update: 2022-07-06
 %
 %--------------------------------------------------------------------------
 %
@@ -45,7 +45,7 @@ function publish_html(abbrev,mfiles,imagefiles,delete_docs)
         end
         clc;
     end
-
+    
     % deletes contents of "toolbox/doc/html_abbrev" folder if specified
     if delete_docs
         docs = dir("../../toolbox/doc/html_"+abbrev);
@@ -56,12 +56,12 @@ function publish_html(abbrev,mfiles,imagefiles,delete_docs)
     end
     
     % adds path to toolbox folder
-    addpath('../../toolbox');
-
+    addpath(genpath('../../toolbox'));
+    
     % ----------------
     % Thumbnail image.
     % ----------------
-
+    
     % resizes "docsgeneration/thumbnail/thumbnail.png" and saves it to
     % "docs/thumbnail_resized.png"
     resize_thumbnail;
@@ -121,22 +121,22 @@ function publish_html(abbrev,mfiles,imagefiles,delete_docs)
         publish(mfiles(i),'html');
         movefile("html/*","../../docs/");
     end
-
+    
     % removes "html" folder from "docsgeneration/scripts" folder
     rmdir("html");
     
     % returns to "docsgeneration/publish" folder
     cd("../publish/");
-
+    
     % copies files from "docs" folder to "toolbox/doc/html_abbrev"
     copyfile("../../docs","../../toolbox/doc/html_"+abbrev);
     
     % ------------------------
     % Technical documentation.
     % ------------------------
-
+    
     % copies technical documentation PDF file from "Technical 
     % Documentation" folder to "toolbox/doc"
     copyfile('../../Technical Documentation','../../toolbox/doc');
-
+    
 end

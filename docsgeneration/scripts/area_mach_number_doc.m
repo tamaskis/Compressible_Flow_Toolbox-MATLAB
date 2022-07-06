@@ -22,7 +22,7 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?M" title="M" /></td>
 %           <td><TT>M</TT></td>
 %           <td>Mach number</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %       </tr>
 %       <tr>
 %           <td style="text-align:center">-</td>
@@ -41,7 +41,7 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?\inline&space;A^{*}/A" title="" /><BR>or<BR><img src="https://latex.codecogs.com/svg.latex?\inline&space;A/A^{*}" title="" /></td>
 %           <td><TT>Astar_A</TT><BR>or<BR><TT>A_Astar</TT></td>
 %           <td>evaluation of area-Mach number relation</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %       </tr>
 %   </table>
 % </html>

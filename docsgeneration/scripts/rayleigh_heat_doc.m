@@ -22,14 +22,14 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?T_{t1}" title="T_{t1}" /></td>
 %           <td><TT>Tt1</TT></td>
 %           <td>station 1 stagnation temperature</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %           <td style="text-align:center">K</td>
 %       </tr>
 %       <tr>
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?T_{t2}" title="T_{t2}" /></td>
 %           <td><TT>Tt2</TT></td>
 %           <td>station 2 stagnation temperature</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %           <td style="text-align:center">K</td>
 %       </tr>
 %       <tr>
@@ -51,7 +51,7 @@
 %           <td style="text-align:center"><img src="https://latex.codecogs.com/svg.latex?q" title="q" /></td>
 %           <td><TT>q</TT></td>
 %           <td>(specific) heat addition between stations 1 and 2</td>
-%           <td style="text-align:center">1D<BR>double array</td>
+%           <td style="text-align:center">1×1<BR>double</td>
 %           <td style="text-align:center">J/kg</td>
 %       </tr>
 %   </table>
