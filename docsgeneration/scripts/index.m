@@ -4,7 +4,7 @@
 % 
 % Copyright © 2021 Tamas Kis
 %% Technical Documentation
-% Click <https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf here>.
+% Click <https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf here>.
 %% Stagnation (Total) Quantities
 % * <stagnation_doc.html *|stagnation|*> finds the stagnation-to-static
 % ratios given the local Mach number.

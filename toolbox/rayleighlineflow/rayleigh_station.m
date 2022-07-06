@@ -22,22 +22,22 @@
 % Contact: tamas.a.kis@outlook.com
 %
 % TECHNICAL DOCUMENTATION:
-% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+% https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf
 %
 %--------------------------------------------------------------------------
 %
 % ------
 % INPUT:
 % ------
-%   M1      - (1D double array) station 1 Mach number
-%   M2      - (1D double array) station 2 Mach number
+%   M1      - (1×1 double) station 1 Mach number
+%   M2      - (1×1 double) station 2 Mach number
 %   spec    - (char) specifies output quantity
-%   gamma   - (OPTIONAL) (1×1 double) specific heat ratio (defaults to 1.4)
+%   gamma   - (1×1 double) (OPTIONAL) specific heat ratio (defaults to 1.4)
 %
 % -------
 % OUTPUT:
 % -------
-%   Q_out 	- (1D double array) output quantity (specified by "spec")
+%   Q_out 	- (1×1 double) output quantity (specified by "spec")
 %
 % -------------------
 % OPTIONS FOR "spec":
@@ -71,7 +71,7 @@ function Q_out = rayleigh_station(M1,M2,spec,gamma)
     % static temperature ratio
     if strcmpi(spec,'T2/T1')
         Q_out = (((1+gamma*M1.^2)./(1+gamma*M2.^2)).^2).*((M2./M1).^2);
-    
+        
     % static pressure ratio
     elseif strcmpi(spec,'P2/P1')
         Q_out = (1+gamma*M1.^2)./(1+gamma*M2.^2);
@@ -79,7 +79,7 @@ function Q_out = rayleigh_station(M1,M2,spec,gamma)
     % static enthalpy ratio
     elseif strcmpi(spec,'h2/h1')
         Q_out = (((1+gamma*M1.^2)./(1+gamma*M2.^2)).^2).*((M2./M1).^2);
-
+        
     % density ratio
     elseif strcmpi(spec,'rho2/rho1')
         Q_out = ((1+gamma*M2.^2)./(1+gamma*M1.^2)).*((M1./M2).^2);
@@ -87,7 +87,7 @@ function Q_out = rayleigh_station(M1,M2,spec,gamma)
     % velocity ratio
     elseif strcmpi(spec,'U2/U1')
         Q_out = ((1+gamma*M1.^2)./(1+gamma*M2.^2)).*((M2./M1).^2);
-    
+        
     % stagnation temperature ratio
     elseif strcmpi(spec,'Tt2/Tt1')
         Q_out = (((1+gamma*M1.^2)./(1+gamma*M2.^2)).^2).*((M2./M1).^2).*...
@@ -107,7 +107,7 @@ function Q_out = rayleigh_station(M1,M2,spec,gamma)
     elseif strcmpi(spec,'(s2-s1)/cp')
         Q_out = log(((M2./M1).^2).*((1+gamma*M1.^2)./(1+gamma*M2.^2)).^...
             ((gamma+1)/gamma));
-    
+        
     end
     
 end

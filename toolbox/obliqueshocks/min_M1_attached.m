@@ -14,37 +14,32 @@
 % Contact: tamas.a.kis@outlook.com
 %
 % TECHNICAL DOCUMENTATION:
-% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+% https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf
 %
 %--------------------------------------------------------------------------
 %
 % ------
 % INPUT:
 % ------
-%   theta   - (1D double array) deflection angle [rad]
-%   gamma   - (OPTIONAL) (1×1 double) specific heat ratio (defaults to 1.4)
+%   theta   - (1×1 double) deflection angle [rad]
+%   gamma   - (1×1 double) (OPTIONAL) specific heat ratio (defaults to 1.4)
 %
 % -------
 % OUTPUT:
 % -------
-%   M1_min  - (1D double array) minimum upstream Mach number to produce an
+%   M1_min  - (1×1 double) minimum upstream Mach number to produce an
 %             attached oblique shock
 %
 %==========================================================================
 function M1_min = min_M1_attached(theta,gamma)
-
+    
     % defaults "gamma" to 1.4 if not specified
     if (nargin == 1) || isempty(gamma)
         gamma = 1.4;
     end
     
-    % preallocates vector to store minimum upstream Mach numbers
-    M1_min = zeros(size(theta));
-
-    % finds (M1)min for each θ
-    for i = 1:length(theta)
-        M1_min(i) = bisection_method(@(M1)max_deflection_angle(M1,...
-            gamma)-theta(i),1,1000);
-    end
-
+    % minimum upstream Mach number to produce an attached oblique shock
+    M1_min = bisection_method(@(M1)max_deflection_angle(M1,gamma)-theta,...
+        1,1000);
+    
 end

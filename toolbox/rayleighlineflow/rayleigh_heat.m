@@ -15,28 +15,28 @@
 % Contact: tamas.a.kis@outlook.com
 %
 % TECHNICAL DOCUMENTATION:
-% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+% https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf
 %
 %--------------------------------------------------------------------------
 %
 % ------
 % INPUT:
 % ------
-%   Tt1     - (1D double array) station 1 stagnation temperature [K]
-%   Tt2     - (1D double array) station 2 stagnation temperature [K]
-%   gamma   - (OPTIONAL) (1×1 double) specific heat ratio (defaults to 1.4)
-%   R       - (OPTIONAL) (1×1 double) specific gas constant [J/(kg.K)]
+%   Tt1     - (1×1 double) station 1 stagnation temperature [K]
+%   Tt2     - (1×1 double) station 2 stagnation temperature [K]
+%   gamma   - (1×1 double) (OPTIONAL) specific heat ratio (defaults to 1.4)
+%   R       - (1×1 double) (OPTIONAL) specific gas constant [J/(kg.K)]
 %               --> defaults 287 J/(kg.K)
 %
 % -------
 % OUTPUT:
 % -------
-%   q       - (1D double array) (specific) heat addition between stations 1
+%   q       - (1×1 double) (specific) heat addition between stations 1
 %             and 2 [J/kg]
 %
 %==========================================================================
 function q = rayleigh_heat(Tt1,Tt2,gamma,R)
-
+    
     % ----------------------------------------------------
     % Sets unspecified parameters to their default values.
     % ----------------------------------------------------

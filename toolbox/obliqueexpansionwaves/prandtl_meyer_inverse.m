@@ -13,45 +13,31 @@
 % Contact: tamas.a.kis@outlook.com
 %
 % TECHNICAL DOCUMENTATION:
-% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+% https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf
 %
 %--------------------------------------------------------------------------
 %
 % ------
 % INPUT:
 % ------
-%   w       - (1D double array) angle required to accelerate flow from 
+%   w       - (1×1 double) angle required to accelerate flow from 
 %             Mach 1 to the local Mach number [rad]
-%   gamma   - (OPTIONAL) (1×1 double) specific heat ratio (defaults to 1.4)
+%   gamma   - (1×1 double) (OPTIONAL) specific heat ratio (defaults to 1.4)
 %
 % -------
 % OUTPUT:
 % -------
-%   M       - (1D double array) local Mach number
+%   M       - (1×1 double) local Mach number
 %
 %==========================================================================
 function M = prandtl_meyer_inverse(w,gamma)
-    
-    % ----------------------------------------------------
-    % Sets unspecified parameters to their default values.
-    % ----------------------------------------------------
     
     % defaults "gamma" to 1.4 if not specified
     if (nargin == 1) || isempty(gamma)
         gamma = 1.4;
     end
     
-    % -------------
-    % Calculations.
-    % -------------
-    
-    % preallocates M
-    M = zeros(size(w));
-    
-    % calculates M(i) for each w(i) using root finding procedure
-    for i = 1:length(w)
-        f = @(M) prandtl_meyer(M,gamma)-w(i);
-        M(i) = secant_method(f,1.5);
-    end
+    % calculates M using a root finding procedure
+    M = secant_method(@(M)prandtl_meyer(M,gamma)-w,1.5);
     
 end

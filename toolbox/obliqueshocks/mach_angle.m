@@ -14,37 +14,37 @@
 % Contact: tamas.a.kis@outlook.com
 %
 % TECHNICAL DOCUMENTATION:
-% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+% https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf
 %
 %--------------------------------------------------------------------------
 %
 % ------
 % INPUT:
 % ------
-%   M       - (1D double array) local Mach number
-%   units   - (OPTIONAL) (char) 'rad' or 'deg' (defaults to 'rad')
+%   M       - (1×1 double) local Mach number
+%   units   - (char) (OPTIONAL) 'rad' or 'deg' (defaults to 'rad')
 %
 % -------
 % OUTPUT:
 % -------
-%   mu      - (1D double array) Mach angle
+%   mu      - (1×1 double) Mach angle
 %               --> [rad] if units = 'rad' (default if "units" not input)
 %               --> [deg] if units = 'deg'
 %
 %==========================================================================
 function mu = mach_angle(M,units)
-
+    
     % defaults units to radians if not specified
     if (nargin == 1) || isempty(units)
         units = 'rad';
     end
-
+    
     % Mach angle
-    mu = asin(1./M);
-
+    mu = asin(1/M);
+    
     % converts to degrees if requested
     if strcmpi(units,'deg')
         mu = (180/pi)*mu;
     end
-
+    
 end

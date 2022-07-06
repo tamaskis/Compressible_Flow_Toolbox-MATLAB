@@ -14,20 +14,20 @@
 % Contact: tamas.a.kis@outlook.com
 %
 % TECHNICAL DOCUMENTATION:
-% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+% https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf
 %
 %--------------------------------------------------------------------------
 %
 % ------
 % INPUT:
 % ------
-%   M_star  - (1D double array) characteristic Mach number
-%   gamma   - (OPTIONAL) (1×1 double) specific heat ratio (defaults to 1.4)
+%   M_star  - (1×1 double) characteristic Mach number
+%   gamma   - (1×1 double) (OPTIONAL) specific heat ratio (defaults to 1.4)
 %
 % -------
 % OUTPUT:
 % -------
-%   M       - (1D double array) local Mach number
+%   M       - (1×1 double) local Mach number
 %
 %==========================================================================
 function M = characteristic_mach_inverse(M_star,gamma)
@@ -38,6 +38,6 @@ function M = characteristic_mach_inverse(M_star,gamma)
     end
     
     % local Mach number
-    M = 2./(((gamma+1)./(M_star.^2))-(gamma-1));
+    M = 2/(((gamma+1)/(M_star^2))-(gamma-1));
     
 end

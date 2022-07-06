@@ -14,7 +14,7 @@
 % Contact: tamas.a.kis@outlook.com
 %
 % TECHNICAL DOCUMENTATION:
-% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+% https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf
 %
 %--------------------------------------------------------------------------
 %
@@ -22,24 +22,24 @@
 % INPUT:
 % ------
 %   M1      - (1×1 double) upstream Mach number
-%   beta    - (1D double array) shock angle [rad]
-%   gamma   - (OPTIONAL) (1×1 double) specific heat ratio (defaults to 1.4)
+%   beta    - (1×1 double) shock angle [rad]
+%   gamma   - (1×1 double) (OPTIONAL) specific heat ratio (defaults to 1.4)
 %
 % -------
 % OUTPUT:
 % -------
-%   theta   - (1D double array) deflection angle [rad]
+%   theta   - (1×1 double) deflection angle [rad]
 %
 %==========================================================================
 function theta = deflection_angle(M1,beta,gamma)
-
+    
     % defaults "gamma" to 1.4 if not specified
     if (nargin == 2) || isempty(gamma)
         gamma = 1.4;
     end
-
+    
     % deflection angle [rad]
-    theta = atan(2*cot(beta).*((M1^2*sin(beta).^2-1)./(M1^2*(gamma+cos(...
-        2*beta))+2)));
-
+    theta = atan(2*cot(beta)*((M1^2*sin(beta)^2-1)/(M1^2*(gamma+cos(2*...
+        beta))+2)));
+    
 end

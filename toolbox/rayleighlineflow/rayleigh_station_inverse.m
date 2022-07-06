@@ -37,7 +37,7 @@
 % Contact: tamas.a.kis@outlook.com
 %
 % TECHNICAL DOCUMENTATION:
-% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+% https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf
 %
 %--------------------------------------------------------------------------
 %
@@ -47,16 +47,16 @@
 %   M_spec  - (char) specifies input Mach number
 %               --> 'M1' = station 1 Mach number
 %               --> 'M2' = station 2 Mach number
-%   M_in    - (1D double array) Mach number at one station (specified by 
+%   M_in    - (1×1 double) Mach number at one station (specified by 
 %             "M_spec")
 %   Q_spec  - (char) specifies input quantity (see options belows)
-%   Q_in    - (1D double array) input quantity (specified by "Q_spec")
-%   gamma   - (OPTIONAL) (1×1 double) specific heat ratio (defaults to 1.4)
+%   Q_in    - (1×1 double) input quantity (specified by "Q_spec")
+%   gamma   - (1×1 double) (OPTIONAL) specific heat ratio (defaults to 1.4)
 %
 % -------
 % OUTPUT:
 % -------
-%   M_out 	- (1D double array) Mach number at other station
+%   M_out 	- (1×1 double) Mach number at other station
 %           	--> M1 (station 1 Mach number) if M_spec = 'M2'
 %           	--> M2 (station 2 Mach number) if M_spec = 'M1'
 %
@@ -112,7 +112,7 @@ function M_out = rayleigh_station_inverse(M_spec,M_in,Q_spec,Q_in,gamma)
         else
             g = @(M,i) rayleigh_station(M,M_in(i),gamma,Q_spec)-Q_in(i);
         end
-    
+        
         % preallocates array
         M_out = zeros(size(M_in));
         
@@ -146,7 +146,7 @@ function M_out = rayleigh_station_inverse(M_spec,M_in,Q_spec,Q_in,gamma)
                 g = @(M) rayleigh_station(M,M_in,gamma,Q_spec)-Q_in;
             end
         end
-
+        
         % finds root of g(M_out) (essentially calculating M_out from 
         % input), accounting for if the flow is supersonic or subsonic (if
         % the flow is supersonic, must stay supersonic and vice-versa)
@@ -165,7 +165,7 @@ function M_out = rayleigh_station_inverse(M_spec,M_in,Q_spec,Q_in,gamma)
                 M_out = bisection_method(g,0,1,1e-12);
             end
         end
-
+        
     end
     
 end

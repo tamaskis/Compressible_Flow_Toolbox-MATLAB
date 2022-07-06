@@ -27,7 +27,7 @@
 % Contact: tamas.a.kis@outlook.com
 %
 % TECHNICAL DOCUMENTATION:
-% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+% https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf
 %
 %--------------------------------------------------------------------------
 %
@@ -35,14 +35,14 @@
 % INPUT:
 % ------
 %   spec    - (char) specifies input quantity (see options below)
-%   Q_in    - (1D double array) input quantity (specified by "spec")
-%   gamma   - (OPTIONAL) (1×1 double) specific heat ratio (defaults to 1.4)
+%   Q_in    - (1×1 double) input quantity (specified by "spec")
+%   gamma   - (1×1 double) (OPTIONAL) specific heat ratio (defaults to 1.4)
 %
 % -------
 % OUTPUT:
 % -------
-%   M_sub   - (1D double array) subsonic solution for local Mach number
-%   M_sup   - (1D double array) supersonic solution for local Mach number
+%   M_sub   - (1×1 double) subsonic solution for local Mach number
+%   M_sup   - (1×1 double) supersonic solution for local Mach number
 %
 % -------------------
 % OPTIONS FOR "spec":
@@ -59,7 +59,7 @@
 %
 %==========================================================================
 function [M_sub,M_sup] = rayleigh_sonic_inverse(spec,Q_in,gamma)
-
+    
     % ----------------------------------------------------
     % Sets unspecified parameters to their default values.
     % ----------------------------------------------------
@@ -76,13 +76,13 @@ function [M_sub,M_sup] = rayleigh_sonic_inverse(spec,Q_in,gamma)
     % preallocates arrays
     M_sub = zeros(size(Q_in));
     M_sup = zeros(size(Q_in));
-
+    
     % finds subsonic and supersonic roots at each value of Q_in
     for i = 1:length(Q_in)
-
+        
         % sets up function to find root of
         g = @(M) rayleigh_sonic(M,spec,gamma)-Q_in(i);
-
+        
         % finds subsonic and supersonic roots
         M_sub(i) = bisection_method(g,0,1);
         M_sup(i) = secant_method(g,1.5);
@@ -99,14 +99,14 @@ function [M_sub,M_sup] = rayleigh_sonic_inverse(spec,Q_in,gamma)
         if edge_P_Pstar || edge_U_Ustar || edge_Pt_Ptstar
             M_sub(i) = NaN;
         end
-
+        
         % handles special case where Q_in = 1 (because we know the exact
         % solution in this case and can eliminate numerical error)
         if (Q_in(i) == 1)
             M_sub(i) = 1;
             M_sup(i) = 1;
         end
-
+        
     end
     
 end

@@ -14,27 +14,27 @@
 % Contact: tamas.a.kis@outlook.com
 %
 % TECHNICAL DOCUMENTATION:
-% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+% https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf
 %
 %--------------------------------------------------------------------------
 %
 % ------
 % INPUT:
 % ------
-%   M1          - (1D double array) upstream Mach number
+%   M1          - (1×1 double) upstream Mach number
 %   theta       - (1×1 double) deflection angle [rad]
-%   gamma       - (OPTIONAL) (1×1 double) specific heat ratio (defaults to 
+%   gamma       - (1×1 double) (OPTIONAL) specific heat ratio (defaults to 
 %                 1.4)
 %
 % -------
 % OUTPUT:
 % -------
-%   beta_weak   - (1D double array) shock angle (weak solution) [rad]
-%   beta_strong - (1D double array) shock angle (strong solution) [rad]
+%   beta_weak   - (1×1 double) shock angle (weak solution) [rad]
+%   beta_strong - (1×1 double) shock angle (strong solution) [rad]
 %
 %==========================================================================
 function [beta_weak,beta_strong] = shock_angle(M1,theta,gamma)
-
+    
     % define a function g(beta)
     g = @(beta) 2*cot(beta)*((M1^2*sin(beta)^2-1)/(M1^2*(gamma+...
         cos(2*beta))+2))-tan(theta);

@@ -15,22 +15,22 @@
 % Contact: tamas.a.kis@outlook.com
 %
 % TECHNICAL DOCUMENTATION:
-% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+% https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf
 %
 %--------------------------------------------------------------------------
 %
 % ------
 % INPUT:
 % ------
-%   M       - (1D double array) local Mach number
-%   type    - (OPTIONAL) (char) 'reciprocal' or 'classic' (defaults to
+%   M       - (1×1 double) local Mach number
+%   type    - (char) (OPTIONAL) 'reciprocal' or 'classic' (defaults to
 %             'reciprocal')
-%   gamma   - (OPTIONAL) (1×1 double) specific heat ratio (defaults to 1.4)
+%   gamma   - (1×1 double) (OPTIONAL) specific heat ratio (defaults to 1.4)
 %
 % -------
 % OUTPUT:
 % -------
-%   f       - (1D double array) evaluation of area-Mach number relation
+%   f       - (1×1 double) evaluation of area-Mach number relation
 %               --> A*/A if type = 'reciprocal'
 %               --> A/A* if type = 'classic'
 %
@@ -54,7 +54,7 @@ function f = area_mach_number(M,type,gamma)
     % -------------
     % Calculations.
     % -------------
-
+    
     % calculates specified area ratio
     if strcmpi(type,'classic')
         f = (1./M).*((2+(gamma-1)*M.^2)/(gamma+1)).^((gamma+1)/(2*(...

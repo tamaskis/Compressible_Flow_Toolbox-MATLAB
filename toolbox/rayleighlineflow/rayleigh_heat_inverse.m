@@ -18,7 +18,7 @@
 % Contact: tamas.a.kis@outlook.com
 %
 % TECHNICAL DOCUMENTATION:
-% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+% https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf
 %
 %--------------------------------------------------------------------------
 %
@@ -28,17 +28,17 @@
 % 	spec    - (char) specifies input stagnation temperature
 %               --> 'Tt1' = station 1 stagnation temperature
 %               --> 'Tt2' = station 2 stagnation temperature
-%   Tt_in   - (1D double array) stagnation temperature at one station [K]
-%  	q       - (1D double array) specific heat addition between the two
+%   Tt_in   - (1×1 double) stagnation temperature at one station [K]
+%  	q       - (1×1 double) specific heat addition between the two
 %             stations [J/kg]
-%   gamma   - (OPTIONAL) (1×1 double) specific heat ratio (defaults to 1.4)
-%   R       - (OPTIONAL) (1×1 double) specific gas constant [J/(kg.K)]
+%   gamma   - (1×1 double) (OPTIONAL) specific heat ratio (defaults to 1.4)
+%   R       - (1×1 double) (OPTIONAL) specific gas constant [J/(kg.K)]
 %               --> defaults to 287 J/(kg.K)
 %
 % -------
 % OUTPUT:
 % -------
-%   Tt_out  - (1D double array) stagnation temperature at other station [K]
+%   Tt_out  - (1×1 double) stagnation temperature at other station [K]
 %           	--> Tt1 (station 1 stagnation temperature) if spec = 'Tt2'
 %           	--> Tt2 (station 2 stagnation temperature) if spec = 'Tt1'
 %
@@ -79,5 +79,5 @@ function Tt_out = rayleigh_heat_inverse(spec,Tt_in,q,gamma,R)
         Tt_out = Tt_in-((gamma-1)*q)/(gamma*R);
         
     end
-
+    
 end

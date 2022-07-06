@@ -105,7 +105,7 @@ function M1 = normal_shock_inverse(spec,Q_in,gamma)
         
     % calculates M1 from M2
     elseif strcmpi(spec,'M2')
-        M1 = sqrt((2+(gamma-1)*Q_in^2)/(2*gamma*Q_in^2-(gamma-1)));
+        M1 = sqrt((2+(gamma-1).*Q_in^2)./(2*gamma*Q_in.^2-(gamma-1)));
         
     % calculates M1 from P2/P1
     elseif strcmpi(spec,'P2/P1')
@@ -113,19 +113,22 @@ function M1 = normal_shock_inverse(spec,Q_in,gamma)
         
     % calculates M1 from rho2/rho1
     elseif strcmpi(spec,'rho2/rho1')
-        M1 = sqrt((2*Q_in)/((gamma+1)-(gamma-1)*Q_in));
+        M1 = sqrt((2*Q_in)./((gamma+1)-(gamma-1)*Q_in));
         
 	% calculates M1 from U2/U1
     elseif strcmpi(spec,'U2/U1')
-        M1 = sqrt(2/((gamma+1)*Q_in-(gamma-1)));
+        M1 = sqrt(2./((gamma+1)*Q_in-(gamma-1)));
         
-    % calculates M1 for given Q_in using root finding procedure for all
-    % other inputs (no closed-form solution)
+    % calculates M1(i) for each Q_in(i) using root finding procedure for
+    % all other inputs (no closed-form solution)
     %   --> supersonic initial guess is used because normal shocks only
     %       occur in supersonic flow
     else
-        g = @(M1) normal_shock(M1,spec,gamma)-Q_in;
-        M1 = secant_method(g,1.5);
+        M1 = zeros(size(Q_in));
+        for i = 1:length(Q_in)
+            g = @(M1) normal_shock(M1,spec,gamma)-Q_in(i);
+            M1(i) = secant_method(g,1.5);
+        end
         
     end
     

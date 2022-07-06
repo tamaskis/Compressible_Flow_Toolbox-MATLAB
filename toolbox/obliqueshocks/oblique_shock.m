@@ -1,26 +1,26 @@
 %==========================================================================
 %
-% normal_shock  Normal shock relations.
+% oblique_shock  Oblique shock relations.
 %
-%   M2 = normal_shock(M1,'M2')
-%   T2_T1 = normal_shock(M1,'T2/T1')
-%   P2_P1 = normal_shock(M1,'P2/P1')
-%   rho2_rho1 = normal_shock(M1,'rho2/rho1')
-%   U2_U1 = normal_shock(M1,'U2/U1')
-%   a2_a1 = normal_shock(M1,'a2/a1')
-%   h2_h1 = normal_shock(M1,'h2/h1')
-%   Tt2_Tt1 = normal_shock(M1,'Tt2/Tt1')
-%   Pt2_Pt1 = normal_shock(M1,'Pt2/Pt1')
-%   rhot2_rhot1 = normal_shock(M1,'rhot2/rhot1')
-%   at2_at1 = normal_shock(M1,'at2/at1')
-%   ht2_ht1 = normal_shock(M1,'ht2/ht1')
-%   ds_cp = normal_shock(M1,'(s2-s1)/cp')
-%   __ = normal_shock(__,gamma)
+%   M2 = oblique_shock(M1,beta,'M2')
+%   T2_T1 = oblique_shock(M1,beta,'T2/T1')
+%   P2_P1 = oblique_shock(M1,beta,'P2/P1')
+%   rho2_rho1 = oblique_shock(M1,beta,'rho2/rho1')
+%   U2_U1 = oblique_shock(M1,beta,'U2/U1')
+%   a2_a1 = oblique_shock(M1,beta,'a2/a1')
+%   h2_h1 = oblique_shock(M1,beta,'h2/h1')
+%   Tt2_Tt1 = oblique_shock(M1,beta,'Tt2/Tt1')
+%   Pt2_Pt1 = oblique_shock(M1,beta,'Pt2/Pt1')
+%   rhot2_rhot1 = oblique_shock(M1,beta,'rhot2/rhot1')
+%   at2_at1 = oblique_shock(M1,beta,'at2/at1')
+%   ht2_ht1 = oblique_shock(M1,beta,'ht2/ht1')
+%   ds_cp = oblique_shock(M1,beta,'(s2-s1)/cp')
+%   __ = oblique_shock(__,gamma)
 %
-% See also normal_shock_inverse.
+% See also oblique_shock_inverse.
 %
 % Copyright © 2022 Tamas Kis
-% Last Update: 2022-04-16
+% Last Update: 2022-07-02
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %
@@ -33,6 +33,7 @@
 % INPUT:
 % ------
 %   M1      - (1×1 double) upstream Mach number
+%   beta    - (1×1 double) shock angle [rad]
 %   spec    - (char) specifies output quantity (see options below)
 %   gamma   - (1×1 double) (OPTIONAL) specific heat ratio (defaults to 1.4)
 %
@@ -59,7 +60,7 @@
 %   --> '(s2-s1)/cp'    - nondimensional entropy change
 %
 %==========================================================================
-function Q_out = normal_shock(M1,spec,gamma)
+function Q_out = oblique_shock(M1,beta,spec,gamma)
     
     % ----------------------------------------------------
     % Sets unspecified parameters to their default values.
@@ -73,37 +74,45 @@ function Q_out = normal_shock(M1,spec,gamma)
     % -------------
     % Calculations.
     % -------------
+
+    % normal upstream Mach number
+    Mn1 = M1.*sin(beta);
+
+    % finds output quantity using normal shock relations
+    Q_out = normal_shock(M1,spec,gamma);
+
+    
     
     % downstream Mach number
     if strcmpi(spec,'M2')
-        Q_out = sqrt(((2+(gamma-1)*M1^2))/(2*gamma*M1^2-(gamma-1)));
+        Q_out = sqrt(((2+(gamma-1)*M1.^2))./(2*gamma*M1.^2-(gamma-1)));
         
     % static temperature ratio
     elseif strcmpi(spec,'T2/T1')
-        Q_out = ((2*gamma*M1^2-(gamma-1))*(2+(gamma-1)*M1^2))/((1+...
-            gamma)^2*M1^2);
+        Q_out = ((2*gamma*M1.^2-(gamma-1)).*(2+(gamma-1)*M1.^2))./((1+...
+            gamma)^2*M1.^2);
         
     % static pressure ratio
     elseif strcmpi(spec,'P2/P1')
-        Q_out = 1+((2*gamma)/(gamma+1))*(M1^2-1);
+        Q_out = 1+((2*gamma)/(gamma+1))*(M1.^2-1);
         
     % static density ratio
     elseif strcmpi(spec,'rho2/rho1')
-        Q_out = ((gamma+1)*M1^2)/(2+(gamma-1)*M1^2);
+        Q_out = ((gamma+1)*M1.^2)./(2+(gamma-1)*M1.^2);
         
     % velocity ratio
     elseif strcmpi(spec,'U2/U1')
-        Q_out = (2+(gamma-1)*M1^2)/((gamma+1)*M1^2);
+        Q_out = (2+(gamma-1)*M1.^2)./((gamma+1)*M1.^2);
         
     % speed of sound ratio
     elseif strcmpi(spec,'a2/a1')
-        Q_out = sqrt(((2*gamma*M1^2-(gamma-1))*(2+(gamma-1)*M1^2))/((1+...
-            gamma)^2*M1^2));
+        Q_out = sqrt(((2*gamma*M1.^2-(gamma-1)).*(2+(gamma-1)*M1.^2))./...
+            ((1+gamma)^2*M1.^2));
         
     % static enthalpy ratio
     elseif strcmpi(spec,'h2/h1')
-        Q_out = ((1+gamma)^2*M1^2)/((2*gamma*M1^2-(gamma-1))*(2+(gamma-...
-            1)*M1^2));
+        Q_out = ((1+gamma)^2*M1.^2)./((2*gamma*M1.^2-(gamma-1)).*(2+(...
+            gamma-1)*M1.^2));
         
     % stagnation temperature ratio
     elseif strcmpi(spec,'Tt2/Tt1')
@@ -111,13 +120,13 @@ function Q_out = normal_shock(M1,spec,gamma)
         
     % stagnation pressure ratio
     elseif strcmpi(spec,'Pt2/Pt1')
-        Q_out = (((gamma+1)*M1^2/(2+(gamma-1)*M1^2))^(gamma/(gamma-1)))*...
-            ((gamma+1)/(2*gamma*M1^2-(gamma-1)))^(1/(gamma-1));
+        Q_out = (((gamma+1)*M1.^2./(2+(gamma-1)*M1.^2)).^(gamma/(gamma-...
+            1))).*((gamma+1)./(2*gamma*M1.^2-(gamma-1))).^(1/(gamma-1));
         
     % stagnation density ratio
     elseif strcmpi(spec,'rhot2/rhot1')
-        Q_out = (((gamma+1)*M1^2/(2+(gamma-1)*M1^2))^(gamma/(gamma-1)))*...
-            ((gamma+1)/(2*gamma*M1^2-(gamma-1)))^(1/(gamma-1));
+        Q_out = (((gamma+1)*M1.^2./(2+(gamma-1)*M1.^2)).^(gamma/(gamma-...
+            1))).*((gamma+1)./(2*gamma*M1.^2-(gamma-1))).^(1/(gamma-1));
         
     % stagnation speed of sound ratio
     elseif strcmpi(spec,'at2/at1')
@@ -129,8 +138,8 @@ function Q_out = normal_shock(M1,spec,gamma)
         
     % nondimensional entropy change
     elseif strcmpi(spec,'(s2-s1)/cp')
-        Q_out = -log(((gamma+1)*M1^2)/(2+(gamma-1)*M1^2))-(1/gamma)*...
-            log((gamma+1)/(2*gamma*M1^2-(gamma-1)));
+        Q_out = -log(((gamma+1)*M1.^2)./(2+(gamma-1)*M1.^2))-(1/gamma)*...
+            log((gamma+1)./(2*gamma*M1.^2-(gamma-1)));
         
     end
     

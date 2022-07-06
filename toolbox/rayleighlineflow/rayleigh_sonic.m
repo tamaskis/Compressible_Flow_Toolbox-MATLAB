@@ -26,21 +26,21 @@
 % Contact: tamas.a.kis@outlook.com
 %
 % TECHNICAL DOCUMENTATION:
-% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+% https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf
 %
 %--------------------------------------------------------------------------
 %
 % ------
 % INPUT:
 % ------
-%   M       - (1D double array) local Mach number
+%   M       - (1×1 double) local Mach number
 %   spec    - (char) specifies output quantity (see options below)
-%   gamma   - (OPTIONAL) (1×1 double) specific heat ratio (defaults to 1.4)
+%   gamma   - (1×1 double) (OPTIONAL) specific heat ratio (defaults to 1.4)
 %
 % -------
 % OUTPUT:
 % -------
-%   Q_out 	- (1D double array) output quantity (specified by "spec")
+%   Q_out 	- (1×1 double) output quantity (specified by "spec")
 %
 % -------------------
 % OPTIONS FOR "spec":
@@ -74,7 +74,7 @@ function Q_out = rayleigh_sonic(M,spec,gamma)
     % local-to-sonic static temperature ratio
     if strcmpi(spec,'T/T*')
         Q_out = (((gamma+1)*M)./(1+gamma*M.^2)).^2;
-    
+        
     % local-to-sonic static pressure ratio
     elseif strcmpi(spec,'P/P*')
         Q_out = (gamma+1)./(1+gamma*M.^2);
@@ -90,11 +90,11 @@ function Q_out = rayleigh_sonic(M,spec,gamma)
 	% local-to-sonic speed of sound ratio
     elseif strcmpi(spec,'a/a*')
         Q_out = ((gamma+1)*M)./(1+gamma*M.^2);
-
+        
     % local-to-sonic enthalpy ratio
     elseif strcmpi(spec,'h/h*')
         Q_out = (((gamma+1)*M)./(1+gamma*M.^2)).^2;
-    
+        
     % local-to-sonic stagnation temperature ratio
     elseif strcmpi(spec,'Tt/Tt*')
         Q_out = (M.^2*(gamma+1).*(2+(gamma-1)*M.^2))./((1+gamma*M.^2).^2);
@@ -121,7 +121,7 @@ function Q_out = rayleigh_sonic(M,spec,gamma)
     elseif strcmpi(spec,'(s-s*)/cp')
         Q_out = log((M.^2).*((gamma+1)./(1+gamma*M.^2)).^((gamma+1)/...
             (gamma)));
-    
+        
     end
     
 end

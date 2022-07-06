@@ -1,16 +1,15 @@
 %==========================================================================
 %
-% stagnation_inverse  Determines the local Mach number given some 
-% stagnation-to-static ratio.
+% stagnation  Stagnation-to-static ratios given the local Mach number.
 %
-%   M = stagnation_inverse('Tt/T',Tt_T)
-%   M = stagnation_inverse('Pt/P',Pt_p)
-%   M = stagnation_inverse('rhot/rho',rhot_rho)
-%   M = stagnation_inverse('at/a',at_a)
-%   M = stagnation_inverse('ht/h',ht_h)
-%   M = stagnation_inverse(__,gamma)
+%   Tt_T = stagnation(M,'Tt/T')
+%   Pt_P = stagnation(M,'Pt/P')
+%   rhot_rho = stagnation(M,'rhot/rho')
+%   at_a = stagnation(M,'at/a')
+%   ht_h = stagnation(M,'ht/h')
+%   __ = stagnation(__,gamma)
 %
-% See also stagnation.
+% See also stagnation_inverse.
 %
 % Copyright © 2022 Tamas Kis
 % Last Update: 2022-04-16
@@ -18,21 +17,21 @@
 % Contact: tamas.a.kis@outlook.com
 %
 % TECHNICAL DOCUMENTATION:
-% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+% https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf
 %
 %--------------------------------------------------------------------------
 %
 % ------
 % INPUT:
 % ------
-%   spec    - (char) specifies input quantity (see options below)
-%   Q_in 	- (1D double array) input quantity (specified by "spec")
-%   gamma   - (OPTIONAL) (1×1 double) specific heat ratio (defaults to 1.4)
+%   M       - (1×1 double) local Mach number
+%   spec    - (char) specifies output quantity (see options below)
+%   gamma   - (1×1 double) (OPTIONAL) specific heat ratio (defaults to 1.4)
 %
 % -------
 % OUTPUT:
 % -------
-%   M       - (1D double array) local Mach number
+%   Q_out 	- (1×1 double) output quantity (specified by "spec")
 %
 % -------------------
 % OPTIONS FOR "spec":
@@ -44,7 +43,7 @@
 %  	--> 'ht/h'      - stagnation-to-static enthalpy ratio
 %
 %==========================================================================
-function M = stagnation_inverse(spec,Q_in,gamma)
+function Q_out = stagnation(M,spec,gamma)
     
     % ----------------------------------------------------
     % Sets unspecified parameters to their default values.
@@ -59,25 +58,25 @@ function M = stagnation_inverse(spec,Q_in,gamma)
     % Calculations.
     % -------------
     
-    % Mach number from stagnation-to-static temperature ratio
+    % stagnation-to-static temperature ratio
     if strcmpi(spec,'Tt/T')
-        M = sqrt((2/(gamma-1))*(Q_in-1));
-    
-    % Mach number from stagnation-to-static pressure ratio
+        Q_out = 1+((gamma-1)/2)*M.^2;
+        
+    % stagnation-to-static pressure ratio
     elseif strcmpi(spec,'Pt/P')
-        M = sqrt((2/(gamma-1))*(Q_in.^((gamma-1)/gamma)-1));
-    
-    % Mach number from stagnation-to-static density ratio
+        Q_out = (1+((gamma-1)/2)*M.^2).^(gamma/(gamma-1));
+        
+    % stagnation-to-static density ratio
     elseif strcmpi(spec,'rhot/rho')
-        M = sqrt((2/(gamma-1))*(Q_in.^(gamma-1)-1));
+        Q_out = (1+((gamma-1)/2)*M.^2).^(1/(gamma-1));
         
-    % Mach number from stagnation-to-static speed of sound ratio
+    % stagnation-to-static speed of sound ratio
     elseif strcmpi(spec,'at/a')
-        M = sqrt((2/(gamma-1))*(Q_in.^2-1));
+        Q_out = sqrt(1+((gamma-1)/2)*M.^2);
         
-    % Mach number from stagnation-to-static enthalpy ratio
+    % stagnation-to-static enthalpy ratio
     elseif strcmpi(spec,'ht/h')
-        M = sqrt((2/(gamma-1))*(Q_in-1));
+        Q_out = 1+((gamma-1)/2)*M.^2;
         
     end
     

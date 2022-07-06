@@ -13,38 +13,31 @@
 % Contact: tamas.a.kis@outlook.com
 %
 % TECHNICAL DOCUMENTATION:
-% https://tamaskis.github.io/documentation/Compressible_Flow_Relations.pdf
+% https://tamaskis.github.io/files/Compressible_Flow_Relations.pdf
 %
 %--------------------------------------------------------------------------
 %
 % ------
 % INPUT:
 % ------
-%   M       - (1D double array) local Mach number
-%   gamma   - (OPTIONAL) (1×1 double) specific heat ratio (defaults to 1.4)
+%   M       - (1×1 double) local Mach number
+%   gamma   - (1×1 double) (OPTIONAL) specific heat ratio (defaults to 1.4)
 %
 % -------
 % OUTPUT:
 % -------
-%   w       - (1D double array) angle required to accelerate flow from Mach
+%   w       - (1×1 double) angle required to accelerate flow from Mach
 %             1 to the local Mach number [rad]
 %
 %==========================================================================
 function w = prandtl_meyer(M,gamma)
-
-    % ----------------------------------------------------
-    % Sets unspecified parameters to their default values.
-    % ----------------------------------------------------
     
     % defaults "gamma" to 1.4 if not specified
     if (nargin == 1) || isempty(gamma)
         gamma = 1.4;
     end
     
-    % -------------
-    % Calculations.
-    % -------------
-    
+    % angle required to accelerate flow from Mach 1 to local Mach # [rad]
     w = sqrt((gamma+1)/(gamma-1))*atan(sqrt(((gamma-1)/(gamma+1))*(M.^2-...
         1)))-atan(sqrt(M.^2-1));
     
