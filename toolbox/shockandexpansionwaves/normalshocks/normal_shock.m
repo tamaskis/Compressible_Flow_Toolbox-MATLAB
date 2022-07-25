@@ -42,7 +42,7 @@
 % -------
 % OUTPUT:
 % -------
-%   Q_out 	- (1×1 double) output quantity, Qₒᵤₜ (specified by "spec")
+%   Q_out   - (1×1 double) output quantity, Qₒᵤₜ (specified by "spec")
 %
 % -------------------
 % OPTIONS FOR "spec":
@@ -69,60 +69,60 @@ function Q_out = normal_shock(M1,spec,gamma)
         gamma = 1.4;
     end
     
-    % M₂ (downstream Mach number)
+    % M₂ from M₁
     if strcmpi(spec,'M2')
         Q_out = sqrt(((2+(gamma-1)*M1^2))/(2*gamma*M1^2-(gamma-1)));
         
-    % T₂/T₁ (static temperature ratio)
+    % T₂/T₁ from M₁
     elseif strcmpi(spec,'T2/T1')
         Q_out = ((2*gamma*M1^2-(gamma-1))*(2+(gamma-1)*M1^2))/((1+...
             gamma)^2*M1^2);
         
-    % P₂/P₁ (static pressure ratio)
+    % P₂/P₁ from M₁
     elseif strcmpi(spec,'P2/P1')
         Q_out = 1+((2*gamma)/(gamma+1))*(M1^2-1);
         
-    % ρ₂/ρ₁ (static density ratio)
+    % ρ₂/ρ₁ from M₁
     elseif strcmpi(spec,'rho2/rho1')
         Q_out = ((gamma+1)*M1^2)/(2+(gamma-1)*M1^2);
         
-    % U₂/U₁ (velocity ratio)
+    % U₂/U₁ from M₁
     elseif strcmpi(spec,'U2/U1')
         Q_out = (2+(gamma-1)*M1^2)/((gamma+1)*M1^2);
         
-    % a₂/a₁ (speed of sound ratio)
+    % a₂/a₁ from M₁
     elseif strcmpi(spec,'a2/a1')
         Q_out = sqrt(((2*gamma*M1^2-(gamma-1))*(2+(gamma-1)*M1^2))/((1+...
             gamma)^2*M1^2));
         
-    % h₂/h₁ (static enthalpy ratio)
+    % h₂/h₁ from M₁
     elseif strcmpi(spec,'h2/h1')
         Q_out = ((1+gamma)^2*M1^2)/((2*gamma*M1^2-(gamma-1))*(2+(gamma-...
             1)*M1^2));
         
-    % Tₜ₂/Tₜ₁ (stagnation temperature ratio)
+    % Tₜ₂/Tₜ₁ from M₁
     elseif strcmpi(spec,'Tt2/Tt1')
         Q_out = 1;
         
-    % Pₜ₂/Pₜ₁ (stagnation pressure ratio)
+    % Pₜ₂/Pₜ₁ from M₁
     elseif strcmpi(spec,'Pt2/Pt1')
         Q_out = (((gamma+1)*M1^2/(2+(gamma-1)*M1^2))^(gamma/(gamma-1)))*...
             ((gamma+1)/(2*gamma*M1^2-(gamma-1)))^(1/(gamma-1));
         
-    % ρₜ₂/ρₜ₁ (stagnation density ratio)
+    % ρₜ₂/ρₜ₁ from M₁
     elseif strcmpi(spec,'rhot2/rhot1')
         Q_out = (((gamma+1)*M1^2/(2+(gamma-1)*M1^2))^(gamma/(gamma-1)))*...
             ((gamma+1)/(2*gamma*M1^2-(gamma-1)))^(1/(gamma-1));
         
-    % aₜ₂/aₜ₁ (stagnation speed of sound ratio)
+    % aₜ₂/aₜ₁ from M₁
     elseif strcmpi(spec,'at2/at1')
         Q_out = 1;
         
-    % hₜ₂/hₜ₁ (stagnation enthalpy ratio)
+    % hₜ₂/hₜ₁ from M₁
     elseif strcmpi(spec,'ht2/ht1')
         Q_out = 1;
         
-    % (s₂-s₁)/cₚ (nondimensional entropy change)
+    % (s₂-s₁)/cₚ from M₁
     elseif strcmpi(spec,'(s2-s1)/cp')
         Q_out = -log(((gamma+1)*M1^2)/(2+(gamma-1)*M1^2))-(1/gamma)*...
             log((gamma+1)/(2*gamma*M1^2-(gamma-1)));

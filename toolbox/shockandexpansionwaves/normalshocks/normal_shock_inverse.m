@@ -35,7 +35,7 @@
 % INPUT:
 % ------
 %   spec    - (char) specifies input quantity (see options below)
-%   Q_in 	- (1×1 double) input quantity, Qᵢₙ (specified by "spec")
+%   Q_in    - (1×1 double) input quantity, Qᵢₙ (specified by "spec")
 %   gamma   - (OPTIONAL) (1×1 double) specific heat ratio, γ (defaults to 
 %             1.4)
 %
@@ -95,23 +95,23 @@ function M1 = normal_shock_inverse(spec,Q_in,gamma)
         % returns NaN for M₁
         M1 = NaN;
         
-    % calculates M₁ from M₂
+    % M₁ from M₂
     elseif strcmpi(spec,'M2')
         M1 = sqrt((2+(gamma-1)*Q_in^2)/(2*gamma*Q_in^2-(gamma-1)));
         
-    % calculates M₁ from P₂/P₁
+    % M₁ from P₂/P₁
     elseif strcmpi(spec,'P2/P1')
         M1 = sqrt(((gamma+1)*Q_in+(gamma-1))/(2*gamma));
         
-    % calculates M₁ from ρ₂/ρ₁
+    % M₁ from ρ₂/ρ₁
     elseif strcmpi(spec,'rho2/rho1')
         M1 = sqrt((2*Q_in)/((gamma+1)-(gamma-1)*Q_in));
         
-	% calculates M₁ from U₂/U₁
+	% M₁ from U₂/U₁
     elseif strcmpi(spec,'U2/U1')
         M1 = sqrt(2/((gamma+1)*Q_in-(gamma-1)));
         
-    % calculates M₁ for all other inputs
+    % M₁ for all other inputs
     else
         
         % defines the function g(M₁) in terms of the normal_shock function

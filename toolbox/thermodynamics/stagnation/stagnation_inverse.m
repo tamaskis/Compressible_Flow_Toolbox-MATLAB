@@ -26,7 +26,7 @@
 % INPUT:
 % ------
 %   spec    - (char) specifies input quantity (see options below)
-%   Q_in 	- (1×1 double) input quantity, Qᵢₙ (specified by "spec")
+%   Q_in    - (1×1 double) input quantity, Qᵢₙ (specified by "spec")
 %   gamma   - (OPTIONAL) (1×1 double) specific heat ratio, γ (defaults to 
 %             1.4)
 %

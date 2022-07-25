@@ -32,7 +32,7 @@
 % -------
 % OUTPUT:
 % -------
-%   Q_out 	- (1×1 double) output quantity, Qₒᵤₜ (specified by "spec")
+%   Q_out   - (1×1 double) output quantity, Qₒᵤₜ (specified by "spec")
 %
 % -------------------
 % OPTIONS FOR "spec":
@@ -51,23 +51,23 @@ function Q_out = stagnation(M,spec,gamma)
         gamma = 1.4;
     end
     
-    % Tₜ/T (stagnation-to-static temperature ratio)
+    % Tₜ/T from M
     if strcmpi(spec,'Tt/T')
         Q_out = 1+((gamma-1)/2)*M^2;
         
-    % Pₜ/P (stagnation-to-static pressure ratio)
+    % Pₜ/P from M
     elseif strcmpi(spec,'Pt/P')
         Q_out = (1+((gamma-1)/2)*M^2)^(gamma/(gamma-1));
         
-    % ρₜ/ρ (stagnation-to-static density ratio)
+    % ρₜ/ρ from M
     elseif strcmpi(spec,'rhot/rho')
         Q_out = (1+((gamma-1)/2)*M^2)^(1/(gamma-1));
         
-    % aₜ/a (stagnation-to-static speed of sound ratio)
+    % aₜ/a from M
     elseif strcmpi(spec,'at/a')
         Q_out = sqrt(1+((gamma-1)/2)*M^2);
         
-    % hₜ/h (stagnation-to-static enthalpy ratio)
+    % hₜ/h from M
     elseif strcmpi(spec,'ht/h')
         Q_out = 1+((gamma-1)/2)*M^2;
         
