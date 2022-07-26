@@ -1,13 +1,13 @@
 %==========================================================================
 %
-% mach_angle_inverse  Local Mach number from Mach angle.
+% mu_to_M  Local Mach number from Mach angle.
 %
-%   M = mach_angle_inverse(mu)
+%   M = mu_to_M(mu)
 %
-% See also mach_angle.
+% See also M_to_mu.
 %
 % Copyright © 2022 Tamas Kis
-% Last Update: 2022-04-16
+% Last Update: 2022-07-24
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %
@@ -27,6 +27,6 @@
 %   M       - (1×1 double) local Mach number, M
 %
 %==========================================================================
-function M = mach_angle_inverse(mu)
+function M = mu_to_M(mu)
     M = csc(mu);
 end

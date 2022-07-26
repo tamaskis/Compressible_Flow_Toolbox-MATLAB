@@ -1,13 +1,13 @@
 %==========================================================================
 %
-% mach_angle  Mach angle from local Mach number.
+% M_to_mu  Mach angle from local Mach number.
 %
 %   mu = mach_angle(M)
 %
-% See also mach_angle_inverse.
+% See also mu_to_M.
 %
 % Copyright © 2022 Tamas Kis
-% Last Update: 2022-04-16
+% Last Update: 2022-07-24
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %
@@ -27,6 +27,6 @@
 %   mu      - (1×1 double) Mach angle, μ [rad]
 %
 %==========================================================================
-function mu = mach_angle(M)
+function mu = M_to_mu(M)
     mu = asin(1/M);
 end

@@ -9,7 +9,7 @@
 % See also deflection_angle, max_deflection_angle.
 %
 % Copyright © 2022 Tamas Kis
-% Last Update: 2022-04-16
+% Last Update: 2022-07-24
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %

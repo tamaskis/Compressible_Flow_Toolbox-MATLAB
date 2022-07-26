@@ -1,7 +1,7 @@
 %==========================================================================
 %
 % max_deflection_angle  Calculates the maximum deflection angle given the 
-% upstream Mach.
+% upstream Mach number.
 %
 %   theta_max = max_deflection_angle(M1)
 %   theta_max = max_deflection_angle(M1,gamma)
@@ -9,7 +9,7 @@
 % See also deflection_angle, shock_angle.
 %
 % Copyright © 2022 Tamas Kis
-% Last Update: 2022-04-16
+% Last Update: 2022-07-26
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %
@@ -38,15 +38,17 @@ function theta_max = max_deflection_angle(M1,gamma)
         gamma = 1.4;
     end
     
-    % minimum and maximum β's for a given M₁
+    % minimum and maximum β's for the given M₁ [rad]
     beta_min = asin(1/M1);
     beta_max = pi/2;
     
-    % finds negative of maximum shock angle [rad]
-    [~,theta_max] = fminbnd(@(beta)-deflection_angle(M1,beta,gamma),...
-        beta_min,beta_max);
+    % defines θ(β) using the deflection_angle function
+    theta = @(beta) deflection_angle(M1,beta,gamma);
     
-    % maximum shock angle [rad]
-    theta_max = -theta_max;
+    % finds negative of maximum deflection angle [rad]
+    [~,theta_star] = fminbnd(-theta,beta_min,beta_max);
+    
+    % maximum deflection angle [rad]
+    theta_max = -theta_star;
     
 end
