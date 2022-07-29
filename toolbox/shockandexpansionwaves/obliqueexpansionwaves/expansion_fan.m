@@ -1,14 +1,14 @@
 %==========================================================================
 %
-% prandtl_meyer  Prandtl-Meyer function.
+% expansion_fan  TODO
 %
-%   nu = prandtl_meyer(M)
-%   nu = prandtl_meyer(M,gamma)
+%   M2 = expansion_fan(M1,theta)
+%   M2 = expansion_fan(M1,theta,gamma)
 %
 % See also prandtl_meyer_inverse.
 %
 % Copyright © 2022 Tamas Kis
-% Last Update: 2022-07-28
+% Last Update: 2022-07-29
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %
@@ -20,25 +20,31 @@
 % ------
 % INPUT:
 % ------
-%   M       - (1×1 double) local Mach number, M
+%   M1      - (1×1 double) upstream Mach number, M₁
+%   theta   - (1×1 double) turn angle, θ [rad]
 %   gamma   - (OPTIONAL) (1×1 double) specific heat ratio, γ (defaults to 
 %             1.4)
 %
 % -------
 % OUTPUT:
 % -------
-%   nu      - (1×1 double) Prandtl-Meyer angle, ν [rad]
+%   M2      - (1×1 double) downstream Mach number, M₂
 %
 %==========================================================================
-function nu = prandtl_meyer(M,gamma)
+function M2 = expansion_fan(M1,theta,gamma)
     
     % defaults "gamma" to 1.4 if not specified
     if (nargin == 1) || isempty(gamma)
         gamma = 1.4;
     end
     
-    % Prandtl-Meyer angle [rad]
-    nu = sqrt((gamma+1)/(gamma-1))*atan(sqrt(((gamma-1)/(gamma+1))*(M^2-...
-        1)))-atan(sqrt(M^2-1));
+    % upstream Prandtl-Meyer angle [rad]
+    nu1 = prandtl_meyer(M1,gamma);
+    
+    % downstream Prandtl-Meyer angle [rad]
+    nu2 = nu1+abs(theta);
+    
+    % downstream Mach number
+    M2 = prandtl_meyer_inverse(nu2,gamma);
     
 end

@@ -1,7 +1,8 @@
 %==========================================================================
 %
-% oblique_shock_inverse  Determines the Mach number upstream of an oblique
-% shock given some input quantity.
+% oblique_shock_inverse  Finds the upstream Mach number for an oblique 
+% shock given either the downstream Mach number, the nondimensional entropy
+% change, or a ratio of properties.
 %
 %   M1 = oblique_shock_inverse('M2',M2)
 %   M1 = oblique_shock_inverse('T2/T1',T2_T1)
@@ -34,7 +35,7 @@
 % INPUT:
 % ------
 %   spec    - (char) specifies input quantity (see options below)
-%   Q_in 	- (1×1 double) input quantity, Qᵢₙ (specified by "spec")
+%   Q_in    - (1×1 double) input quantity, Qᵢₙ (specified by "spec")
 %   gamma   - (OPTIONAL) (1×1 double) specific heat ratio, γ (defaults to 
 %             1.4)
 %
@@ -61,68 +62,28 @@
 %   --> '(s2-s1)/cp'    - nondimensional entropy change, (s₂-s₁)/cₚ
 %
 %==========================================================================
-function M1 = oblique_shock_inverse(spec,Q_in,gamma)
+function M1 = oblique_shock_inverse(spec,Q_in,beta,gamma)
     
     % defaults "gamma" to 1.4 if not specified
     if (nargin == 2) || isempty(gamma)
         gamma = 1.4;
     end
-    
-    % returns M1 = NaN and displays warnings if stagnation temperature
-    % ratio or stagnation enthalpy ratio are specified
-    if strcmpi(spec,'Tt2/Tt1') || strcmpi(spec,'at2/at1') ||...
-            strcmpi(spec,'ht2/ht1')
+
+    % handles edge case where input quantity is M₂
+    if strcmpi(spec,'M2')
         
-        % determines string to use
-        if strcmpi(spec,'Tt2/Tt1')
-            str = "stagnation temperature ratio";
-        elseif strcmpi(spec,'at2/at1')
-            str = "stagnation speed of sound ratio";
-        elseif strcmpi(spec,'ht2/ht1')
-            str = "stagnation enthalpy ratio";
-        end
+        % deflection angle [rad]
+        theta = deflection_angle(M1,beta,gamma);
         
-        % displays warning if Tt2/Tt1 or ht2/ht1 is anything other than 1
-        if Q_in ~= 1
-            warning("Input " + str + " is not equal to 1 -- the " +...
-                str + " is always 1 across a normal shock.");
-        end
-        
-        % displays general warning regarding this calculation
-        warning("Cannot determine upstream Mach number -- the " + str +...
-            " is 1 for any upstream Mach number.");
-        
-        % returns NaN because Tt2/Tt1 = at2/at2 = ht2/ht1 = 1 for any value
-        % of M1
-        M1 = NaN;
-        
-    % calculates M1 from M2
-    elseif strcmpi(spec,'M2')
-        M1 = sqrt((2+(gamma-1).*Q_in^2)./(2*gamma*Q_in.^2-(gamma-1)));
-        
-    % calculates M1 from P2/P1
-    elseif strcmpi(spec,'P2/P1')
-        M1 = sqrt(((gamma+1)*Q_in+(gamma-1))/(2*gamma));
-        
-    % calculates M1 from rho2/rho1
-    elseif strcmpi(spec,'rho2/rho1')
-        M1 = sqrt((2*Q_in)./((gamma+1)-(gamma-1)*Q_in));
-        
-	% calculates M1 from U2/U1
-    elseif strcmpi(spec,'U2/U1')
-        M1 = sqrt(2./((gamma+1)*Q_in-(gamma-1)));
-        
-    % calculates M1(i) for each Q_in(i) using root finding procedure for
-    % all other inputs (no closed-form solution)
-    %   --> supersonic initial guess is used because normal shocks only
-    %       occur in supersonic flow
-    else
-        M1 = zeros(size(Q_in));
-        for i = 1:length(Q_in)
-            g = @(M1) normal_shock(M1,spec,gamma)-Q_in(i);
-            M1(i) = secant_method(g,1.5);
-        end
+        % downstream Mach number from normal downstream Mach number
+        Q_out = Mn2_to_M2(Q_out,theta,beta);
         
     end
+
+    % finds Mₙ₁ using inverse normal shock relation
+    Mn1 = normal_shock_inverse(spec,Q_in,gamma);
+    
+    % finds M₁ given Mₙ₁
+    M1 = Mn1_to_M1(Mn1,beta);
     
 end

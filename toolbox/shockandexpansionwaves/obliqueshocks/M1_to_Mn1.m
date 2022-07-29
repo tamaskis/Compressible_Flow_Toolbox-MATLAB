@@ -1,6 +1,6 @@
 %==========================================================================
 %
-% M1_to_Mn1  Upstream Mach number to normal upstream Mach number for an
+% M1_to_Mn1  Normal upstream Mach number from upstream Mach number for an
 % oblique shock.
 %
 %   Mn1 = M1_to_Mn1(M1,beta)

@@ -1,8 +1,8 @@
 %==========================================================================
 %
 % normal_shock  Finds the downstream Mach number, nondimensional entropy 
-% change across a normal shock, or a ratio of properties across a normal 
-% shock given the upstream Mach number.
+% change, or a ratio of properties for a normal shock given the upstream 
+% Mach number.
 %
 %   M2 = normal_shock(M1,'M2')
 %   T2_T1 = normal_shock(M1,'T2/T1')

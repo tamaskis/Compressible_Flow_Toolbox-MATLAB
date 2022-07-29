@@ -2,13 +2,13 @@
 %
 % prandtl_meyer_inverse  Inverse Prandtl-Meyer function.
 %
-%   M = prandtl_meyer_inverse(w)
-%   M = prandtl_meyer_inverse(w,gamma)
+%   M = prandtl_meyer_inverse(nu)
+%   M = prandtl_meyer_inverse(nu,gamma)
 %
 % See also prandtl_meyer_inverse.
 %
 % Copyright © 2022 Tamas Kis
-% Last Update: 2022-04-16
+% Last Update: 2022-07-28
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %
@@ -20,7 +20,7 @@
 % ------
 % INPUT:
 % ------
-%   w       - (1×1 double) Prandtl-Meyer angle, ω [rad]
+%   nu      - (1×1 double) Prandtl-Meyer angle, ν [rad]
 %   gamma   - (OPTIONAL) (1×1 double) specific heat ratio, γ (defaults to 
 %             1.4)
 %
@@ -30,14 +30,17 @@
 %   M       - (1×1 double) local Mach number, M
 %
 %==========================================================================
-function M = prandtl_meyer_inverse(w,gamma)
+function M = prandtl_meyer_inverse(nu,gamma)
     
     % defaults "gamma" to 1.4 if not specified
     if (nargin == 1) || isempty(gamma)
         gamma = 1.4;
     end
     
-    % calculates M using the secant method
-    M = secant_method(@(M)prandtl_meyer(M,gamma)-w,1.5);
+    % defines g(M) using the prandtl_meyer function
+    g = @(M) prandtl_meyer(M,gamma)-nu;
+    
+    % local Mach number for given ν
+    M = secant_method(g,1.5);
     
 end

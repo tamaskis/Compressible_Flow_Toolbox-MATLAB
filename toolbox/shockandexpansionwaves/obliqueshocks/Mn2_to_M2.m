@@ -1,14 +1,14 @@
 %==========================================================================
 %
-% Mn2_to_M2  Normal downstream Mach number to downstream Mach number for an
-% oblique shock.
+% Mn2_to_M2  Downstream Mach number from normal downstream Mach number for
+% an oblique shock.
 %
 %   M2 = Mn2_to_M2(Mn2,theta,beta)
 %
 % See also TODO.
 %
 % Copyright © 2022 Tamas Kis
-% Last Update: 2022-07-13
+% Last Update: 2022-07-27
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %

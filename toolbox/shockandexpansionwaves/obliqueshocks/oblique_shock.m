@@ -1,6 +1,8 @@
 %==========================================================================
 %
-% oblique_shock  Oblique shock relations.
+% oblique_shock  Finds the downstream Mach number, nondimensional entropy 
+% change, or a ratio of properties for an oblique shock given the upstream 
+% Mach number and the shock angle.
 %
 %   M2 = oblique_shock(M1,beta,'M2')
 %   T2_T1 = oblique_shock(M1,beta,'T2/T1')
@@ -74,9 +76,15 @@ function Q_out = oblique_shock(M1,beta,spec,gamma)
     % finds output quantity using normal shock relations
     Q_out = normal_shock(Mn1,spec,gamma);
     
-    % downstream Mach number from normal downstream Mach number
-    if strcmpi(Q_out,'M2')
+    % handles edge case where desired output quantity is M₂
+    if strcmpi(spec,'M2')
+        
+        % deflection angle [rad]
+        theta = deflection_angle(M1,beta,gamma);
+        
+        % downstream Mach number from normal downstream Mach number
         Q_out = Mn2_to_M2(Q_out,theta,beta);
+        
     end
     
 end

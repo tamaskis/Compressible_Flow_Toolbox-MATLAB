@@ -1,6 +1,6 @@
 %==========================================================================
 %
-% Mn1_to_M1  Normal Upstream Mach number to upstream Mach number for an
+% Mn1_to_M1  Upstream Mach number from normal upstream Mach number for an
 % oblique shock.
 %
 %   M1 = Mn1_to_M1(Mn1,beta)
@@ -8,7 +8,7 @@
 % See also TODO.
 %
 % Copyright © 2022 Tamas Kis
-% Last Update: 2022-07-13
+% Last Update: 2022-07-27
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %

@@ -39,8 +39,10 @@ function M1_min = min_M1_attached(theta,gamma)
         gamma = 1.4;
     end
     
+    % defines g(M₁) using the max_deflection_angle function
+    g = @(M1) max_deflection_angle(M1,gamma)-theta;
+    
     % minimum upstream Mach number to produce an attached oblique shock
-    M1_min = bisection_method(@(M1)max_deflection_angle(M1,gamma)-theta,...
-        1,1000);
+    M1_min = bisection_method(g,1,25);
     
 end
