@@ -35,7 +35,7 @@
 function M1_min = min_M1_attached(theta,gamma)
     
     % defaults "gamma" to 1.4 if not specified
-    if (nargin == 1) || isempty(gamma)
+    if (nargin < 2) || isempty(gamma)
         gamma = 1.4;
     end
     

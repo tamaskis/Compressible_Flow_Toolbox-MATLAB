@@ -69,7 +69,7 @@
 function Q_out = rayleigh_station(M1,M2,spec,gamma)
     
     % defaults "gamma" to 1.4 if not specified
-    if (nargin == 3) || isempty(gamma)
+    if (nargin < 4) || isempty(gamma)
         gamma = 1.4;
     end
     

@@ -65,7 +65,7 @@
 function Q_out = normal_shock(M1,spec,gamma)
     
     % defaults "gamma" to 1.4 if not specified
-    if (nargin == 2) || isempty(gamma)
+    if (nargin < 3) || isempty(gamma)
         gamma = 1.4;
     end
     

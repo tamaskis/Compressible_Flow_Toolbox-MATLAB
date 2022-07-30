@@ -47,29 +47,28 @@
 function Q_out = stagnation(M,spec,gamma)
     
     % defaults "gamma" to 1.4 if not specified
-    if (nargin == 2) || isempty(gamma)
+    if (nargin < 3) || isempty(gamma)
         gamma = 1.4;
     end
     
-    % Tₜ/T from M
-    if strcmpi(spec,'Tt/T')
-        Q_out = 1+((gamma-1)/2)*M^2;
+    % auxiliary parameter
+    A = 1+((gamma-1)/2)*M^2;
+    
+    % Tₜ/T or hₜ/h from M
+    if strcmpi(spec,'Tt/T') || strcmpi(spec,'ht/h')
+        Q_out = A;
         
     % Pₜ/P from M
     elseif strcmpi(spec,'Pt/P')
-        Q_out = (1+((gamma-1)/2)*M^2)^(gamma/(gamma-1));
+        Q_out = A^(gamma/(gamma-1));
         
     % ρₜ/ρ from M
     elseif strcmpi(spec,'rhot/rho')
-        Q_out = (1+((gamma-1)/2)*M^2)^(1/(gamma-1));
+        Q_out = A^(1/(gamma-1));
         
     % aₜ/a from M
     elseif strcmpi(spec,'at/a')
-        Q_out = sqrt(1+((gamma-1)/2)*M^2);
-        
-    % hₜ/h from M
-    elseif strcmpi(spec,'ht/h')
-        Q_out = 1+((gamma-1)/2)*M^2;
+        Q_out = sqrt(A);
         
     end
     

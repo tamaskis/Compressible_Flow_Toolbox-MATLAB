@@ -65,7 +65,7 @@
 function M1 = oblique_shock_inverse(spec,Q_in,beta,gamma)
     
     % defaults "gamma" to 1.4 if not specified
-    if (nargin == 2) || isempty(gamma)
+    if (nargin < 4) || isempty(gamma)
         gamma = 1.4;
     end
 

@@ -87,7 +87,7 @@ function M_out = rayleigh_station_inverse(M_spec,M_in,Q_spec,Q_in,gamma)
     % ----------------------------------------------------
     
     % defaults "gamma" to 1.4 if not specified
-    if (nargin == 4) || isempty(gamma)
+    if (nargin < 5) || isempty(gamma)
         gamma = 1.4;
     end
     

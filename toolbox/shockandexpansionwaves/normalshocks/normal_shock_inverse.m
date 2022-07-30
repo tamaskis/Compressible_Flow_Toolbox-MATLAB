@@ -65,7 +65,7 @@
 function M1 = normal_shock_inverse(spec,Q_in,gamma)
     
     % defaults "gamma" to 1.4 if not specified
-    if (nargin == 2) || isempty(gamma)
+    if (nargin < 3) || isempty(gamma)
         gamma = 1.4;
     end
     

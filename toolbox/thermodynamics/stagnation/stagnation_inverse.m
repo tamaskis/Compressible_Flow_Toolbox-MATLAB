@@ -13,7 +13,7 @@
 % See also stagnation.
 %
 % Copyright © 2022 Tamas Kis
-% Last Update: 2022-07-20
+% Last Update: 2022-07-30
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %
@@ -48,30 +48,29 @@
 function M = stagnation_inverse(spec,Q_in,gamma)
     
     % defaults "gamma" to 1.4 if not specified
-    if (nargin == 2) || isempty(gamma)
+    if (nargin < 3) || isempty(gamma)
         gamma = 1.4;
     end
     
-    % M from Tₜ/T
-    if strcmpi(spec,'Tt/T')
-        M = sqrt((2/(gamma-1))*(Q_in-1));
+    % A from Tₜ/T or hₜ/h
+    if strcmpi(spec,'Tt/T') || strcmpi(spec,'ht/h')
+        A = Q_in;
         
-    % M from Pₜ/P
+    % A from Pₜ/P
     elseif strcmpi(spec,'Pt/P')
-        M = sqrt((2/(gamma-1))*(Q_in^((gamma-1)/gamma)-1));
+        A = Q_in^((gamma-1)/gamma);
         
-    % M from ρₜ/ρ
+    % A from ρₜ/ρ
     elseif strcmpi(spec,'rhot/rho')
-        M = sqrt((2/(gamma-1))*(Q_in^(gamma-1)-1));
+        A = Q_in^(gamma-1);
         
-    % M from aₜ/a
+    % A from aₜ/a
     elseif strcmpi(spec,'at/a')
-        M = sqrt((2/(gamma-1))*(Q_in^2-1));
-        
-    % M from hₜ/h
-    elseif strcmpi(spec,'ht/h')
-        M = sqrt((2/(gamma-1))*(Q_in-1));
+        A = Q_in^2;
         
     end
+    
+    % M from A
+    M = sqrt((2/(gamma-1))*(A-1));
     
 end
