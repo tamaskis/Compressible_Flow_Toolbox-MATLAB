@@ -3,9 +3,9 @@
 % area_mach_inverse  Mach number from area ratio (solving area-Mach number 
 % relation for M).
 %
-%   [M_sub,M_sup] = area_mach_inverse(Astar_A)
-%   [M_sub,M_sup] = area_mach_inverse(Astar_A,'reciprocal')
+%   [M_sub,M_sup] = area_mach_inverse(A_Astar)
 %   [M_sub,M_sup] = area_mach_inverse(A_Astar,'classic')
+%   [M_sub,M_sup] = area_mach_inverse(Astar_A,'reciprocal')
 %   [M_sub,M_sup] = area_mach_inverse(__,gamma)
 %
 % See also area_mach.
@@ -65,8 +65,7 @@ function [M_sub,M_sup] = area_mach_inverse(AR,type,gamma)
     end
     
     % defines the function g(M) in terms of the area_mach function
-    g = @(M) M*((gamma+1)/(2+(gamma-1)*M^2))^((gamma+1)/(2*(gamma-1)))-...
-        Astar_A;
+    g = @(M) area_mach(M,'reciprocal',gamma)-Astar_A;
     
     % finds subsonic and supersonic roots
     M_sub = bisection_method(g,0,1);

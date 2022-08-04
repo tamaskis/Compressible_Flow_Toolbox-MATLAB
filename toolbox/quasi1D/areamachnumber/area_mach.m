@@ -36,7 +36,7 @@
 %               --> A*/A if type = 'reciprocal'
 %
 %==========================================================================
-function f = area_mach(M,type,gamma)
+function AR = area_mach(M,type,gamma)
     
     % defaults "type" to 'classic' if not specified
     if (nargin < 2) || isempty(type)
@@ -50,11 +50,11 @@ function f = area_mach(M,type,gamma)
     
     % A/A* from M
     if strcmpi(type,'classic')
-        f = (1/M)*((2+(gamma-1)*M^2)/(gamma+1))^((gamma+1)/(2*(gamma-1)));
+        AR = (1/M)*((2+(gamma-1)*M^2)/(gamma+1))^((gamma+1)/(2*(gamma-1)));
         
     % A*/A from M
     else
-        f = M*((gamma+1)/(2+(gamma-1)*M^2))^((gamma+1)/(2*(gamma-1)));
+        AR = M*((gamma+1)/(2+(gamma-1)*M^2))^((gamma+1)/(2*(gamma-1)));
         
     end
     
