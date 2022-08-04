@@ -1,16 +1,16 @@
 %==========================================================================
 %
-% area_mach_number  Area ratio from Mach number (using Mach-area relation).
+% area_mach  Area ratio from Mach number (using area-Mach number relation).
 %
-%   Astar_A = area_mach_number(M)
-%   Astar_A = area_mach_number(M,'reciprocal')
-%   A_Astar = area_mach_number(M,'classic')
-%   __ = area_mach_number(__,gamma)
+%   A_Astar = area_mach(M)
+%   A_Astar = area_mach(M,'classic')
+%   Astar_A = area_mach(M,'reciprocal')
+%   __ = area_mach(__,gamma)
 %
-% See also area_mach_number_inverse.
+% See also area_mach_inverse.
 %
 % Copyright © 2022 Tamas Kis
-% Last Update: 2022-04-16
+% Last Update: 2022-07-30
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %
@@ -23,24 +23,24 @@
 % INPUT:
 % ------
 %   M       - (1×1 double) local Mach number, M
-%   type    - (OPTIONAL) (char) 'reciprocal' or 'classic' (defaults to
-%             'reciprocal')
+%   type    - (OPTIONAL) (char) 'classic' or 'reciprocal' (defaults to
+%             'classic')
 %   gamma   - (OPTIONAL) (1×1 double) specific heat ratio, γ (defaults to 
 %             1.4)
 %
 % -------
 % OUTPUT:
 % -------
-%   f       - (1×1 double) evaluation of area-Mach number relation
-%               --> A*/A if type = 'reciprocal'
+%   AR      - (1×1 double) area ratio
 %               --> A/A* if type = 'classic'
+%               --> A*/A if type = 'reciprocal'
 %
 %==========================================================================
-function f = area_mach_number(M,type,gamma)
+function f = area_mach(M,type,gamma)
     
-    % defaults "type" to 'reciprocal' if not specified
+    % defaults "type" to 'classic' if not specified
     if (nargin < 2) || isempty(type)
-        type = 'reciprocal';
+        type = 'classic';
     end
     
     % defaults "gamma" to 1.4 if not specified
@@ -48,11 +48,14 @@ function f = area_mach_number(M,type,gamma)
         gamma = 1.4;
     end
     
-    % calculates specified area ratio
+    % A/A* from M
     if strcmpi(type,'classic')
         f = (1/M)*((2+(gamma-1)*M^2)/(gamma+1))^((gamma+1)/(2*(gamma-1)));
+        
+    % A*/A from M
     else
         f = M*((gamma+1)/(2+(gamma-1)*M^2))^((gamma+1)/(2*(gamma-1)));
+        
     end
     
 end
